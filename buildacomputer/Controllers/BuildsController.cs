@@ -17,6 +17,19 @@ namespace buildacomputer.Controllers
         // GET: Builds
         public ActionResult Index()
         {
+            List<long> motherboard = db.motherboards.Select(m => m.motherboard_id).ToList();
+            List<long> processor = db.processors.Select(p => p.processor_id).ToList();
+            List<long> memory = db.memories.Select(m => m.memory_id).ToList();
+            List<long> hardDrive = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+            List<long> soundCard = db.sound_cards.Select(s => s.sound_card_id).ToList();
+            List<long> videoAdapter = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+            List<long> opticalDrive = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+            List<long> powerSupply = db.power_supplies.Select(p => p.power_supply_id).ToList();
+            List<long> computerCase = db.computer_cases.Select(c => c.computer_case_id).ToList();
+
+            ViewBag.build = new Build(motherboard, processor, memory, hardDrive, soundCard, videoAdapter, opticalDrive, powerSupply, computerCase);
+
+            return View();
 
 
             //var build = db.Build.Include(b => b.computer_cases).Include(b => b.hard_drives).Include(b => b.memories).Include(b => b.motherboards).Include(b => b.optical_drives).Include(b => b.power_supplies).Include(b => b.sound_cards).Include(b => b.video_adapters);
