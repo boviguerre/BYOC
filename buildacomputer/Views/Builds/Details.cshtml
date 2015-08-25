@@ -1,0 +1,114 @@
+﻿@model buildacomputer.Models.Build
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Build</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.computer_cases.color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.computer_cases.color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hard_drives.hard_drive_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hard_drives.hard_drive_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.memories.memory_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.memories.memory_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.motherboards.motherboard_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.motherboards.motherboard_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.optical_drives.optical_drive_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.optical_drives.optical_drive_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.power_supplies.power_supply_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.power_supplies.power_supply_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sound_cards.sound_card_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sound_cards.sound_card_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.video_adapters.video_adapter_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.video_adapters.video_adapter_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.processer_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.processer_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.buildType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.buildType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iterator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iterator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuildTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuildTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.buildID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

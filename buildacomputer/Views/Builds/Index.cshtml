@@ -1,0 +1,99 @@
+﻿@model IEnumerable<buildacomputer.Models.Build>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.computer_cases.color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hard_drives.hard_drive_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.memories.memory_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.motherboards.motherboard_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.optical_drives.optical_drive_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.power_supplies.power_supply_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sound_cards.sound_card_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.video_adapters.video_adapter_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.processer_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.buildType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.iterator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuildTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.computer_cases.color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.memories.memory_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.motherboards.motherboard_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.processer_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.buildType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.iterator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuildTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,90 @@
+﻿.Row
+{
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Column
+{
+    display: table-cell;
+    font-family:'Cambria Math','Bookman Old Style'; 
+    font-size: large;
+    color:#fff;
+}
+
+
+
+
+a
+{
+    text-decoration: none;
+    color:#fff
+    
+}
+
+a:visited
+{
+    color:#fff
+}
+
+body 
+{
+    padding-top: .5px;
+    padding-bottom: 20px;
+    background-color:#000000;
+}
+
+.Column ul
+{
+    list-style-type: none
+}
+.Column a:hover
+{
+    color: #808080
+}
+
+.Column a:visited
+{
+    color: #fff
+}
+
+.jumbotron h1
+{
+    padding-top: 20px;
+    font-family:'Cambria Math','Bookman Old Style';
+    color: #fff;
+    font-size: 25px;
+    text-align:center
+}
+
+.jumbotron ul li
+{
+    text-align:center;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom:7px;
+    list-style-type: none
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    color:#fff;
+    vertical-align: text-bottom
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
