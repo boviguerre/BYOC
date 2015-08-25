@@ -245,8 +245,8 @@ namespace buildacomputer.Models
                                                           .Select(s => s.memory_id).ToList()
                                               );
                         }
-                processer_ids.Clear();
-                processer_ids = NewMemory;
+                memory_ids.Clear();
+                memory_ids = NewMemory;
             }
         }
 
@@ -266,8 +266,8 @@ namespace buildacomputer.Models
                                                            .Select(s => s.hard_drive_id).ToList()
                                             );
                         }
-                processer_ids.Clear();
-                processer_ids = NewHard;
+                hard_drive_ids.Clear();
+                hard_drive_ids = NewHard;
             }
         }
 
@@ -287,8 +287,8 @@ namespace buildacomputer.Models
                                                                .Select(s => s.sound_card_id).ToList()
                                                   );
                         }
-                processer_ids.Clear();
-                processer_ids = NewSound;
+                sound_card_ids.Clear();
+                sound_card_ids = NewSound;
             }
         }
         #endregion
