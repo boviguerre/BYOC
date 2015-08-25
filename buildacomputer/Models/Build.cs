@@ -91,7 +91,7 @@ namespace buildacomputer.Models
         public void addMotherboard(long x)
         {
             motherboard_id = x;
-            addMotherboardHelper(x);
+            //addMotherboardHelper(x);
         }
         public void addComputer_case_id(long x)
         {
@@ -210,13 +210,25 @@ namespace buildacomputer.Models
         }
 
         #region Private Helpers
-        private void addMotherboardHelper(long? id)
+        private void motherBoard_Processor(long? id)
         {
             if (id != null)
             {
-                
+                List<long> NewProcessor = new List<long>();
+                long[] processor_ID = db.processors.Select(s => s.processor_socket_id).ToArray();
+                long[] processor_ID2 = db.motherboards.Select(s => s.processor_socket_id).ToArray();
+                foreach (long x in processor_ID)
+                    foreach (long y in processor_ID2)
+                        if (x == y)
+                        {
+                            NewProcessor.AddRange(db.processors.Where(s => s.processor_socket_id == x)
+                                                               .Select(s => s.processor_id).ToList()
+                                                  );
+                        }
             }
         }
+
+
         #endregion
     }
 }
