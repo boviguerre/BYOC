@@ -168,3 +168,42 @@ textarea {
 #globalnav UL A.here:visited {
 	color:#444;
 }
+
+#tabs-nested > .ui-tabs-panel { 
+    padding: 0; 
+} 
+#tabs-nested-left { 
+    position: relative; 
+    padding-left: 6.5em; 
+} 
+#tabs-nested-left .ui-tabs-nav { 
+    position: absolute; 
+    left: 0.25em; 
+    top: 0.25em; 
+    bottom: 0.25em; 
+    width: 6em; 
+    padding: 0.2em 0 0.2em 0.2em; 
+} 
+#tabs-nested-left .ui-tabs-nav li { 
+    right: 1px; 
+    width: 100%; 
+    border-right: none; 
+    border-bottom-width: 1px !important; 
+    border-radius: 4px 0 0 4px; 
+    border-radius: 4px 0 0 4px; 
+    border-radius: 4px 0 0 4px; 
+    overflow: hidden; 
+} 
+#tabs-nested-left .ui-tabs-nav li.ui-tabs-selected, 
+#tabs-nested-left .ui-tabs-nav li.ui-state-active { 
+    border-right: 1px solid transparent; 
+} 
+#tabs-nested-left .ui-tabs-nav li a { 
+    float: right; 
+    width: 100%; 
+    text-align: right; 
+} 
+#tabs-nested-left > div { 
+    height: 10em; 
+    overflow: auto; 
+}
