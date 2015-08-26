@@ -36,9 +36,10 @@ namespace buildacomputer.Controllers
             {
                 //Turns motherboards held in build into a list of strings
                 case -1:
+                    ViewList.Clear();  //in case we back all the way up
                     foreach (long item in build.motherboard_ids)
                     {
-                        ViewList = db.motherboards.Where(m => m.motherboard_id == item).ToList<Object>();
+                        ViewList.AddRange(db.motherboards.Where(m => m.motherboard_id == item).ToList<motherboards>());
                     }
                     iterator += 1;
                     break;
@@ -48,7 +49,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.processor_ids)
                     {
-                        ViewList = db.processors.Where(p => p.processor_id == item).ToList<Object>();
+                        ViewList.AddRange(db.processors.Where(p => p.processor_id == item).ToList<processors>());
                     }
                     iterator += 1;
                     break;
@@ -57,7 +58,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.memory_ids)
                     {
-                        ViewList = db.memories.Where(m => m.memory_id == item).ToList<Object>();
+                        ViewList.AddRange(db.memories.Where(m => m.memory_id == item).ToList<memories>());
                     }
                     iterator += 1;
                     break;
@@ -66,7 +67,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.hard_drive_ids)
                     {
-                        ViewList = db.hard_drives.Where(h => h.hard_drive_id == item).ToList<Object>();
+                        ViewList.AddRange(db.hard_drives.Where(h => h.hard_drive_id == item).ToList<hard_drives>());
                     }
                     iterator += 1;
                     break;
@@ -75,7 +76,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.sound_card_ids)
                     {
-                        ViewList = db.sound_cards.Where(s => s.sound_card_id == item).ToList<Object>();
+                        ViewList.AddRange(db.sound_cards.Where(s => s.sound_card_id == item).ToList<sound_cards>());
                     }
                     iterator += 1;
                     break;
@@ -84,7 +85,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.video_adapter_ids)
                     {
-                        ViewList = db.video_adapters.Where(v => v.video_adapter_id == item).ToList<Object>();
+                        ViewList.AddRange(db.video_adapters.Where(v => v.video_adapter_id == item).ToList<video_adapters>());
                     }
                     iterator += 1;
                     break;
@@ -93,7 +94,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.optical_drive_ids)
                     {
-                        ViewList = db.optical_drives.Where(o => o.optical_drive_id == item).ToList<Object>();
+                        ViewList.AddRange(db.optical_drives.Where(o => o.optical_drive_id == item).ToList<optical_drives>());
                     }
                     iterator += 1;
                     break;
@@ -102,7 +103,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.power_supply_ids)
                     {
-                        ViewList = db.power_supplies.Where(p => p.power_supply_id == item).ToList<Object>();
+                        ViewList.AddRange(db.power_supplies.Where(p => p.power_supply_id == item).ToList<power_supplies>());
                     }
                     iterator += 1;
                     break;
@@ -111,7 +112,7 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.computer_case_ids)
                     {
-                        ViewList = db.computer_cases.Where(c => c.computer_case_id == item).ToList<Object>();
+                        ViewList.AddRange(db.computer_cases.Where(c => c.computer_case_id == item).ToList<computer_cases>());
                     }
                     iterator += 1;
                     break;
