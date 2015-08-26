@@ -1,209 +1,56 @@
-﻿.Row
-{
-    display: table;
-    width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    border-spacing: 10px; /*Optional*/
-}
-.Column
-{
-    display: table-cell;
-    font-family:'Cambria Math','Bookman Old Style'; 
-    font-size: large;
-    color:#fff;
+﻿#Tabs ul {
+padding: 0;
+margin: 0;
+margin-left: 10px;
+list-style-type: none;
 }
 
-a
-{
-    text-decoration: none;
-    color:#fff
-    
+#Tabs ul li {
+display: inline-block;
+clear: none;
+float: left;
+height: 24px;
 }
 
-a:visited
-{
-    color:#fff
+#Tabs ul li a {
+position: relative;
+margin-top: 16px;
+display: block;
+margin-left: 6px;
+line-height: 24px;
+padding-left: 10px;
+background: #f6f6f6;
+z-index: 9999;
+border: 1px solid #ccc;
+border-bottom: 0;
+
+/* The following four lines are to make the top left and top right corners of each tab rounded. */
+border-top-left-radius: 4px;
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+border-top-right-radius: 4px;
+/* end of rounded borders */
+
+width: 130px;
+color: #000000;
+text-decoration: none;
+font-weight: bold;
 }
 
-body 
-{
-    padding-top: .5px;
-    padding-bottom: 20px;
-    background-color:#000000;
+#Tabs ul li a:hover {
+text-decoration: underline; /*// a very simple effect when hovering the mouse on tab*/
 }
 
-.Column ul
-{
-    list-style-type: none
-}
-.Column a:hover
-{
-    color: #808080
-}
-
-.Column a:visited
-{
-    color: #fff
+#Tabs #Content_Area { /*// this is the css class for the content displayed in each tab*/
+padding: 0 15px;
+clear:both;
+overflow:hidden;
+line-height:19px;
+position: relative;
+top: 20px;
+z-index: 5;
+height: 150px;
+overflow: hidden;
 }
 
-.jumbotron h1
-{
-    padding-top: 20px;
-    font-family:'Cambria Math','Bookman Old Style';
-    color: #fff;
-    font-size: 25px;
-    text-align:center
-}
-
-.jumbotron ul li
-{
-    text-align:center;
-    color: #fff;
-    font-size: 20px;
-    margin-bottom:7px;
-    list-style-type: none
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    color:#fff;
-    vertical-align: text-bottom
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-/* FOR BUILD VIEW */
-
- /*globalnav*/
-
-#globalnav {
-	position:relative;
-	float:left;
-	width:100%;
-	padding:0 0 1.75em 1em;
-	margin:0;
-	list-style:none;
-	line-height:1em;
-}
-
-#globalnav LI {
-	float:left;
-	margin:0;
-	padding:0;
-}
-
-#globalnav A {
-	display:block;
-	color:#444;
-	text-decoration:none;
-	font-weight:bold;
-	background:#ddd;
-	margin:0;
-	padding:0.25em 1em;
-	border-left:1px solid #fff;
-	border-top:1px solid #fff;
-	border-right:1px solid #aaa;
-}
-
-#globalnav A:hover,
-#globalnav A:active,
-#globalnav A.here:link,
-#globalnav A.here:visited {
-	background:#bbb;
-}
-
-#globalnav A.here:link,
-#globalnav A.here:visited {
-	position:relative;
-	z-index:102;
-}
-
-/*subnav*/
-
-#globalnav UL {
-	position:absolute;
-	left:0;
-	top:1.5em;
-	float:left;
-	background:#bbb;
-	width:100%;
-	margin:0;
-	padding:0.25em 0.25em 0.25em 1em;
-	list-style:none;
-	border-top:1px solid #fff;
-}
-
-#globalnav UL LI {
-	float:left;
-	display:block;
-	margin-top:1px;
-}
-
-#globalnav UL A {
-	background:#bbb;
-	color:#fff;
-	display:inline;
-	margin:0;
-	padding:0 1em;
-	border:0
-}
-
-#globalnav UL A:hover,
-#globalnav UL A:active,
-#globalnav UL A.here:link,
-#globalnav UL A.here:visited {
-	color:#444;
-}
-
-#tabs-nested > .ui-tabs-panel { 
-    padding: 0; 
-} 
-#tabs-nested-left { 
-    position: relative; 
-    padding-left: 6.5em; 
-} 
-#tabs-nested-left .ui-tabs-nav { 
-    position: absolute; 
-    left: 0.25em; 
-    top: 0.25em; 
-    bottom: 0.25em; 
-    width: 6em; 
-    padding: 0.2em 0 0.2em 0.2em; 
-} 
-#tabs-nested-left .ui-tabs-nav li { 
-    right: 1px; 
-    width: 100%; 
-    border-right: none; 
-    border-bottom-width: 1px !important; 
-    border-radius: 4px 0 0 4px; 
-    border-radius: 4px 0 0 4px; 
-    border-radius: 4px 0 0 4px; 
-    overflow: hidden; 
-} 
-#tabs-nested-left .ui-tabs-nav li.ui-tabs-selected, 
-#tabs-nested-left .ui-tabs-nav li.ui-state-active { 
-    border-right: 1px solid transparent; 
-} 
-#tabs-nested-left .ui-tabs-nav li a { 
-    float: right; 
-    width: 100%; 
-    text-align: right; 
-} 
-#tabs-nested-left > div { 
-    height: 10em; 
-    overflow: auto; 
-}
+p { padding-left: 15px; }
