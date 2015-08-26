@@ -81,8 +81,9 @@ namespace buildacomputer.Models
         public virtual video_adapters video_adapters { get; set; }
         public virtual memories memories { get; set; }
 
-        public void subtractPart(int id)
+        public int subtractPart(int id)
         {
+            id--;
             if (id == 0)
                 this.motherboard_id = null;
             else if (id == 1)
@@ -107,6 +108,7 @@ namespace buildacomputer.Models
                 addMotherboardHelper();
                 motherboard_ids.Clear();
             }
+            return id;
         }
 
         #region Possible parts
