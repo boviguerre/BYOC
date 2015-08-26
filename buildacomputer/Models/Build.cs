@@ -22,8 +22,8 @@ namespace buildacomputer.Models
                 motherboard_ids.Add(x);
             defValues.Add(motherboard_ids);
             foreach (long x in pr)
-                processer_ids.Add(x);
-            defValues.Add(processer_ids);
+                processor_ids.Add(x);
+            defValues.Add(processor_ids);
             foreach (long x in me)
                 memory_ids.Add(x);
             defValues.Add(memory_ids);
@@ -54,7 +54,7 @@ namespace buildacomputer.Models
         public long? hard_drive_id { get; set; }
         public long? optical_drive_id { get; set; }
         public long? power_supply_id { get; set; }
-        public long? processer_id { get; set; }
+        public long? processor_id { get; set; }
         public long? sound_card_id { get; set; }
         public long? video_adapter_id { get; set; }
         public long? memory_id { get; set; }
@@ -70,7 +70,7 @@ namespace buildacomputer.Models
         public List<long> hard_drive_ids { get; set; }
         public List<long> optical_drive_ids { get; set; }
         public List<long> power_supply_ids { get; set; }
-        public List<long> processer_ids { get; set; }
+        public List<long> processor_ids { get; set; }
         public List<long> sound_card_ids { get; set; }
         public List<long> video_adapter_ids { get; set; }
         public List<long> memory_ids { get; set; }
@@ -111,7 +111,7 @@ namespace buildacomputer.Models
         }
         public void addProcessor_id(long x)
         {
-            processer_id = x;
+            processor_id = x;
         }
         public void addSound_card_id(long x)
         {
@@ -127,7 +127,7 @@ namespace buildacomputer.Models
         }
         #endregion
 
-        public void substractPart(long id)
+        public void subtractPart(long id)
         {
             if (this.motherboard_id == id)
                 this.motherboard_id = null;
@@ -139,8 +139,8 @@ namespace buildacomputer.Models
                 this.optical_drive_id = null;
             else if (this.power_supply_id == id)
                 this.power_supply_id = null;
-            else if (this.processer_id == id)
-                this.processer_id = null;
+            else if (this.processor_id == id)
+                this.processor_id = null;
             else if (this.sound_card_id == id)
                 this.sound_card_id = null;
             else if (this.video_adapter_id == id)
@@ -160,9 +160,9 @@ namespace buildacomputer.Models
                 }
                 if (i == 1)
                 {
-                    processer_ids.Clear();
+                    processor_ids.Clear();
                     foreach (long x in defValues[i])
-                        processer_ids.Add(x);
+                        processor_ids.Add(x);
                 }
                 if (i == 2)
                 {
@@ -225,8 +225,8 @@ namespace buildacomputer.Models
                                                                .Select(s => s.processor_id).ToList()
                                                   );
                         }
-                processer_ids.Clear();
-                processer_ids = NewProcessor;
+                processor_ids.Clear();
+                processor_ids = NewProcessor;
             }
         }
 
@@ -291,6 +291,28 @@ namespace buildacomputer.Models
                 sound_card_ids = NewSound;
             }
         }
+
+        private void MotherBoard_OpticalDrive()
+        {
+            if (motherboard_id != null)
+            {
+                List<long> NewOptical = new List<long>();
+                long[] optical_ID = db.optical_drives.Select(s => s.bus_interface_id).ToArray();
+                long[] optical_ID2 = db.l_motherboard_bus_interfaces.Where(s => s.motherboard_id == motherboard_id)
+                                                                 .Select(s => s.bus_interface_id).ToArray();
+                foreach (long x in optical_ID)
+                    foreach (long y in optical_ID2)
+                        if (x == y)
+                        {
+                            NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x)
+                                                           .Select(s => s.optical_drive_id).ToList()
+                                            );
+                        }
+                optical_drive_ids.Clear();
+                hard_drive_ids = NewOptical;
+            }
+        }
+
         #endregion
     }
 }
