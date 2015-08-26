@@ -15,6 +15,7 @@ namespace buildacomputer.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private PartsAndUsersContext db = new PartsAndUsersContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -151,7 +152,7 @@ namespace buildacomputer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -162,8 +163,13 @@ namespace buildacomputer.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    User person = new User();
+                    person.Id = user.Id;
+
+                    db.User.Add(person);
 
                     return RedirectToAction("Index", "Home");
+
                 }
                 AddErrors(result);
             }
