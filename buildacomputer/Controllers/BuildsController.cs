@@ -15,21 +15,26 @@ namespace buildacomputer.Controllers
         private static PartsAndUsersContext db = new PartsAndUsersContext();
 
         //Instantiates a build object with the "possible" lists seeded by the database
-        private static List<long> motherboard = db.motherboards.Select(m => m.motherboard_id).ToList();
-        private static List<long> processor = db.processors.Select(p => p.processor_id).ToList();
-        private static List<long> memory = db.memories.Select(m => m.memory_id).ToList();
-        private static List<long> hardDrive = db.hard_drives.Select(h => h.hard_drive_id).ToList();
-        private static List<long> soundCard = db.sound_cards.Select(s => s.sound_card_id).ToList();
-        private static List<long> videoAdapter = db.video_adapters.Select(v => v.video_adapter_id).ToList();
-        private static List<long> opticalDrive = db.optical_drives.Select(o => o.optical_drive_id).ToList();
-        private static List<long> powerSupply = db.power_supplies.Select(p => p.power_supply_id).ToList();
-        private static List<long> computerCase = db.computer_cases.Select(c => c.computer_case_id).ToList();
+        
         private int iterator = -1;
-
-        Build build = new Build(motherboard, processor, memory, hardDrive, soundCard, videoAdapter, opticalDrive, powerSupply, computerCase);
+        Build build;
+       
         // GET: Builds
         public ActionResult Index(long? id_number = null)
         {
+            List<long> motherboard = db.motherboards.Select(m => m.motherboard_id).ToList();
+            List<long> processor = db.processors.Select(p => p.processor_id).ToList();
+            List<long> memory = db.memories.Select(m => m.memory_id).ToList();
+            List<long> hardDrive = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+            List<long> soundCard = db.sound_cards.Select(s => s.sound_card_id).ToList();
+            List<long> videoAdapter = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+            List<long> opticalDrive = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+            List<long> powerSupply = db.power_supplies.Select(p => p.power_supply_id).ToList();
+            List<long> computerCase = db.computer_cases.Select(c => c.computer_case_id).ToList();
+
+
+            build = new Build(motherboard, processor, memory, hardDrive, soundCard, videoAdapter, opticalDrive, powerSupply, computerCase);
+
             List<Object> ViewList = new List<Object>();
             //Switch that uses selection to identify which list to show
             switch (iterator)
@@ -124,6 +129,7 @@ namespace buildacomputer.Controllers
                 default:
                     iterator += 1;
                     Index(null);
+                    //Index(0);
                     break;
             }
 
