@@ -8,6 +8,11 @@ namespace buildacomputer.Models
 {
     public class gpus
     {
+        public gpus() 
+        {
+            gpu_id = -1;
+        }
+
         [Key]
         public long gpu_id { get; set; }
 

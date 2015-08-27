@@ -10,125 +10,151 @@ using buildacomputer.Models;
 
 namespace buildacomputer.Controllers
 {
+    public class TestClass
+    {
+        public long testObject1 { get; set; }
+
+    
+        public long testObject2 { get; set; }
+    }
+
     public class BuildsController : Controller
     {
         private static PartsAndUsersContext db = new PartsAndUsersContext();
 
-        //Instantiates a build object with the "possible" lists seeded by the database
-        private static List<long> motherboard = db.motherboards.Select(m => m.motherboard_id).ToList();
-        private static List<long> processor = db.processors.Select(p => p.processor_id).ToList();
-        private static List<long> memory = db.memories.Select(m => m.memory_id).ToList();
-        private static List<long> hardDrive = db.hard_drives.Select(h => h.hard_drive_id).ToList();
-        private static List<long> soundCard = db.sound_cards.Select(s => s.sound_card_id).ToList();
-        private static List<long> videoAdapter = db.video_adapters.Select(v => v.video_adapter_id).ToList();
-        private static List<long> opticalDrive = db.optical_drives.Select(o => o.optical_drive_id).ToList();
-        private static List<long> powerSupply = db.power_supplies.Select(p => p.power_supply_id).ToList();
-        private static List<long> computerCase = db.computer_cases.Select(c => c.computer_case_id).ToList();
-        private int iterator = -1;
+        ////Instantiates a build object with the "possible" lists seeded by the database
+        //private static List<long> motherboard = db.motherboards.Select(m => m.motherboard_id).ToList();
+        //private static List<long> processor = db.processors.Select(p => p.processor_id).ToList();
+        //private static List<long> memory = db.memories.Select(m => m.memory_id).ToList();
+        //private static List<long> hardDrive = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+        //private static List<long> soundCard = db.sound_cards.Select(s => s.sound_card_id).ToList();
+        //private static List<long> videoAdapter = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+        //private static List<long> opticalDrive = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+        //private static List<long> powerSupply = db.power_supplies.Select(p => p.power_supply_id).ToList();
+        //private static List<long> computerCase = db.computer_cases.Select(c => c.computer_case_id).ToList();
+        //private int iterator = -1;
 
-        Build build = new Build(motherboard, processor, memory, hardDrive, soundCard, videoAdapter, opticalDrive, powerSupply, computerCase);
+        //Build build = new Build(motherboard, processor, memory, hardDrive, soundCard, videoAdapter, opticalDrive, powerSupply, computerCase);
         // GET: Builds
-        public ActionResult Index(long? id_number = null)
+        //public ActionResult Index(long? id_number = null)
+        public ActionResult Index()
         {
+            motherboards el1 = new motherboards();
+            el1.motherboard_id = 1;
+            el1.motherboard_name = "Mb1";
+            el1.memory_type_id = 2;
+            
+            
+            
+            optical_drives el2 = new optical_drives();
             List<Object> ViewList = new List<Object>();
+
+                         
+            ViewList.Add(el1);
+            //ViewList.Add(el2);
+
+                //ViewList.AddRange(db.power_supplies.Where(p => p.power_supply_id == item).ToList<power_supplies>());
+
+
+            
             //Switch that uses selection to identify which list to show
-            switch (iterator)
-            {
-                //Turns motherboards held in build into a list of strings
-                case -1:
-                    foreach (long item in build.motherboard_ids)
-                    {
-                        ViewList = db.motherboards.Where(m => m.motherboard_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                //Adds selected motherboard
-                case 0:
-                    build.addMotherboard(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.processor_ids)
-                    {
-                        ViewList = db.processors.Where(p => p.processor_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 1:
-                    build.addProcessor_id(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.memory_ids)
-                    {
-                        ViewList = db.memories.Where(m => m.memory_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 2:
-                    build.addMemory_id(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.hard_drive_ids)
-                    {
-                        ViewList = db.hard_drives.Where(h => h.hard_drive_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 3:
-                    build.addHard_drive_id(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.sound_card_ids)
-                    {
-                        ViewList = db.sound_cards.Where(s => s.sound_card_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 4:
-                    build.addSound_card_id(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.video_adapter_ids)
-                    {
-                        ViewList = db.video_adapters.Where(v => v.video_adapter_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 5:
-                    build.addVideo_adapter_id(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.optical_drive_ids)
-                    {
-                        ViewList = db.optical_drives.Where(o => o.optical_drive_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 6:
-                    build.addOptical_drive_id(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.power_supply_ids)
-                    {
-                        ViewList = db.power_supplies.Where(p => p.power_supply_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 7:
-                    build.addPower_supply_id(id_number);
-                    ViewList.Clear();
-                    foreach (long item in build.computer_case_ids)
-                    {
-                        ViewList = db.computer_cases.Where(c => c.computer_case_id == item).ToList<Object>();
-                    }
-                    iterator += 1;
-                    break;
-                case 8:
-                    build.addComputer_case_id(id_number);
-                    ViewList.Clear();
-                    ViewList.Add("Your build is complete.");
-                    iterator += 1;
-                    break;
-                default:
-                    iterator += 1;
-                    Index(null);
-                    break;
-            }
+            //switch (iterator)
+            //{
+            //    //Turns motherboards held in build into a list of strings
+            //    case -1:
+            //        foreach (long item in build.motherboard_ids)
+            //        {
+            //            ViewList = db.motherboards.Where(m => m.motherboard_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    //Adds selected motherboard
+            //    case 0:
+            //        build.addMotherboard(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.processor_ids)
+            //        {
+            //            ViewList = db.processors.Where(p => p.processor_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 1:
+            //        build.addProcessor_id(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.memory_ids)
+            //        {
+            //            ViewList = db.memories.Where(m => m.memory_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 2:
+            //        build.addMemory_id(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.hard_drive_ids)
+            //        {
+            //            ViewList = db.hard_drives.Where(h => h.hard_drive_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 3:
+            //        build.addHard_drive_id(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.sound_card_ids)
+            //        {
+            //            ViewList = db.sound_cards.Where(s => s.sound_card_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 4:
+            //        build.addSound_card_id(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.video_adapter_ids)
+            //        {
+            //            ViewList = db.video_adapters.Where(v => v.video_adapter_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 5:
+            //        build.addVideo_adapter_id(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.optical_drive_ids)
+            //        {
+            //            ViewList = db.optical_drives.Where(o => o.optical_drive_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 6:
+            //        build.addOptical_drive_id(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.power_supply_ids)
+            //        {
+            //            ViewList = db.power_supplies.Where(p => p.power_supply_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 7:
+            //        build.addPower_supply_id(id_number);
+            //        ViewList.Clear();
+            //        foreach (long item in build.computer_case_ids)
+            //        {
+            //            ViewList = db.computer_cases.Where(c => c.computer_case_id == item).ToList<Object>();
+            //        }
+            //        iterator += 1;
+            //        break;
+            //    case 8:
+            //        build.addComputer_case_id(id_number);
+            //        ViewList.Clear();
+            //        ViewList.Add("Your build is complete.");
+            //        iterator += 1;
+            //        break;
+            //    default:
+            //        iterator += 1;
+            //        Index(null);
+            //        break;
+            //}
 
             //Returns the list of motherboard strings to the view
-            return View(ViewList);
+            return View(el1);
         }
 
         //// GET: Builds/Details/5

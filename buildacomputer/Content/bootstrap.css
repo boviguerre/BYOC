@@ -52,7 +52,7 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Cambria Math','Bookman Old Style';
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -103,7 +103,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, serif;
+  font-family: 'Cambria Math', 'Bookman Old Style';
   font-size: 1em;
 }
 
@@ -276,14 +276,16 @@ table {
   }
   .navbar {
     display: none;
+    background-color: #000;
   }
   .table td,
   .table th {
-    background-color: #fff !important;
+    background-color: #000;
+    color: #fff
   }
   .btn > .caret,
   .dropup > .btn > .caret {
-    border-top-color: #000 !important;
+    border-top-color: #ddd !important;
   }
   .label {
     border: 1px solid #000;
@@ -293,7 +295,8 @@ table {
   }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #ddd !important;
+      border-top-color: #ddd;
+    border: 1px solid #ddd;
   }
 }
 
@@ -307,11 +310,11 @@ table {
 
 html {
   font-size: 62.5%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: #000;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Cambria Math', 'Bookman Old Style';
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -473,7 +476,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Cambria Math', 'Bookman Old Style';
   font-weight: 500;
   line-height: 1.1;
 }
@@ -712,7 +715,7 @@ address {
 
 code,
 pre {
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-family: 'Cambria Math', 'Bookman Old Style';
 }
 
 code {
@@ -1423,9 +1426,11 @@ th {
 .table tfoot > tr > th,
 .table thead > tr > td,
 .table tbody > tr > td,
-.table tfoot > tr > td {
+.table tfoot > tr > td,
+.table
+ {
   padding: 8px;
-  line-height: 1.428571429;
+  line-height: 3.5;
   vertical-align: top;
   border-top: 1px solid #dddddd;
 }
@@ -1527,15 +1532,15 @@ table th[class*="col-"] {
 .table > thead > tr.success > th,
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  background-color: #000;
+  border-color: #000;
 }
 
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td {
-  background-color: #d0e9c6;
-  border-color: #c9e2b3;
+  background-color: #000;
+  border-color: #000;
 }
 
 .table > thead > tr > td.danger,
@@ -1745,7 +1750,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .form-control[readonly],
 fieldset[disabled] .form-control {
   cursor: not-allowed;
-  background-color: #eeeeee;
+  background-color: #000;
 }
 
 textarea.form-control {
@@ -4083,6 +4088,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-collapse {
+  font-family: 'Cambria Math', 'Bookman Old Style';
+  font-size: medium;
   max-height: 340px;
   padding-right: 15px;
   padding-left: 15px;
@@ -4384,7 +4391,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #000;
   border-color: #e7e7e7;
 }
 
@@ -4416,7 +4423,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #555555;
-  background-color: #e7e7e7;
+  background-color: #000;
 }
 
 .navbar-default .navbar-nav > .disabled > a,
@@ -4427,16 +4434,16 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-toggle {
-  border-color: #dddddd;
+  border-color: #000;
 }
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #dddddd;
+  background-color: #000;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #cccccc;
+  background-color: #000;
 }
 
 .navbar-default .navbar-collapse,
@@ -4454,7 +4461,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   color: #555555;
-  background-color: #e7e7e7;
+  background-color: #000;
 }
 
 .navbar-default .navbar-nav > .open > a .caret,
@@ -4482,7 +4489,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #555555;
-    background-color: #e7e7e7;
+    background-color: #000;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
@@ -4553,7 +4560,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #ffffff;
+  background-color: #000;
 }
 
 .navbar-inverse .navbar-collapse,
@@ -4693,7 +4700,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   z-index: 2;
   color: #ffffff;
   cursor: default;
-  background-color: #428bca;
+
   border-color: #428bca;
 }
 
@@ -4703,7 +4710,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .pagination > .disabled > a:focus {
   color: #999999;
   cursor: not-allowed;
-  background-color: #ffffff;
+
   border-color: #dddddd;
 }
 
@@ -4786,7 +4793,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .pager li > a:hover,
 .pager li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  
 }
 
 .pager .next > a,
@@ -4805,7 +4812,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .pager .disabled > span {
   color: #999999;
   cursor: not-allowed;
-  background-color: #ffffff;
+  
 }
 
 .label {
@@ -6125,7 +6132,7 @@ body.modal-open,
   height: 20px;
   margin-top: -10px;
   margin-left: -10px;
-  font-family: serif;
+  font-family: 'Cambria Math', 'Bookman Old Style';
 }
 
 .carousel-control .icon-prev:before {

@@ -32,13 +32,27 @@ body
     background-color:#000000;
 }
 
+.navbar,
+.navbar-header,
+.container,
+.navbar-toggle,
+.icon-bar,
+.navbar-brand,
+.navbar-collapse collapse,
+.navbar-nav,
+.container body-content
+{
+    background-color: #000;
+    color: #fff;
+}
+
 .Column ul
 {
     list-style-type: none
 }
 .Column a:hover
 {
-    color: #808080
+    color: #fff
 }
 
 .Column a:visited
@@ -51,15 +65,34 @@ body
     padding-top: 20px;
     font-family:'Cambria Math','Bookman Old Style';
     color: #fff;
+    background-color: #000;
     font-size: 25px;
     text-align:center
 }
 
+.jumbotron ul
+{
+    background-color: #000;
+}
+
+.html
+{
+    font-family: 'Cambria Math', 'Bookman Old Style';
+}
+
+.li
+{
+    font-family: 'Cambria Math', 'Bookman Old Style';
+}
+
+
 .jumbotron ul li
 {
     text-align:center;
+    font-family: 'Cambria Math', 'Bookman Old Style';
     color: #fff;
-    font-size: 20px;
+    background-color: #000;
+    font-size: 16px;
     margin-bottom:7px;
     list-style-type: none
 }
@@ -69,6 +102,7 @@ body
     padding-left: 15px;
     padding-right: 15px;
     color:#fff;
+    background-color: #000;
     vertical-align: text-bottom
 }
 
@@ -77,6 +111,7 @@ body
 */
 .dl-horizontal dt {
     white-space: normal;
+    background-color: #000;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -88,122 +123,27 @@ textarea {
 
 /* FOR BUILD VIEW */
 
- /*globalnav*/
-
-#globalnav {
-	position:relative;
-	float:left;
-	width:100%;
-	padding:0 0 1.75em 1em;
-	margin:0;
-	list-style:none;
-	line-height:1em;
+.table-bordered{
+   vertical-align: bottom;
+   border: 2px solid #dddddd;
+   border-collapse: collapse;
+   width: 100%;
+   top: 2px;
 }
 
-#globalnav LI {
-	float:left;
-	margin:0;
-	padding:0;
+.th 
+{
+    height: 50px;
+    padding: 15px;
 }
 
-#globalnav A {
-	display:block;
-	color:#444;
-	text-decoration:none;
-	font-weight:bold;
-	background:#ddd;
-	margin:0;
-	padding:0.25em 1em;
-	border-left:1px solid #fff;
-	border-top:1px solid #fff;
-	border-right:1px solid #aaa;
+.th a
+{text-decoration: none;
 }
 
-#globalnav A:hover,
-#globalnav A:active,
-#globalnav A.here:link,
-#globalnav A.here:visited {
-	background:#bbb;
-}
-
-#globalnav A.here:link,
-#globalnav A.here:visited {
-	position:relative;
-	z-index:102;
-}
-
-/*subnav*/
-
-#globalnav UL {
-	position:absolute;
-	left:0;
-	top:1.5em;
-	float:left;
-	background:#bbb;
-	width:100%;
-	margin:0;
-	padding:0.25em 0.25em 0.25em 1em;
-	list-style:none;
-	border-top:1px solid #fff;
-}
-
-#globalnav UL LI {
-	float:left;
-	display:block;
-	margin-top:1px;
-}
-
-#globalnav UL A {
-	background:#bbb;
-	color:#fff;
-	display:inline;
-	margin:0;
-	padding:0 1em;
-	border:0
-}
-
-#globalnav UL A:hover,
-#globalnav UL A:active,
-#globalnav UL A.here:link,
-#globalnav UL A.here:visited {
-	color:#444;
-}
-
-#tabs-nested > .ui-tabs-panel { 
-    padding: 0; 
-} 
-#tabs-nested-left { 
-    position: relative; 
-    padding-left: 6.5em; 
-} 
-#tabs-nested-left .ui-tabs-nav { 
-    position: absolute; 
-    left: 0.25em; 
-    top: 0.25em; 
-    bottom: 0.25em; 
-    width: 6em; 
-    padding: 0.2em 0 0.2em 0.2em; 
-} 
-#tabs-nested-left .ui-tabs-nav li { 
-    right: 1px; 
-    width: 100%; 
-    border-right: none; 
-    border-bottom-width: 1px !important; 
-    border-radius: 4px 0 0 4px; 
-    border-radius: 4px 0 0 4px; 
-    border-radius: 4px 0 0 4px; 
-    overflow: hidden; 
-} 
-#tabs-nested-left .ui-tabs-nav li.ui-tabs-selected, 
-#tabs-nested-left .ui-tabs-nav li.ui-state-active { 
-    border-right: 1px solid transparent; 
-} 
-#tabs-nested-left .ui-tabs-nav li a { 
-    float: right; 
-    width: 100%; 
-    text-align: right; 
-} 
-#tabs-nested-left > div { 
-    height: 10em; 
-    overflow: auto; 
+.td
+{
+    height: 50px;
+    vertical-align: bottom;
+    padding: 15px;
 }

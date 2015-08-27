@@ -11,29 +11,31 @@ namespace buildacomputer.Models
         [Key]
         public long motherboard_id { get; set; }
 
+        public motherboards() { }
+
         public string motherboard_name { get; set; }
 
         public long front_usb_header_count { get; set; }
 
-        public long manufacturer_id { get; set; }
+        public long manufacturer_id { get; set; } //
 
         public long motherboard_nb_chipset_id { get; set; }
 
         public long motherboard_sb_chipset_id { get; set; }
 
-        public long processor_socket_id { get; set; }
+        public long processor_socket_id { get; set; } //
 
-        public long memory_type_id { get; set; }
+        public long memory_type_id { get; set; } //
 
-        public long motherboard_form_factor_id { get; set; }
+        public long motherboard_form_factor_id { get; set; } //
 
-        public long? gpu_id { get; set; } //nullable foreign key
+        public long? gpu_id { get; set; } //nullable foreign key //
 
-        public long power_supply_standard_id { get; set; }
+        public long power_supply_standard_id { get; set; }//
 
-        public long lan_chip_id { get; set; }
+        public long lan_chip_id { get; set; }//
 
-        public long sound_chip_id { get; set; }
+        public long sound_chip_id { get; set; }//
 
         public virtual manufacturers manufacturers { get; set; }
         public virtual motherboard_nb_chipsets motherboard_nb_chipsets { get; set; }
