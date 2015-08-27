@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 
 namespace buildacomputer.Models
 {
@@ -16,39 +17,27 @@ namespace buildacomputer.Models
     {
 
         #region Constructors
+
         public Build()
         {
-
-        }
-        public Build(List<long> mb, List<long> pr, List<long> me, List<long> hd, List<long> sc, List<long> va, List<long> od, List<long> ps, List<long> cc)
-        {
+            motherboard_ids     = db.motherboards.Select(m => m.motherboard_id).ToList<long>();
+            processor_ids       = db.processors.Select(p => p.processor_id).ToList();
+            memory_ids          = db.memories.Select(m => m.memory_id).ToList();
+            hard_drive_ids      = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+            sound_card_ids      = db.sound_cards.Select(s => s.sound_card_id).ToList();
+            video_adapter_ids   = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+            optical_drive_ids   = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+            power_supply_ids    = db.power_supplies.Select(p => p.power_supply_id).ToList();
+            computer_case_ids   = db.computer_cases.Select(c => c.computer_case_id).ToList();
             //import all possible parts
-            foreach (long x in mb)
-                motherboard_ids.Add(x);
             defValues.Add(motherboard_ids);
-            foreach (long x in pr)
-                processor_ids.Add(x);
             defValues.Add(processor_ids);
-            foreach (long x in me)
-                memory_ids.Add(x);
             defValues.Add(memory_ids);
-            foreach (long x in hd)
-                hard_drive_ids.Add(x);
             defValues.Add(hard_drive_ids);
-            foreach (long x in sc)
-                sound_card_ids.Add(x);
             defValues.Add(sound_card_ids);
-            foreach (long x in va)
-                video_adapter_ids.Add(x);
             defValues.Add(video_adapter_ids);
-            foreach (long x in od)
-                optical_drive_ids.Add(x);
             defValues.Add(optical_drive_ids);
-            foreach (long x in ps)
-                power_supply_ids.Add(x);
             defValues.Add(power_supply_ids);
-            foreach (long x in cc)
-                computer_case_ids.Add(x);
             defValues.Add(computer_case_ids);
         }
         #endregion

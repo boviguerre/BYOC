@@ -9,6 +9,11 @@ namespace buildacomputer.Models
 {
     public class PartsAndUsersContext : DbContext
     {
+        public PartsAndUsersContext()
+            : base("DefaultConnection")
+        {
+        }
+
         public DbSet<Build> Build { get; set; }
         public DbSet<bus_interfaces> bus_interfaces { get; set; }
         public DbSet<computer_case_sizes> computer_case_sizes { get; set; }
