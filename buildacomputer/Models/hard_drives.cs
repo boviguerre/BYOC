@@ -24,7 +24,6 @@ namespace buildacomputer.Models
         public long drive_bay_width_id { get; set; }
 
         public virtual ICollection<l_hard_drives_hard_drive_features> l_hard_drives_hard_drive_features { get; set; }
-        public virtual manufacturers manufacturers { get; set; }
         public virtual bus_interfaces bus_interfaces { get; set; }
         public virtual drive_bay_widths drive_bay_widths { get; set; }
     }

@@ -23,7 +23,6 @@ namespace buildacomputer.Models
 
         public long processor_core_id { get; set; }
 
-        public virtual manufacturers manufacturers { get; set; }
         public virtual processor_sockets processor_sockets { get; set; }
         public virtual processor_cores processor_cores { get; set; }
     }

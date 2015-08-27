@@ -22,6 +22,5 @@ namespace buildacomputer.Models
         public long memory_type_id { get; set; }
 
         public virtual memory_types memory_types { get; set; }
-        public virtual manufacturers manufacturers { get; set; }
     }
 }

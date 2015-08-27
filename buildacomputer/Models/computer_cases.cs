@@ -31,7 +31,6 @@ namespace buildacomputer.Models
 
         public long computer_case_size_id { get; set; }
 
-        public virtual manufacturers manufacturers { get; set; }
         public virtual motherboard_form_factors motherboard_form_factors { get; set; }
         public virtual computer_case_sizes computer_case_sizes { get; set; }
     }
