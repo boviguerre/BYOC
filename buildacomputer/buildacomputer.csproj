@@ -183,11 +183,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRoles.cs" />
+    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\AspNetUserClaim.cs" />
+    <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\Build.cs" />
     <Compile Include="Models\bus_interfaces.cs" />
     <Compile Include="Models\computer_cases.cs" />
     <Compile Include="Models\computer_case_sizes.cs" />
     <Compile Include="Models\cooling_fan_sizes.cs" />
+    <Compile Include="Models\C_MigrationHistory.cs" />
     <Compile Include="Models\drive_bay_widths.cs" />
     <Compile Include="Models\ethernet_standards.cs" />
     <Compile Include="Models\expansion_slots.cs" />
@@ -198,12 +203,10 @@
     <Compile Include="Models\lan_chips.cs" />
     <Compile Include="Models\l_computer_cases_cooling_fans.cs" />
     <Compile Include="Models\l_computer_cases_drive_bay_widths.cs" />
-    <Compile Include="Models\l_hard_drives_hard_drive_features.cs" />
     <Compile Include="Models\l_motherboards_expansion_slots.cs" />
     <Compile Include="Models\l_motherboard_bus_interfaces.cs" />
     <Compile Include="Models\l_motherboard_peripheral_interfaces.cs" />
     <Compile Include="Models\l_optical_drives_optical_disk_formats.cs" />
-    <Compile Include="Models\l_optical_drives_optical_drive_features.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\manufacturers.cs" />
     <Compile Include="Models\memories.cs" />
@@ -258,7 +261,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

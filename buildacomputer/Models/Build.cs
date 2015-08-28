@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections;
-using System.Data.Entity;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
-
-namespace buildacomputer.Models
+﻿namespace buildacomputer.Models
 {
-    public class Build
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Collections;
+    using System.Data.Entity;
+    using System.Data.SqlClient;
+    using System.Configuration;
+    using System.Data;
+
+    public partial class Build
     {
 
         #region Constructors
         public Build()
         {
-
+            Users = new HashSet<User>();
         }
+
         public Build(List<long> mb, List<long> pr, List<long> me, List<long> hd, List<long> sc, List<long> va, List<long> od, List<long> ps, List<long> cc)
         {
             //import all possible parts
@@ -53,57 +54,64 @@ namespace buildacomputer.Models
         }
         #endregion
 
-        [Key]
-        public long? buildID { get; set; }
-        public long? motherboard_id { get; set; }
-        public long? computer_case_id { get; set; }
-        public long? hard_drive_id { get; set; }
-        public long? optical_drive_id { get; set; }
-        public long? power_supply_id { get; set; }
-        public long? processor_id { get; set; }
-        public long? sound_card_id { get; set; }
-        public long? video_adapter_id { get; set; }
-        public long? memory_id { get; set; }
-        public string buildType { get; set; }
-        public int iterator { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
+        public long? ComputerCase { get; set; }
+        public long? HardDrive { get; set; }
+        public long? Memory { get; set; }
+        public long? Motherboard { get; set; }
+        public long? OpticalDrive { get; set; }
+        public long? PowerSupply { get; set; }
+        public long? Processor { get; set; }
+        public long? SoundCard { get; set; }
+        public long? VideoAdapter { get; set; }
+        
+        [StringLength(256)]
+        public string BuildType { get; set; }
+
+        public int Iterator { get; set; }
         public DateTime BuildTime { get; set; }
+
         private List<List<long>> defValues = new List<List<long>>();
+        
         private PartsAndUsersContext db = new PartsAndUsersContext();
 
+        public virtual ICollection<User> Users { get; set; }
+
         public virtual ICollection<UserBuilds> UserBuilds { get; set; }
-        public virtual motherboards motherboards { get; set; }
+        public virtual motherboard motherboards { get; set; }
         public virtual computer_cases computer_cases { get; set; }
         public virtual hard_drives hard_drives { get; set; }
         public virtual optical_drives optical_drives { get; set; }
         public virtual power_supplies power_supplies { get; set; }
-        public virtual processors processors { get; set; }
+        public virtual processor processors { get; set; }
         public virtual sound_cards sound_cards { get; set; }
         public virtual video_adapters video_adapters { get; set; }
-        public virtual memories memories { get; set; }
+        public virtual memory memories { get; set; }
 
         public int subtractPart(int id)
         {
             id--;
             if (id == 0)
-                this.motherboard_id = null;
+                this.Motherboard = null;
             else if (id == 1)
-                this.processor_id = null;
+                this.Processor = null;
             else if (id == 2)
-                this.memory_id = null;
+                this.Memory = null;
             else if (id == 3)
-                this.hard_drive_id = null;
+                this.HardDrive = null;
             else if (id == 4)
-                this.sound_card_id = null;
+                this.SoundCard = null;
             else if (id == 5)
-                this.video_adapter_id = null;
+                this.VideoAdapter = null;
             else if (id == 6)
-                this.optical_drive_id = null;
+                this.OpticalDrive = null;
             else if (id == 7)
-                this.power_supply_id = null;
+                this.PowerSupply = null;
             else if (id == 8)
-                this.computer_case_id = null;
+                this.ComputerCase = null;
             reseedPotential();
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 addMotherboardHelper();
                 motherboard_ids.Clear();
@@ -126,71 +134,71 @@ namespace buildacomputer.Models
         #region Public Add Parts
         public void addMotherboard(long? x)
         {
-            motherboard_id = x;
+            Motherboard = x;
             motherboard_ids.Clear();
             addMotherboardHelper();
         }
         public void addComputer_case_id(long? x)
         {
-            computer_case_id = x;
+            ComputerCase = x;
             computer_case_ids.Clear();
         }
         public void addHard_drive_id(long? x)
         {
-            hard_drive_id = x;
+            HardDrive = x;
             hard_drive_ids.Clear();
         }
         public void addOptical_drive_id(long? x)
         {
-            optical_drive_id = x;
+            OpticalDrive = x;
             optical_drive_ids.Clear();
         }
         public void addPower_supply_id(long? x)
         {
-            power_supply_id = x;
+            PowerSupply = x;
             power_supply_ids.Clear();
         }
         public void addProcessor_id(long? x)
         {
-            processor_id = x;
+            Processor = x;
         }
         public void addSound_card_id(long? x)
         {
-            sound_card_id = x;
+            SoundCard = x;
             sound_card_ids.Clear();
         }
         public void addVideo_adapter_id(long? x)
         {
-            video_adapter_id = x;
+            VideoAdapter = x;
             video_adapter_ids.Clear();
         }
         public void addMemory_id(long? x)
         {
-            memory_id = x;
+            Memory = x;
             memory_ids.Clear();
         }
         #endregion
 
         public void substractPart(long id)
         {
-            if (this.motherboard_id == id)
-                this.motherboard_id = null;
-            else if (this.computer_case_id == id)
-                this.computer_case_id = null;
-            else if (this.hard_drive_id == id)
-                this.hard_drive_id = null;
-            else if (this.optical_drive_id == id)
-                this.optical_drive_id = null;
-            else if (this.power_supply_id == id)
-                this.power_supply_id = null;
-            else if (this.processor_id == id)
-                this.processor_id = null;
-            else if (this.sound_card_id == id)
-                this.sound_card_id = null;
-            else if (this.video_adapter_id == id)
-                this.video_adapter_id = null;
-            else if (this.memory_id == id)
-                this.memory_id = null;
+            if (this.Motherboard == id)
+                this.Motherboard = null;
+            else if (this.ComputerCase == id)
+                this.ComputerCase = null;
+            else if (this.HardDrive == id)
+                this.HardDrive = null;
+            else if (this.OpticalDrive == id)
+                this.OpticalDrive = null;
+            else if (this.PowerSupply == id)
+                this.PowerSupply = null;
+            else if (this.Processor == id)
+                this.Processor = null;
+            else if (this.SoundCard == id)
+                this.SoundCard = null;
+            else if (this.VideoAdapter == id)
+                this.VideoAdapter = null;
+            else if (this.Memory == id)
+                this.Memory = null;
         }
         public void reseedPotential()
         {
@@ -255,7 +263,7 @@ namespace buildacomputer.Models
         #region
         private void MotherBoard_Processor()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewProcessor = new List<long>();
                 long[] processor_ID = db.processors.Select(s => s.processor_socket_id).ToArray();
@@ -274,7 +282,7 @@ namespace buildacomputer.Models
         }
         private void MotherBoard_Memories()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewMemory = new List<long>();
                 long[] memory_ID = db.memories.Select(s => s.memory_type_id).ToArray();
@@ -293,11 +301,11 @@ namespace buildacomputer.Models
         }
         private void MotherBoard_HardDrive()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewHard= new List<long>();
                 long[] hard_ID = db.hard_drives.Select(s => s.bus_interface_id).ToArray();
-                long[] hard_ID2 = db.l_motherboard_bus_interfaces.Where(s => s.motherboard_id == motherboard_id)
+                long[] hard_ID2 = db.l_motherboard_bus_interfaces.Where(s => s.motherboard_id == Motherboard)
                                                                  .Select(s => s.bus_interface_id).ToArray();
                 foreach (long x in hard_ID)
                     foreach (long y in hard_ID2)
@@ -313,11 +321,11 @@ namespace buildacomputer.Models
         }
         private void MotherBoard_SoundCard()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewSound = new List<long>();
                 long[] sound_ID = db.sound_cards.Select(s => s.expansion_slot_id).ToArray();
-                long[] sound_ID2 = db.l_motherboards_expansion_slots.Where(s => s.motherboard_id == motherboard_id)
+                long[] sound_ID2 = db.l_motherboards_expansion_slots.Where(s => s.motherboard_id == Motherboard)
                                                                     .Select(s => s.expansion_slot_id).ToArray();
                 foreach (long x in sound_ID)
                     foreach (long y in sound_ID2)
@@ -333,11 +341,11 @@ namespace buildacomputer.Models
         }
         private void MotherBoard_VideoAdapter()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewVideo = new List<long>();
                 long[] video_ID = db.video_adapters.Select(s => s.expansion_slot_id).ToArray();
-                long[] video_ID2 = db.l_motherboards_expansion_slots.Where(s => s.motherboard_id == motherboard_id)
+                long[] video_ID2 = db.l_motherboards_expansion_slots.Where(s => s.motherboard_id == Motherboard)
                                                                     .Select(s => s.expansion_slot_id).ToArray();
                 foreach (long x in video_ID)
                     foreach (long y in video_ID2)
@@ -353,11 +361,11 @@ namespace buildacomputer.Models
         }
         private void MotherBoard_OpticalDrive()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewOptical = new List<long>();
                 long[] optical_ID = db.optical_drives.Select(s => s.bus_interface_id).ToArray();
-                long[] optical_ID2 = db.l_motherboard_bus_interfaces.Where(s => s.motherboard_id == motherboard_id)
+                long[] optical_ID2 = db.l_motherboard_bus_interfaces.Where(s => s.motherboard_id == Motherboard)
                                                                  .Select(s => s.bus_interface_id).ToArray();
                 foreach (long x in optical_ID)
                     foreach (long y in optical_ID2)
@@ -373,7 +381,7 @@ namespace buildacomputer.Models
         }
         private void MotherBoard_PowerSupply()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewPower = new List<long>();
                 long[] power_ID = db.power_supplies.Select(s => s.power_supply_standard_id).ToArray();
@@ -392,7 +400,7 @@ namespace buildacomputer.Models
         }
         private void MotherBoard_Case()
         {
-            if (motherboard_id != null)
+            if (Motherboard != null)
             {
                 List<long> NewCase = new List<long>();
                 long[] case_ID = db.computer_cases.Select(s => s.motherboard_form_factor_id).ToArray();
