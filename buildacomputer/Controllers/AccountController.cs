@@ -166,7 +166,7 @@ namespace buildacomputer.Controllers
                     User person = new User();
                     person.Id = user.Id;
 
-                    db.User.Add(person);
+                    db.Users.Add(person);
 
                     return RedirectToAction("Index", "Home");
 

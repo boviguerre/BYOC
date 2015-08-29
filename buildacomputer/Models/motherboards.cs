@@ -49,13 +49,13 @@
         public virtual ICollection<l_motherboard_peripheral_interfaces> l_motherboard_peripheral_interfaces { get; set; }
         public virtual ICollection<l_motherboards_expansion_slots> l_motherboards_expansion_slots { get; set; }
         public virtual lan_chips lan_chips { get; set; }
-        public virtual manufacturer manufacturers { get; set; }
-        public virtual memory_types memory_tyes { get; set; }
+        public virtual manufacturer manufacturer { get; set; }
+        public virtual memory_types memory_types { get; set; }
         public virtual motherboard_form_factors motherboard_form_factors { get; set; }
         public virtual motherboard_nb_chipsets motherboard_nb_chipsets { get; set; }
         public virtual motherboard_sb_chipsets motherboard_sb_chipsets { get; set; }
         public virtual sound_chips sound_chips { get; set; }
         public virtual processor_sockets processor_sockets { get; set; }
-        public virtual power_supply_standards power_suply_sandards { get; set; }
+        public virtual power_supply_standards power_supply_standards { get; set; }
     }
 }

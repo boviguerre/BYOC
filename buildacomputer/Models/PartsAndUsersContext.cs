@@ -119,7 +119,7 @@
 
             modelBuilder.Entity<Build>()
                 .HasMany(e => e.Users)
-                .WithMany(e => e.Build)
+                .WithMany(e => e.Builds)
                 .Map(m => m.ToTable("Users_Builds").MapLeftKey("BuildId").MapRightKey("UserId"));
 
             modelBuilder.Entity<cooling_fan_sizes>()

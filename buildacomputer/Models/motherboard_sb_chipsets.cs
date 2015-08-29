@@ -23,6 +23,6 @@
         public long manufacturer_id { get; set; }
 
         public virtual ICollection<motherboard> motherboards { get; set; }
-        public virtual manufacturer manufacturers { get; set; }
+        public virtual manufacturer manufacturer { get; set; }
     }
 }
