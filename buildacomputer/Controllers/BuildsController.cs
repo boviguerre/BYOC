@@ -28,8 +28,9 @@ namespace buildacomputer.Controllers
                 case 0:
                     foreach (long item in build.motherboard_ids)
                     {
-                        ViewBag.mb = (db.motherboards.Where(m => m.motherboard_id == item).ToList<motherboards>());
+                        ViewList.Add(db.motherboards.Where(m => m.motherboard_id == item).ToList<motherboards>());
                     }
+                    ViewBag.mb = ViewList;
                     ViewBag.i = iterator;
                     iterator += 1;
                     break;
@@ -39,8 +40,10 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.processor_ids)
                     {
-                        ViewList = db.processors.Where(p => p.processor_id == item).ToList<Object>();
+                        ViewList.Add(db.processors.Where(p => p.processor_id == item).ToList<processors>());
                     }
+                    ViewBag.pr = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 2:
@@ -48,8 +51,10 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.memory_ids)
                     {
-                        ViewList = db.memories.Where(m => m.memory_id == item).ToList<Object>();
+                        ViewList.Add(db.memories.Where(m => m.memory_id == item).ToList<memories>());
                     }
+                    ViewBag.me = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 3:
@@ -57,8 +62,10 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.hard_drive_ids)
                     {
-                        ViewList = db.hard_drives.Where(h => h.hard_drive_id == item).ToList<Object>();
+                        ViewList.Add(db.hard_drives.Where(h => h.hard_drive_id == item).ToList<hard_drives>());
                     }
+                    ViewBag.hd = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 4:
@@ -66,8 +73,10 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.sound_card_ids)
                     {
-                        ViewList = db.sound_cards.Where(s => s.sound_card_id == item).ToList<Object>();
+                        ViewList.Add(db.sound_cards.Where(s => s.sound_card_id == item).ToList<sound_cards>());
                     }
+                    ViewBag.sc = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 5:
@@ -75,8 +84,10 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.video_adapter_ids)
                     {
-                        ViewList = db.video_adapters.Where(v => v.video_adapter_id == item).ToList<Object>();
+                        ViewList.Add(db.video_adapters.Where(v => v.video_adapter_id == item).ToList<video_adapters>());
                     }
+                    ViewBag.va = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 6:
@@ -84,8 +95,10 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.optical_drive_ids)
                     {
-                        ViewList = db.optical_drives.Where(o => o.optical_drive_id == item).ToList<Object>();
+                        ViewList.Add(db.optical_drives.Where(o => o.optical_drive_id == item).ToList<optical_drives>());
                     }
+                    ViewBag.od = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 7:
@@ -93,8 +106,10 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.power_supply_ids)
                     {
-                        ViewList = db.power_supplies.Where(p => p.power_supply_id == item).ToList<Object>();
+                        ViewList.Add(db.power_supplies.Where(p => p.power_supply_id == item).ToList<power_supplies>());
                     }
+                    ViewBag.ps = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 8:
@@ -102,14 +117,15 @@ namespace buildacomputer.Controllers
                     ViewList.Clear();
                     foreach (long item in build.computer_case_ids)
                     {
-                        ViewList = db.computer_cases.Where(c => c.computer_case_id == item).ToList<Object>();
+                        ViewList.Add(db.computer_cases.Where(c => c.computer_case_id == item).ToList<computer_cases>());
                     }
+                    ViewBag.cc = ViewList;
+                    ViewBag.i = iterator;
                     iterator += 1;
                     break;
                 case 9:
                     build.addComputer_case_id(id_number);
                     ViewList.Clear();
-                    ViewList.Add("Your build is complete.");
                     iterator += 1;
                     break;
                 default:
@@ -119,7 +135,7 @@ namespace buildacomputer.Controllers
             }
 
             //Returns the list of motherboard strings to the view
-            return View(ViewList);
+            return View();
         }
 
         //// GET: Builds/Details/5

@@ -38,19 +38,66 @@
     <p></p>
     <p></p>
     <table class="table-bordered">
-            @foreach (var item in ((List<motherboards>)ViewBag.mb))  
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                Processor Socket
+            </td>
+            <td>
+                RAM type
+            </td>
+            <td>
+                Form Factor
+            </td>
+            <td>
+                Integrated Gpu
+            </td>
+            <td>
+                Power Supply Standard
+            </td>
+            <td>
+                Lan Chip
+            </td>
+            <td>
+                Sound Chip
+            </td>
+        </tr>
+            @foreach (var item in ViewBag.mb)
             {
-                <tr>
-                    <td>
-                        @item.motherboard_id
-                    </td>
-                    <td>
-                        @item.motherboard_name
-                    </td>
-                    <td>
-                        @item.processor_sockets.processor_socket_name
-                    </td>
-                </tr>
+                foreach (var x in item)
+                {
+                    <tr>
+                        <td>
+                            @x.motherboard_name
+                        </td>
+                        <td>
+                            @x.processor_sockets.processor_socket_name
+                        </td>
+                        <td>
+                            @x.memory_types.memory_type_name
+                        </td>
+                        <td>
+                            @x.motherboard_form_factors.motherboard_form_factor_name
+                        </td>
+                        <td>
+                            @if (x.gpu_id != null)
+                            {
+                                @x.gpus.gpu_name
+                            }
+                        </td>
+                        <td>
+                            @x.power_supply_standards.power_supply_standard_name
+                        </td>
+                        <td>
+                            @x.lan_chips.lan_chip_name
+                        </td>
+                        <td>
+                            @x.sound_chips.sound_chip_name
+                        </td>
+                    </tr>
+                }
             }
     </table>
 
