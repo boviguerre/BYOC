@@ -1,6 +1,6 @@
-﻿@model buildacomputer.Models.motherboards
-@using System.Linq
-
+﻿@using System.Linq
+@using buildacomputer.Models
+@using System.Collections.Generic
 
 <html>
 <head>
@@ -37,24 +37,22 @@
     <p></p>
     <p></p>
     <p></p>
-        <table class="table-bordered">
-            foreach (var item in viewList)
+    <table class="table-bordered">
+            @foreach (var item in ((List<motherboards>)ViewBag.mb))  @*Still only does one item, but I'm looking into why*@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.motherboard_id)
+                        @item.motherboard_id
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => modelItem.motherboard_name)
+                        @item.motherboard_name
+                    </td>
+                    <td>
+                        @item.processor_sockets.processor_socket_name
                     </td>
                 </tr>
-                <tr>
-                    
-                </tr>
             }
-            </table>
-    }
-
+    </table>
 
     @*<table class="table-bordered">
         <tr>

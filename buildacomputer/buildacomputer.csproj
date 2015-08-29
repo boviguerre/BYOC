@@ -205,7 +205,6 @@
     <Compile Include="Models\l_optical_drives_optical_disk_formats.cs" />
     <Compile Include="Models\l_optical_drives_optical_drive_features.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\manufacturers.cs" />
     <Compile Include="Models\memories.cs" />
     <Compile Include="Models\memory_types.cs" />
     <Compile Include="Models\motherboards.cs" />

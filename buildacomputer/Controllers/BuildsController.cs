@@ -28,7 +28,7 @@ namespace buildacomputer.Controllers
                 case 0:
                     foreach (long item in build.motherboard_ids)
                     {
-                        ViewList.AddRange(db.motherboards.Where(m => m.motherboard_id == item).ToList<motherboards>());
+                        ViewBag.mb = (db.motherboards.Where(m => m.motherboard_id == item).ToList<motherboards>());
                     }
                     ViewBag.i = iterator;
                     iterator += 1;

@@ -15,7 +15,7 @@ namespace buildacomputer.Models
 
         public string motherboard_name { get; set; }
 
-        public long front_usb_header_count { get; set; }
+        public int front_usb_header_count { get; set; }
 
         public long manufacturer_id { get; set; } //
 
