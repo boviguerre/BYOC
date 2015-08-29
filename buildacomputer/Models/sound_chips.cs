@@ -18,7 +18,6 @@ namespace buildacomputer.Models
         public long sound_channel_standard_id { get; set; }
 
         public virtual sound_channel_standards sound_channel_standards { get; set; }
-        public virtual manufacturers manufacturers { get; set; }
         public virtual ICollection<sound_cards> sound_cards { get; set; }
         public virtual ICollection<motherboards> motherboards { get; set; }
     }

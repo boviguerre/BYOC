@@ -19,7 +19,6 @@ namespace buildacomputer.Models
 
         public long sound_chip_id { get; set; }
 
-        public virtual manufacturers manufacturers { get; set; }
         public virtual expansion_slots expansion_slots { get; set; }
         public virtual sound_chips sound_chips { get; set; }
     }

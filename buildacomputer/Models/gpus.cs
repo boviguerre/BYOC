@@ -26,7 +26,6 @@ namespace buildacomputer.Models
 
         public long manufacturer_id { get; set; }
 
-        public virtual manufacturers manufacturers { get; set; }
         public virtual ICollection<motherboards> motherboards { get; set; }
         public virtual ICollection<video_adapters> video_adapters { get; set; }
     }

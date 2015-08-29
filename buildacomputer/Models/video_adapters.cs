@@ -25,7 +25,6 @@ namespace buildacomputer.Models
 
         public long memory_type_id { get; set; }
 
-        public virtual manufacturers manufacturers { get; set; }
         public virtual expansion_slots expansion_slots { get; set; }
         public virtual gpus gpus { get; set; }
         public virtual power_supply_standards power_supply_standards { get; set; }

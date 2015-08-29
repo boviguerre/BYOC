@@ -37,7 +37,6 @@ namespace buildacomputer.Models
 
         public long sound_chip_id { get; set; }//
 
-        public virtual manufacturers manufacturers { get; set; }
         public virtual motherboard_nb_chipsets motherboard_nb_chipsets { get; set; }
         public virtual motherboard_sb_chipsets motherboard_sb_chipsets { get; set; }
         public virtual processor_sockets processor_sockets { get; set; }

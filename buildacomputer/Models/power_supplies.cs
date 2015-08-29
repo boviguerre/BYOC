@@ -25,7 +25,6 @@ namespace buildacomputer.Models
 
         public long cooling_fan_size_id { get; set; }
 
-        public virtual manufacturers manufacturers { get; set; }
         public virtual motherboard_form_factors motherboard_for_factors { get; set; }
         public virtual power_supply_standards power_supply_standards { get; set; }
         public virtual cooling_fan_sizes cooling_fan_sizes { get; set; }

@@ -11,8 +11,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
-
 </head>
 <body>
     <p></p>
@@ -40,6 +38,8 @@
     <p></p>
     <p></p>
         <table class="table-bordered">
+            foreach (var item in viewList)
+            {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => modelItem.motherboard_id)
@@ -51,6 +51,7 @@
                 <tr>
                     
                 </tr>
+            }
             </table>
     }
 

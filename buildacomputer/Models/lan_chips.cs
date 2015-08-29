@@ -18,7 +18,6 @@ namespace buildacomputer.Models
         public long ethernet_standard_id { get; set; }
 
         public virtual ethernet_standards ethernet_standards { get; set; }
-        public virtual manufacturers manufacturers { get; set; }
         public virtual ICollection<motherboards> motherboards { get; set; }
     }
 }

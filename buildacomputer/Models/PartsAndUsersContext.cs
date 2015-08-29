@@ -9,6 +9,11 @@ namespace buildacomputer.Models
 {
     public class PartsAndUsersContext : DbContext
     {
+        public PartsAndUsersContext()
+            : base("DefaultConnection")
+        {
+        }
+
         public DbSet<Build> Build { get; set; }
         public DbSet<bus_interfaces> bus_interfaces { get; set; }
         public DbSet<computer_case_sizes> computer_case_sizes { get; set; }
@@ -29,7 +34,6 @@ namespace buildacomputer.Models
         public DbSet<l_optical_drives_optical_disk_formats> l_optical_drives_optical_disk_formats { get; set; }
         public DbSet<l_optical_drives_optical_drive_features> l_optical_drives_optical_drive_features { get; set; }
         public DbSet<lan_chips> lan_chips { get; set; }
-        public DbSet<manufacturers> manufacturers { get; set; }
         public DbSet<memories> memories { get; set; }
         public DbSet<memory_types> memory_types { get; set; }
         public DbSet<motherboard_form_factors> motherboard_form_factors { get; set; }
