@@ -14,12 +14,7 @@
             : base("name=computer_hardware")
         {
         }
-        
-        public virtual DbSet<C_MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+
         public virtual DbSet<bus_interfaces> bus_interfaces { get; set; }
         public virtual DbSet<computer_case_sizes> computer_case_sizes { get; set; }
         public virtual DbSet<computer_cases> computer_cases { get; set; }
@@ -59,33 +54,13 @@
         public virtual DbSet<sound_cards> sound_cards { get; set; }
         public virtual DbSet<sound_channel_standards> sound_channel_standards { get; set; }
         public virtual DbSet<sound_chips> sound_chips { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserBuilds> UserBuilds { get; set; }
         public virtual DbSet<video_adapters> video_adapters { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            
-            modelBuilder.Entity<AspNetRole>()
-                .HasMany(e => e.AspNetUsers)
-                .WithMany(e => e.AspNetRoles)
-                .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.AspNetUserClaims)
-                .WithRequired(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasMany(e => e.AspNetUserLogins)
-                .WithRequired(e => e.AspNetUser)
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasOptional(e => e.User)
-                .WithRequired(e => e.AspNetUser)
-                .WillCascadeOnDelete();
 
             modelBuilder.Entity<bus_interfaces>()
                 .HasMany(e => e.hard_drives)
@@ -116,11 +91,6 @@
                 .HasMany(e => e.l_computer_cases_drive_bay_widths)
                 .WithRequired(e => e.computer_cases)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Build>()
-                .HasMany(e => e.Users)
-                .WithMany(e => e.Builds)
-                .Map(m => m.ToTable("Users_Builds").MapLeftKey("BuildId").MapRightKey("UserId"));
 
             modelBuilder.Entity<cooling_fan_sizes>()
                 .HasMany(e => e.l_computer_cases_cooling_fans)
@@ -372,7 +342,7 @@
                 .WithRequired(e => e.sound_chips)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<Users>()
                 .Property(e => e.SecurityQuestion)
                 .IsUnicode(false);
         }

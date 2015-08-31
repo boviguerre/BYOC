@@ -52,13 +52,22 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: sans-serif;
+  color: #fff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
+  font-family: 'Palatino Linotype', Cambria;
+}
+
+h2.font-styling{
+    font-family: 'Palatino Linotype',Cambria;
+}
+
+div.navbar-header{
+    color: #fff;
 }
 
 a:focus {
@@ -274,12 +283,29 @@ table {
   h3 {
     page-break-after: avoid;
   }
+  
+  h3
+  {
+      font-family: 'Palatino Linotype',Cambria;
+  }
+
   .navbar {
     display: none;
   }
+  .li
+  {
+      color: #fff;
+      font-size: 14px;
+  }
+
+  h2
+  {
+      color: #fff;
+  }
+
   .table td,
   .table th {
-    background-color: #fff !important;
+    background-color: #000 !important;
   }
   .btn > .caret,
   .dropup > .btn > .caret {
@@ -409,6 +435,7 @@ p {
   font-size: 16.099999999999998px;
   font-weight: 200;
   line-height: 1.4;
+  font-color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -473,7 +500,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
   font-weight: 500;
   line-height: 1.1;
 }
@@ -492,7 +519,7 @@ h6 small,
 .h6 small {
   font-weight: normal;
   line-height: 1;
-  color: #999999;
+  color: #000;
 }
 
 h1,
@@ -747,7 +774,7 @@ pre code {
   font-size: inherit;
   color: inherit;
   white-space: pre-wrap;
-  background-color: transparent;
+  background-color: #000;
   border: 0;
 }
 
@@ -786,6 +813,7 @@ pre code {
 .row {
   margin-right: -15px;
   margin-left: -15px;
+
 }
 
 .row:before,
@@ -860,6 +888,8 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+  background-color: #000;
+  font-family: 'Palatino Linotype', Cambria;
 }
 
 .col-xs-1,
@@ -4028,6 +4058,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  color: #fff;
 }
 
 .navbar:before,
@@ -4090,6 +4121,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-overflow-scrolling: touch;
+  color: #fff;
 }
 
 .navbar-collapse:before,
@@ -4127,6 +4159,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
+    color: #fff;
   }
   .navbar-collapse.in {
     overflow-y: visible;
@@ -4146,6 +4179,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .container > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
+  color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -4516,11 +4550,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: #fff;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: #fff;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -4933,17 +4967,19 @@ a.list-group-item.active > .badge,
   font-size: 21px;
   font-weight: 200;
   line-height: 2.1428571435;
-  color: inherit;
-  background-color: #eeeeee;
+  color: #fff;
+  background-color: #000;
 }
 
 .jumbotron h1 {
   line-height: 1;
   color: inherit;
+  background-color: inherit
 }
 
 .jumbotron p {
   line-height: 1.4;
+  background-color: inherit
 }
 
 .container .jumbotron {

@@ -163,10 +163,10 @@ namespace buildacomputer.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    User person = new User();
+                    Users person = new Users();
                     person.Id = user.Id;
 
-                    db.User.Add(person);
+                    db.Users.Add(person);
 
                     return RedirectToAction("Index", "Home");
 

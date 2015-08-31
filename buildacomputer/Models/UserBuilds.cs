@@ -13,6 +13,6 @@ namespace buildacomputer.Models
         public int buildID { get; set; }
 
         public virtual Build Build { get; set; }
-        public virtual User User {get; set;}
+        public virtual Users Users {get; set;}
     }
 }

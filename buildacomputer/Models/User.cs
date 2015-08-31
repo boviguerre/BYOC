@@ -6,12 +6,8 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial; //creates the model used for users
 
-    public partial class User
+    public partial class Users
     {
-        public User()
-        {
-            Builds = new HashSet<Build>();
-        }
 
         public string Id { get; set; }
         
@@ -31,8 +27,5 @@
         
         [StringLength(256)]
         public string Title { get; set; }
-
-        public virtual AspNetUser AspNetUser { get; set; }
-        public virtual ICollection<Build> Builds { get; set; }
     }
 }

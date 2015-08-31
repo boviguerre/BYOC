@@ -42,7 +42,7 @@
 
         public long sound_chip_id { get; set; }
 
-        public long front_usb_header_count { get; set; }
+        public int front_usb_header_count { get; set; }
 
         public virtual gpu gpus { get; set; }
         public virtual ICollection<l_motherboard_bus_interfaces> l_motherboard_bus_interfaces { get; set; }

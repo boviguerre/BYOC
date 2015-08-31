@@ -27,13 +27,13 @@
 
         public long computer_case_size_id { get; set; }
         
-        public long front_usb_connector_count { get; set; }
+        public int front_usb_connector_count { get; set; }
 
-        public long depth_mm { get; set; }
+        public int depth_mm { get; set; }
 
-        public long width_mm { get; set; }
+        public int width_mm { get; set; }
 
-        public long height_mm { get; set; }
+        public int height_mm { get; set; }
         
         public float weight_kg { get; set; }
         
