@@ -1,0 +1,29 @@
+﻿@model buildacomputer.Models.Build
+
+@{
+    ViewBag.Title = "Method_Memories";
+}
+
+<h2>Method_Memories</h2>
+
+
+<table class="memories-table">
+    @foreach (var x in ViewBag.me)
+    {
+        <tr>
+            <td>
+                @x.memory_name
+            </td>
+            <td>
+                @x.memory_size_mb
+            </td>
+            <td>
+                @x.memory_types.memory_type_name
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+

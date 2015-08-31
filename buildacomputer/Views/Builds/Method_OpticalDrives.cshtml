@@ -1,0 +1,33 @@
+﻿@model buildacomputer.Models.Build
+
+@{
+    ViewBag.Title = "Method_OpticalDrives";
+}
+
+<h2>Method_OpticalDrives</h2>
+
+
+<table class="optical-drives-table">
+    @foreach (var x in ViewBag.od)
+    {
+        <tr>
+            <td>
+                @x.optical_drive_name
+            </td>
+            <td>
+                @x.buffer_kb
+            </td>
+            <td>
+                @x.bus_interfaces.bus_interface_name
+            </td>
+            <td>
+                @x.drive_bay_widths.drive_bay_width_name
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+
+

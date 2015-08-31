@@ -1,0 +1,35 @@
+﻿@model buildacomputer.Models.Build
+
+@{
+    ViewBag.Title = "Method_PowerSupply";
+}
+
+<h2>Method_PowerSupply</h2>
+
+
+<table class="power-supplies-table">
+    @foreach (var x in ViewBag.ps)
+    {
+        <tr>
+            <td>
+                @x.power_supply_name
+            </td>
+            <td>
+                @x.total_power_w
+            </td>
+            <td>
+                @x.energy_efficiency_percentage
+            </td>
+            <td>
+                @x.power_supply_standards.power_supply_standard_name
+            </td>
+            <td>
+                @x.motherboard_form_factors.motherboard_form_factor_name
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+

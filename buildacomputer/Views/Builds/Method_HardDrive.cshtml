@@ -1,0 +1,32 @@
+﻿@model buildacomputer.Models.Build
+
+@{
+    ViewBag.Title = "Method_HardDrive";
+}
+
+<h2>Method_HardDrive</h2>
+
+
+<table class="hard-drives-table">
+    @foreach (var x in ViewBag.hd)
+    {
+        <tr>
+            <td>
+                @x.hard_drive_name
+            </td>
+            <td>
+                @x.buffer_kb
+            </td>
+            <td>
+                @x.capacity_gb
+            </td>
+            <td>
+                @x.bus_interfaces.bus_interface_name
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+

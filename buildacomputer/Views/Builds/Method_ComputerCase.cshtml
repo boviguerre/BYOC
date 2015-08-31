@@ -1,0 +1,40 @@
+﻿@model buildacomputer.Models.Build
+
+@{
+    ViewBag.Title = "Method_ComputerCase";
+}
+
+<h2>Method_ComputerCase</h2>
+
+
+<table class="computer-cases-table">
+    @foreach (var x in ViewBag.cc)
+    {
+        <tr>
+            <td>
+                @x.computer_case_name
+            </td>
+            <td>
+                @x.front_usb_connector_count
+            </td>
+            <td>
+                @x.depth_mm
+            </td>
+            <td>
+                @x.width_mm
+            </td>
+            <td>
+                @x.height_mm
+            </td>
+            <td>
+                @x.color
+            </td>
+            <td>
+                @x.computer_case_sizes.computer_case_size_name
+            </td>
+            <td>
+                @x.motherboard_form_factors.motherboard_form_factor_name
+            </td>
+        </tr>
+    }
+</table>

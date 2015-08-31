@@ -1,0 +1,46 @@
+﻿@model buildacomputer.Models.Build
+
+@{
+    ViewBag.Title = "Method_VideoAdapter";
+}
+
+<h2>Method_VideoAdapter</h2>
+
+
+<table class="video-adapters-table">
+    @foreach (var x in ViewBag.va)
+    {
+        <tr>
+            <td>
+                @x.video_adapter_name
+            </td>
+            <td>
+                @x.video_adapter_memory_mb
+            </td>
+            <td>
+                @if (x.gpu_id != null)
+                {
+                    @x.gpu.gpu_name
+                }
+            </td>
+            <td>
+                @if (x.gpu_id != null)
+                {
+                    @x.gpu.gpu_name
+                }
+            </td>
+            <td>
+                @if (x.gpu_id != null)
+                {
+                    @x.gpu.gpu_name
+                }
+            </td>
+            <td>
+                @x.expansion_slots.expansion_slot_name
+            </td>
+            <td>
+                @x.power_supply_standards.power_supply_standard_name
+            </td>
+        </tr>
+    }
+</table>
