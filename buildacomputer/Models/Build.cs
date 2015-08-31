@@ -25,7 +25,7 @@
         {
             //import all possible parts
             foreach (long x in mb)
-                motherboard_ids.Add(x);
+                this.motherboard_ids.Add(x);
             defValues.Add(motherboard_ids);
             foreach (long x in pr)
                 processor_ids.Add(x);
