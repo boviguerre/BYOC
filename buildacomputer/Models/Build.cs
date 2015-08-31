@@ -23,33 +23,35 @@
 
         public Build(List<long> mb, List<long> pr, List<long> me, List<long> hd, List<long> sc, List<long> va, List<long> od, List<long> ps, List<long> cc)
         {
+            Users = new HashSet<User>();
+            
             //import all possible parts
             foreach (long x in mb)
                 this.motherboard_ids.Add(x);
             defValues.Add(motherboard_ids);
             foreach (long x in pr)
-                processor_ids.Add(x);
+                this.processor_ids.Add(x);
             defValues.Add(processor_ids);
             foreach (long x in me)
-                memory_ids.Add(x);
+                this.memory_ids.Add(x);
             defValues.Add(memory_ids);
             foreach (long x in hd)
-                hard_drive_ids.Add(x);
+                this.hard_drive_ids.Add(x);
             defValues.Add(hard_drive_ids);
             foreach (long x in sc)
-                sound_card_ids.Add(x);
+                this.sound_card_ids.Add(x);
             defValues.Add(sound_card_ids);
             foreach (long x in va)
-                video_adapter_ids.Add(x);
+                this.video_adapter_ids.Add(x);
             defValues.Add(video_adapter_ids);
             foreach (long x in od)
-                optical_drive_ids.Add(x);
+                this.optical_drive_ids.Add(x);
             defValues.Add(optical_drive_ids);
             foreach (long x in ps)
-                power_supply_ids.Add(x);
+                this.power_supply_ids.Add(x);
             defValues.Add(power_supply_ids);
             foreach (long x in cc)
-                computer_case_ids.Add(x);
+                this.computer_case_ids.Add(x);
             defValues.Add(computer_case_ids);
         }
         #endregion

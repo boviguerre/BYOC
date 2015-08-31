@@ -18,6 +18,16 @@ namespace buildacomputer.Controllers
         
         private int iterator = -1;
         Build build;
+
+        List<long> motherboard = new List<long>();
+        List<long> processor = new List<long>();
+        List<long> memory = new List<long>();
+        List<long> hardDrive = new List<long>();
+        List<long> soundCard = new List<long>();
+        List<long> videoAdapter = new List<long>();
+        List<long> opticalDrive = new List<long>();
+        List<long> powerSupply = new List<long>();
+        List<long> computerCase = new List<long>();
        
         // GET: Builds
         public ActionResult Index(long? id_number = null)
@@ -31,15 +41,15 @@ namespace buildacomputer.Controllers
                 //Turns motherboards held in build into a list of strings
                 case -1:
                     ViewList.Clear();
-                    List<long> motherboard = db.motherboards.Select(m => m.motherboard_id).ToList();
-                    List<long> processor = db.processors.Select(p => p.processor_id).ToList();
-                    List<long> memory = db.memories.Select(m => m.memory_id).ToList();
-                    List<long> hardDrive = db.hard_drives.Select(h => h.hard_drive_id).ToList();
-                    List<long> soundCard = db.sound_cards.Select(s => s.sound_card_id).ToList();
-                    List<long> videoAdapter = db.video_adapters.Select(v => v.video_adapter_id).ToList();
-                    List<long> opticalDrive = db.optical_drives.Select(o => o.optical_drive_id).ToList();
-                    List<long> powerSupply = db.power_supplies.Select(p => p.power_supply_id).ToList();
-                    List<long> computerCase = db.computer_cases.Select(c => c.computer_case_id).ToList();
+                    motherboard = db.motherboards.Select(m => m.motherboard_id).ToList();
+                    processor = db.processors.Select(p => p.processor_id).ToList();
+                    memory = db.memories.Select(m => m.memory_id).ToList();
+                    hardDrive = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+                    soundCard = db.sound_cards.Select(s => s.sound_card_id).ToList();
+                    videoAdapter = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+                    opticalDrive = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+                    powerSupply = db.power_supplies.Select(p => p.power_supply_id).ToList();
+                    computerCase = db.computer_cases.Select(c => c.computer_case_id).ToList();
 
 
                     build = new Build(motherboard, processor, memory, hardDrive, soundCard, videoAdapter, opticalDrive, powerSupply, computerCase);
