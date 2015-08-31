@@ -13,9 +13,9 @@ namespace buildacomputer.Models
 
         public string memory_name { get; set; }
 
-        public long memory_speed_mhz { get; set; }
+        public int memory_speed_mhz { get; set; }
 
-        public long memory_size_mb { get; set; }
+        public int memory_size_mb { get; set; }
 
         public long manufacturer_id { get; set; }
 

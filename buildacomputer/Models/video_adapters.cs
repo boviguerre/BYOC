@@ -13,7 +13,7 @@ namespace buildacomputer.Models
 
         public string video_adapter_name { get; set; }
 
-        public long video_adapter_memory_mb { get; set; }
+        public int video_adapter_memory_mb { get; set; }
 
         public long manufacturer_id { get; set; }
 

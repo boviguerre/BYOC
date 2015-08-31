@@ -15,7 +15,7 @@ namespace buildacomputer.Models
 
         public long frequency_mhz { get; set; }
 
-        public long processor_power_consumption_w { get; set; }
+        public int processor_power_consumption_w { get; set; }
 
         public long manufacturer_id { get; set; }
 

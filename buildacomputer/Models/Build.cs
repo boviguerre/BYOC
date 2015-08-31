@@ -181,7 +181,7 @@ namespace buildacomputer.Models
             else if (this.memory_id == id)
                 this.memory_id = null;
         }
-        public void reseedPotential()
+        private void reseedPotential()
         {
             for (int i = 0; i < defValues.Count; i++)
             {
@@ -410,8 +410,6 @@ namespace buildacomputer.Models
             MotherBoard_VideoAdapter();
             MotherBoard_OpticalDrive();
         }
-
-
         #endregion
     }
 }

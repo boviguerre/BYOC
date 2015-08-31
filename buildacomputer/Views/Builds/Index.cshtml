@@ -24,9 +24,9 @@
         <tr>
             <th><a href="#mb">Motherboard</a></th>
             <th><a href="#pr">Processors</a></th>
-            <th><a href="me">RAM</a></th>
-            <th><a href="hd">Hard drives</a></th>
-            <th><a href="sc">Sound cards</a></th>
+            <th><a href="#me">RAM</a></th>
+            <th><a href="#hd">Hard drives</a></th>
+            <th><a href="#sc">Sound cards</a></th>
             <th><a href="va">Video adapters</a></th>
             <th><a href="od">Optical drives</a></th>
             <th><a href="ps">Power supplies</a></th>
@@ -64,10 +64,8 @@
                 Sound Chip
             </td>
         </tr>
-            @foreach (var list in ViewBag.mb)
+            @foreach (var x in ViewBag.mb)
             {
-                foreach (var x in list)
-                {
                     <tr>
                         <td>
                             @x.motherboard_name
@@ -100,7 +98,6 @@
                             <button name="" type="button" value=@x.motherboard_id id="mb" onclick='UpdateTable()'>Add to Cart!</button>
                         </td>
                     </tr>
-                }
             }
     </table>
 
