@@ -30,8 +30,12 @@
 
         public long drive_bay_width_id { get; set; }
 
+<<<<<<< HEAD
         public virtual ICollection<hard_drive_features> hard_drive_features { get; set; }
         public virtual manufacturer manufacturer { get; set; }
+=======
+        public virtual ICollection<l_hard_drives_hard_drive_features> l_hard_drives_hard_drive_features { get; set; }
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
         public virtual bus_interfaces bus_interfaces { get; set; }
         public virtual drive_bay_widths drive_bay_widths { get; set; }
     }

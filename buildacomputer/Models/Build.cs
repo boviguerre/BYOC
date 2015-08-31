@@ -1,4 +1,21 @@
+<<<<<<< HEAD
 ﻿namespace buildacomputer.Models
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections;
+using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
+using System.Data.Common;
+
+namespace buildacomputer.Models
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +33,7 @@
     {
 
         #region Constructors
+<<<<<<< HEAD
         public Build()
         {
             Users = new HashSet<User>();
@@ -52,6 +70,29 @@
             defValues.Add(power_supply_ids);
             foreach (long x in cc)
                 this.computer_case_ids.Add(x);
+=======
+
+        public Build()
+        {
+            motherboard_ids     = db.motherboards.Select(m => m.motherboard_id).ToList<long>();
+            processor_ids       = db.processors.Select(p => p.processor_id).ToList();
+            memory_ids          = db.memories.Select(m => m.memory_id).ToList();
+            hard_drive_ids      = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+            sound_card_ids      = db.sound_cards.Select(s => s.sound_card_id).ToList();
+            video_adapter_ids   = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+            optical_drive_ids   = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+            power_supply_ids    = db.power_supplies.Select(p => p.power_supply_id).ToList();
+            computer_case_ids   = db.computer_cases.Select(c => c.computer_case_id).ToList();
+            //import all possible parts
+            defValues.Add(motherboard_ids);
+            defValues.Add(processor_ids);
+            defValues.Add(memory_ids);
+            defValues.Add(hard_drive_ids);
+            defValues.Add(sound_card_ids);
+            defValues.Add(video_adapter_ids);
+            defValues.Add(optical_drive_ids);
+            defValues.Add(power_supply_ids);
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
             defValues.Add(computer_case_ids);
         }
         #endregion

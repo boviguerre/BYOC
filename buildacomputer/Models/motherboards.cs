@@ -42,6 +42,7 @@
 
         public long sound_chip_id { get; set; }
 
+<<<<<<< HEAD
         public long front_usb_header_count { get; set; }
 
         public virtual gpu gpus { get; set; }
@@ -52,6 +53,8 @@
         public virtual manufacturer manufacturer { get; set; }
         public virtual memory_types memory_types { get; set; }
         public virtual motherboard_form_factors motherboard_form_factors { get; set; }
+=======
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
         public virtual motherboard_nb_chipsets motherboard_nb_chipsets { get; set; }
         public virtual motherboard_sb_chipsets motherboard_sb_chipsets { get; set; }
         public virtual sound_chips sound_chips { get; set; }

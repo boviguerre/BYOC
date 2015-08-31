@@ -27,7 +27,10 @@
 
         public long memory_type_id { get; set; }
 
+<<<<<<< HEAD
         public virtual manufacturer manufacturer { get; set; }
+=======
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
         public virtual expansion_slots expansion_slots { get; set; }
         public virtual gpu gpu { get; set; }
         public virtual power_supply_standards power_supply_standards { get; set; }

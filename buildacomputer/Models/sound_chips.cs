@@ -26,7 +26,10 @@
         public long sound_channel_standard_id { get; set; }
 
         public virtual sound_channel_standards sound_channel_standards { get; set; }
+<<<<<<< HEAD
         public virtual manufacturer manufacturer { get; set; }
+=======
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
         public virtual ICollection<sound_cards> sound_cards { get; set; }
         public virtual ICollection<motherboard> motherboards { get; set; }
     }

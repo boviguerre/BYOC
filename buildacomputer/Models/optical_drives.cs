@@ -29,7 +29,10 @@
 
         public long drive_bay_width_id { get; set; }
 
+<<<<<<< HEAD
         public virtual manufacturer manufacturer { get; set; }
+=======
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
         public virtual bus_interfaces bus_interfaces { get; set; }
         public virtual drive_bay_widths drive_bay_widths { get; set; }
         public virtual ICollection<l_optical_drives_optical_disk_formats> l_optical_drives_optical_disk_formats {get; set;}

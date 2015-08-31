@@ -22,7 +22,11 @@
 
         public long manufacturer_id { get; set; }
 
+<<<<<<< HEAD
         public virtual ICollection<motherboard> motherboards { get; set; }
         public virtual manufacturer manufacturer { get; set; }
+=======
+        public virtual ICollection<motherboards> motherboards { get; set; }
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
     }
 }

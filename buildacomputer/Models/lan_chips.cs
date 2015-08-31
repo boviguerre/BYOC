@@ -25,7 +25,11 @@
         public long ethernet_standard_id { get; set; }
 
         public virtual ethernet_standards ethernet_standards { get; set; }
+<<<<<<< HEAD
         public virtual manufacturer manufacturer { get; set; }
         public virtual ICollection<motherboard> motherboards { get; set; }
+=======
+        public virtual ICollection<motherboards> motherboards { get; set; }
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
     }
 }

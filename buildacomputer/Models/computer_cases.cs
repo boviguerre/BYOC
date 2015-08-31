@@ -41,8 +41,17 @@
         [StringLength(100)]
         public string color { get; set; }
 
+<<<<<<< HEAD
         public virtual manufacturer manufacturer { get; set; }
         
+=======
+        public long manufacturer_id { get; set; }
+
+        public long motherboard_form_factor_id { get; set; }
+
+        public long computer_case_size_id { get; set; }
+
+>>>>>>> 7d4e9739d98793ae6193b452ae12b7058f98595c
         public virtual motherboard_form_factors motherboard_form_factors { get; set; }
         
         public virtual computer_case_sizes computer_case_sizes { get; set; }
