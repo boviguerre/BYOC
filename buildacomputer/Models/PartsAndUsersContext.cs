@@ -11,7 +11,7 @@
     public partial class PartsAndUsersContext : DbContext
     {
         public PartsAndUsersContext()
-            : base("name=computer_hardware")
+            : base("computer_hardware")
         {
         }
 
