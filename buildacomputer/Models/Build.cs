@@ -19,39 +19,26 @@
         public Build()
         {
             Users = new HashSet<User>();
-        }
 
-        public Build(List<long> mb, List<long> pr, List<long> me, List<long> hd, List<long> sc, List<long> va, List<long> od, List<long> ps, List<long> cc)
-        {
-            Users = new HashSet<User>();
-            
+            motherboard_ids = db.motherboards.Select(m => m.motherboard_id).ToList();
+            processor_ids = db.processors.Select(p => p.processor_id).ToList();
+            memory_ids = db.memories.Select(m => m.memory_id).ToList();
+            hard_drive_ids = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+            sound_card_ids = db.sound_cards.Select(s => s.sound_card_id).ToList();
+            video_adapter_ids = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+            optical_drive_ids = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+            power_supply_ids = db.power_supplies.Select(p => p.power_supply_id).ToList();
+            computer_case_ids = db.computer_cases.Select(c => c.computer_case_id).ToList();
+
             //import all possible parts
-            foreach (long x in mb)
-                this.motherboard_ids.Add(x);
             defValues.Add(motherboard_ids);
-            foreach (long x in pr)
-                this.processor_ids.Add(x);
             defValues.Add(processor_ids);
-            foreach (long x in me)
-                this.memory_ids.Add(x);
             defValues.Add(memory_ids);
-            foreach (long x in hd)
-                this.hard_drive_ids.Add(x);
             defValues.Add(hard_drive_ids);
-            foreach (long x in sc)
-                this.sound_card_ids.Add(x);
             defValues.Add(sound_card_ids);
-            foreach (long x in va)
-                this.video_adapter_ids.Add(x);
             defValues.Add(video_adapter_ids);
-            foreach (long x in od)
-                this.optical_drive_ids.Add(x);
             defValues.Add(optical_drive_ids);
-            foreach (long x in ps)
-                this.power_supply_ids.Add(x);
             defValues.Add(power_supply_ids);
-            foreach (long x in cc)
-                this.computer_case_ids.Add(x);
             defValues.Add(computer_case_ids);
         }
         #endregion
@@ -181,7 +168,7 @@
         }
         #endregion
 
-        public void substractPart(long id)
+        public void subtractPart(long id)
         {
             if (this.Motherboard == id)
                 this.Motherboard = null;
@@ -202,7 +189,8 @@
             else if (this.Memory == id)
                 this.Memory = null;
         }
-        public void reseedPotential()
+        #region
+        private void reseedPotential()
         {
             for (int i = 0; i < defValues.Count; i++)
             {
@@ -262,7 +250,6 @@
                 }
             }
         }
-        #region
         private void MotherBoard_Processor()
         {
             if (Motherboard != null)
