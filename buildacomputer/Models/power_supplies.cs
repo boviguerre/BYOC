@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace buildacomputer.Models
+﻿namespace buildacomputer.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
     public class power_supplies
     {
         [Key]
         public long power_supply_id { get; set; }
 
+        [Required]
+        [StringLength(100)]
         public string power_supply_name { get; set; }
 
         public long total_power_w { get; set; }
@@ -25,7 +27,8 @@ namespace buildacomputer.Models
 
         public long cooling_fan_size_id { get; set; }
 
-        public virtual motherboard_form_factors motherboard_for_factors { get; set; }
+        public virtual manufacturer manufacturer { get; set; }
+        public virtual motherboard_form_factors motherboard_form_factors { get; set; }
         public virtual power_supply_standards power_supply_standards { get; set; }
         public virtual cooling_fan_sizes cooling_fan_sizes { get; set; }
     }
