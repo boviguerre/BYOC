@@ -22,15 +22,15 @@
 
     <table class="table-bordered">
         <tr>
-            <th><a href="#">Motherboard</a></th>
-            <th><a href="#">Processors</a></th>
-            <th><a href="#">RAM</a></th>
-            <th><a href="#">Hard drives</a></th>
-            <th><a href="#">Sound cards</a></th>
-            <th><a href="#">Video adapters</a></th>
-            <th><a href="#">Optical drives</a></th>
-            <th><a href="#">Power supplies</a></th>
-            <th><a href="#">Computer cases</a></th>
+            <th><a href="#mb">Motherboard</a></th>
+            <th><a href="#pr">Processors</a></th>
+            <th><a href="me">RAM</a></th>
+            <th><a href="hd">Hard drives</a></th>
+            <th><a href="sc">Sound cards</a></th>
+            <th><a href="va">Video adapters</a></th>
+            <th><a href="od">Optical drives</a></th>
+            <th><a href="ps">Power supplies</a></th>
+            <th><a href="cc">Computer cases</a></th>
         </tr>
     </table>
 
@@ -64,9 +64,9 @@
                 Sound Chip
             </td>
         </tr>
-            @foreach (var item in ViewBag.mb)
+            @foreach (var list in ViewBag.mb)
             {
-                foreach (var x in item)
+                foreach (var x in list)
                 {
                     <tr>
                         <td>
@@ -97,45 +97,14 @@
                             @x.sound_chips.sound_chip_name
                         </td>
                         <td>
-                            <button type="button" value=@x.motherboard_id>Add to Cart!</button>
+                            <button name="" type="button" value=@x.motherboard_id id="mb" onclick='UpdateTable()'>Add to Cart!</button>
                         </td>
                     </tr>
                 }
             }
     </table>
 
-    @*<table class="table-bordered">
-        <tr>
-            <th>
-                @Html.ActionLink(@Html.DisplayNameFor(model => model.motherboards.motherboard_name), "Index", "Builds")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.processors.processor_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.memories.memory_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.hard_drives.hard_drive_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.sound_cards.sound_card_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.video_adapters.video_adapter_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.optical_drives.optical_drive_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.power_supplies.power_supply_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.computer_cases.computer_case_name)
-            </th>
 
-
-        </tr>*@
         @*
                 @foreach (var item in Model)
                 {
@@ -185,5 +154,4 @@
             </table>
         *@
     </body>
-
 </html>

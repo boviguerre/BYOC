@@ -1,117 +1,28 @@
-﻿.Row
+﻿html
 {
-    display: table;
-    width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    border-spacing: 10px; /*Optional*/
-}
-.Column
-{
-    display: table-cell;
-    font-family:'Cambria Math','Bookman Old Style'; 
-    font-size: large;
-    color:#fff;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
+    font-size: 14px;
 }
 
-a
-{
-    text-decoration: none;
-    color:#fff
-    
-}
-
-a:visited
-{
-    color:#fff
-}
-
-body 
-{
-    padding-top: .5px;
+body {
+    padding-top: 50px;
     padding-bottom: 20px;
-    background-color:#000000;
-}
-
-.navbar,
-.navbar-header,
-.container,
-.navbar-toggle,
-.icon-bar,
-.navbar-brand,
-.navbar-collapse collapse,
-.navbar-nav,
-.container body-content
-{
     background-color: #000;
     color: #fff;
-}
-
-.Column ul
-{
-    list-style-type: none
-}
-.Column a:hover
-{
-    color: #fff
-}
-
-.Column a:visited
-{
-    color: #fff
-}
-
-.jumbotron h1
-{
-    padding-top: 20px;
-    font-family:'Cambria Math','Bookman Old Style';
-    color: #fff;
-    background-color: #000;
-    font-size: 25px;
-    text-align:center
-}
-
-.jumbotron ul
-{
-    background-color: #000;
-}
-
-.html
-{
-    font-family: 'Cambria Math', 'Bookman Old Style';
-}
-
-.li
-{
-    font-family: 'Cambria Math', 'Bookman Old Style';
-}
-
-
-.jumbotron ul li
-{
-    text-align:center;
-    font-family: 'Cambria Math', 'Bookman Old Style';
-    color: #fff;
-    background-color: #000;
-    font-size: 16px;
-    margin-bottom:7px;
-    list-style-type: none
+    font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
+    font-size: 14px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    color:#fff;
     background-color: #000;
-    vertical-align: text-bottom
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-    background-color: #000;
+    color: #fff;
+    font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
+    
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -119,31 +30,4 @@ input,
 select,
 textarea {
     max-width: 280px;
-}
-
-/* FOR BUILD VIEW */
-
-.table-bordered{
-   vertical-align: bottom;
-   border: 2px solid #dddddd;
-   border-collapse: collapse;
-   width: 100%;
-   top: 2px;
-}
-
-.th 
-{
-    height: 50px;
-    padding: 15px;
-}
-
-.th a
-{text-decoration: none;
-}
-
-.td
-{
-    height: 50px;
-    vertical-align: bottom;
-    padding: 15px;
 }
