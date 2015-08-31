@@ -13,15 +13,15 @@ namespace buildacomputer.Models
 
         public string processor_core_name { get; set; }
 
-        public long processor_core_count { get; set; }
+        public int processor_core_count { get; set; }
 
-        public long processor_core_l1cache_kb { get; set; }
+        public int processor_core_l1cache_kb { get; set; }
 
-        public long processor_core_l2cache_kb { get; set; }
+        public int processor_core_l2cache_kb { get; set; }
 
-        public long processor_core_l3cache_kb { get; set; }
+        public int processor_core_l3cache_kb { get; set; }
 
-        public long processor_core_manufacturing_technology_nm { get; set; }
+        public int processor_core_manufacturing_technology_nm { get; set; }
 
         public ICollection<processors> processors { get; set; }
     }
