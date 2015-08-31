@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace buildacomputer.Models
+﻿namespace buildacomputer.Models
 {
-    public class video_adapters
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class video_adapters
     {
         [Key]
         public long video_adapter_id { get; set; }
 
+        [Required]
+        [StringLength(100)]
         public string video_adapter_name { get; set; }
 
-        public long video_adapter_memory_mb { get; set; }
+        public int video_adapter_memory_mb { get; set; }
 
         public long manufacturer_id { get; set; }
 
@@ -25,9 +27,9 @@ namespace buildacomputer.Models
 
         public long memory_type_id { get; set; }
 
-        public virtual manufacturers manufacturers { get; set; }
+        public virtual manufacturer manufacturer { get; set; }
         public virtual expansion_slots expansion_slots { get; set; }
-        public virtual gpus gpus { get; set; }
+        public virtual gpu gpu { get; set; }
         public virtual power_supply_standards power_supply_standards { get; set; }
         public virtual memory_types memory_types { get; set; }
     }
