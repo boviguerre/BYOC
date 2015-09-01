@@ -458,7 +458,7 @@ namespace buildacomputer.Controllers
                     if (build.motherboard_id == null)
                         Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#hd");
+                        Url.Action("Index", "#cc");
                 }
                 if (obj == "cc")
                 {
@@ -530,7 +530,7 @@ namespace buildacomputer.Controllers
                                             .Select(m => m.gpu_id) != null || build.video_adapter_id != null)
                         Url.Action("Index", "#va");
                     else if (build.power_supply_id == null)
-                        Url.Action("Index", "#ps");
+                        return PartialView(Url.Action("Index", "#ps"));
                     else
                         Url.Action("Index", "#cc");
                     #endregion
@@ -551,6 +551,8 @@ namespace buildacomputer.Controllers
                     ViewBag.od = new List<optical_drives>();
                     ViewBag.ps = new List<power_supplies>();
                     ViewBag.cc = new List<computer_cases>();
+                    ViewBag.primary = new List<long>();
+                    ViewBag.type = new List<string>();
                 }
                 catch {}
                 try
