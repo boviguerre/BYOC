@@ -699,12 +699,9 @@
                                 @x.motherboard_form_factors.motherboard_form_factor_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.computer_case_id id="cc" onclick="doajax()">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.computer_case_id);
-                            ViewBag.type.Add("cc");
-                            i++;
-                            }
+                            
                         </tr>
                     }
                 </table></li>
@@ -752,8 +749,12 @@
 <script type="text/javascript">
 
     var x = this.value;
+    @if (true) {
+        <text> 
     var type = @(ViewBag.type);
     var primary = @(ViewBag.primary);
+        </text>
+    }
 
     var doajax = function() {
 
