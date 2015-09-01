@@ -1,350 +1,771 @@
-﻿@using System.Linq
-@using buildacomputer.Models
-@using System.Collections.Generic
-
-<html>
+﻿@using System.Collections.Generic
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+ <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
-</head>
-<body>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-
-    <table class="table-bordered">
-        <tr>
-            <th><a href="#mb">Motherboard</a></th>
-            <th><a href="#pr">Processors</a></th>
-            <th><a href="me">RAM</a></th>
-            <th><a href="hd">Hard drives</a></th>
-            <th><a href="sc">Sound cards</a></th>
-            <th><a href="va">Video adapters</a></th>
-            <th><a href="od">Optical drives</a></th>
-            <th><a href="ps">Power supplies</a></th>
-            <th><a href="cc">Computer cases</a></th>
-        </tr>
-    </table>
-
-    <p></p>
-    <p></p>
-    <p></p>
-    <table class="table-bordered">
-        <tr>
-            <td>
-                Name
-            </td>
-            <td>
-                Processor Socket
-            </td>
-            <td>
-                RAM type
-            </td>
-            <td>
-                Form Factor
-            </td>
-            <td>
-                Integrated Gpu
-            </td>
-            <td>
-                Power Supply Standard
-            </td>
-            <td>
-                Lan Chip
-            </td>
-            <td>
-                Sound Chip
-            </td>
-        </tr>
-    </table>
-
-    <table class="motherboards-table">
-        @foreach (var x in ViewBag.mb)
-        {
-                <tr>
-                    <td>
-                        @x.motherboard_name
-                    </td>
-                    <td>
-                        @x.processor_sockets.processor_socket_name
-                    </td>
-                    <td>
-                        @x.memory_types.memory_type_name
-                    </td>
-                    <td>
-                        @x.motherboard_form_factors.motherboard_form_factor_name
-                    </td>
-                    <td>
-                        @if (x.gpu_id != null)
-                        {
-                            @x.gpus.gpu_name
-                        }
-                    </td>
-                    <td>
-                        @x.power_supply_standards.power_supply_standard_name
-                    </td>
-                    <td>
-                        @x.lan_chips.lan_chip_name
-                    </td>
-                    <td>
-                        @x.sound_chips.sound_chip_name
-                    </td>
-                    <td>
-                        <button name="" type="button" value=@x.motherboard_id id="mb" onclick='UpdateTable()'>Add to Cart!</button>
-                    </td>
-                </tr>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="stylesheet" href="~/Content/normalize.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/themes/south-street/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/jquery.bookmark.css">
+    <link rel="stylesheet" href="~/Content/demo.css">
+    <style>
+        pre {
+            clear: none;
         }
-    </table>
 
-    <table class="processors-table">
-
-        @foreach (var x in ViewBag.pr)
-        {
-                <tr>
-                    <td>
-                        @x.processor_name
-                    </td>
-                    <td>
-                        @x.processor_sockets.processor_socket_name
-                    </td>
-                    <td>
-                        @x.frequency_mhz
-                    </td>
-                    <td>
-                        @x.processor_cores.processor_core_count
-                    </td>
-                    <td>
-                        <button name="" type="button" value=@x.processor_id id="mb" onclick='UpdateTable()'>Add to Cart!</button>
-                    </td>
-                </tr>
+        div.showCode {
+            margin-left: 8em;
         }
-    </table>
 
-    <table class="memories-table">
-        @foreach (var x in ViewBag.me)
-        {
-                <tr>
-                    <td>
-                        @x.memory_name
-                    </td>
-                    <td>
-                        @x.memory_size_mb
-                    </td>
-                    <td>
-                        @x.memory_types.memory_type_name
-                    </td>
-                </tr>
+        .tabs {
+            margin-top: 0.5em;
         }
-    </table>
 
-    <table class="hard-drives-table">
-        @foreach (var x in ViewBag.hd)
-        {
-                <tr>
-                    <td>
-                        @x.hard_drive_name
-                    </td>
-                    <td>
-                        @x.buffer_kb
-                    </td>
-                    <td>
-                        @x.capacity_gb
-                    </td>
-                    <td>
-                        @x.bus_interfaces.bus_interface_name
-                    </td>
-                </tr>
+        .ui-tabs {
+            padding: 0.2em;
+            background: url(http://code.jquery.com/ui/1.8.23/themes/south-street/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) repeat-x scroll 50% top #F5F3E5;
+            border-width: 1px;
         }
-    </table>
 
-    <table class="sound-cards-table">
-        @foreach (var x in ViewBag.sc)
-        {
-                <tr>
-                    <td>
-                        @x.sound_card_name
-                    </td>
-                    <td>
-                        @x.sound_chips.sound_chip_name
-                    </td>
-                    <td>
-                        @x.sound_chips.sound_channel_standards.sound_channel_standard_name
-                    </td>
-                    <td>
-                        @x.expansion_slots.expansion_slot_name
-                    </td>
-                </tr>
-        }
-    </table>
-
-    <table class="video-adapters-table">
-        @foreach (var x in ViewBag.va)
-        {
-                <tr>
-                    <td>
-                        @x.video_adapter_name
-                    </td>
-                    <td>
-                        @x.video_adapter_memory_mb
-                    </td>
-                    <td>
-                        @if (x.gpu_id != null)
-                        {
-                            @x.gpu.gpu_name
-                        }
-                    </td>
-                    <td>
-                        @if (x.gpu_id != null)
-                        {
-                            @x.gpu.gpu_name
-                        }
-                    </td>
-                    <td>
-                        @if (x.gpu_id != null)
-                        {
-                            @x.gpu.gpu_name
-                        }
-                    </td>
-                    <td>
-                        @x.expansion_slots.expansion_slot_name
-                    </td>
-                    <td>
-                        @x.power_supply_standards.power_supply_standard_name
-                    </td>
-                </tr>
-        }
-    </table>
-
-    <table class="optical-drives-table">
-        @foreach (var x in ViewBag.od)
-        {
-                <tr>
-                    <td>
-                        @x.optical_drive_name
-                    </td>
-                    <td>
-                        @x.buffer_kb
-                    </td>
-                    <td>
-                        @x.bus_interfaces.bus_interface_name
-                    </td>
-                    <td>
-                        @x.drive_bay_widths.drive_bay_width_name
-                    </td>
-                </tr>
-        }
-    </table>
-
-    <table class="power-supplies-table">
-        @foreach (var x in ViewBag.ps)
-        {
-                <tr>
-                    <td>
-                        @x.power_supply_name
-                    </td>
-                    <td>
-                        @x.total_power_w
-                    </td>
-                    <td>
-                        @x.energy_efficiency_percentage
-                    </td>
-                    <td>
-                        @x.power_supply_standards.power_supply_standard_name
-                    </td>
-                    <td>
-                        @x.motherboard_form_factors.motherboard_form_factor_name
-                    </td>
-                </tr>
-        }
-    </table>
-
-    <table class="computer-cases-table">
-        @foreach (var x in ViewBag.cc)
-        {
-                <tr>
-                    <td>
-                        @x.computer_case_name
-                    </td>
-                    <td>
-                        @x.front_usb_connector_count
-                    </td>
-                    <td>
-                        @x.depth_mm
-                    </td>
-                    <td>
-                        @x.width_mm
-                    </td>
-                    <td>
-                        @x.height_mm
-                    </td>
-                    <td>
-                        @x.color
-                    </td>
-                    <td>
-                        @x.computer_case_sizes.computer_case_size_name
-                    </td>
-                    <td>
-                        @x.motherboard_form_factors.motherboard_form_factor_name
-                    </td>
-                </tr>
-        }
-    </table>
-
-    @*
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.computer_cases.color)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.memories.memory_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.motherboards.motherboard_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.buildType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.iterator)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BuildTime)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.buildID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.buildID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.buildID })
-                    </td>
-                </tr>
+            .ui-tabs .ui-tabs-nav {
+                padding-left: 0.2em;
+                background: url(http://code.jquery.com/ui/1.8.23/themes/south-street/images/ui-bg_gloss-wave_100_ece8da_500x100.png) repeat-x scroll 50% 50% #ECE8DA;
+                border: 1px solid #D4CCB0;
+                -moz-border-radius: 6px;
+                -webkit-border-radius: 6px;
+                border-radius: 6px;
             }
 
-        </table>
-    *@
+        .ui-tabs-nav .ui-state-active {
+            border-color: #D4CCB0;
+        }
+
+        .ui-tabs .ui-tabs-panel {
+            background: transparent;
+            border-width: 0px;
+        }
+
+        .ui-tabs-panel p {
+            margin-top: 0em;
+        }
+
+        #minImage {
+            margin-left: 6.5em;
+        }
+
+            #minImage img {
+                padding: 2px;
+                border: 2px solid #448844;
+                vertical-align: bottom;
+            }
+
+        #tabs-nobg {
+            padding: 0px;
+        }
+
+            #tabs-nobg .ui-tabs-nav {
+                background: transparent;
+                border-width: 0px 0px 1px 0px;
+                -moz-border-radius: 0px;
+                -webkit-border-radius: 0px;
+                border-radius: 0px;
+            }
+
+            #tabs-nobg .ui-tabs-panel {
+                margin: 0em 0.2em 0.2em 0.2em;
+            }
+
+        #tabs-nohdr {
+            padding: 0px;
+            background: none;
+            border-width: 0px;
+        }
+
+            #tabs-nohdr .ui-tabs-nav {
+                padding-left: 0px;
+                background: transparent;
+                border-width: 0px 0px 1px 0px;
+                -moz-border-radius: 0px;
+                -webkit-border-radius: 0px;
+                border-radius: 0px;
+            }
+
+            #tabs-nohdr .ui-tabs-panel {
+                background: #f5f3e5 url(http://code.jquery.com/ui/1.8.23/themes/south-street/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) repeat-x scroll 50% top;
+                border-width: 0px 1px 1px 1px;
+            }
+
+        #tabs-min {
+            background: transparent;
+            border: none;
+        }
+
+            #tabs-min .ui-widget-header {
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid #c0c0c0;
+                -moz-border-radius: 0px;
+                -webkit-border-radius: 0px;
+                border-radius: 0px;
+            }
+
+            #tabs-min .ui-tabs-nav .ui-state-default {
+                background: transparent;
+                border: none;
+            }
+
+            #tabs-min .ui-tabs-nav .ui-state-active {
+                background: transparent url(img/uiTabsArrow.png) no-repeat bottom center;
+                border: none;
+            }
+
+            #tabs-min .ui-tabs-nav .ui-state-default a {
+                color: #c0c0c0;
+            }
+
+            #tabs-min .ui-tabs-nav .ui-state-active a {
+                color: #459e00;
+            }
+
+        #tabs-smaller .ui-tabs-nav li {
+            margin-top: 0.6em;
+            font-size: 80%;
+        }
+
+            #tabs-smaller .ui-tabs-nav li.ui-tabs-selected,
+            #tabs-smaller .ui-tabs-nav li.ui-state-active {
+                margin-top: 0em;
+                font-size: 100%;
+            }
+
+        #tabs-icons .ui-tabs-nav .ui-icon {
+            display: inline-block;
+        }
+
+        #tabs-buttons .ui-tabs-nav {
+            padding: 0em;
+            background: transparent;
+            border-width: 0px;
+        }
+
+            #tabs-buttons .ui-tabs-nav li {
+                position: static;
+                margin: 0px;
+                border-bottom: 1px solid #327e04 !important;
+                -moz-border-radius: 0px;
+                -webkit-border-radius: 0px;
+                border-radius: 0px;
+            }
+
+                #tabs-buttons .ui-tabs-nav li:first-child {
+                    -moz-border-radius: 6px 0px 0px 6px;
+                    -webkit-border-radius: 6px 0px 0px 6px;
+                    border-radius: 6px 0px 0px 6px;
+                }
+
+                #tabs-buttons .ui-tabs-nav li:last-child {
+                    -moz-border-radius: 0px 6px 6px 0px;
+                    -webkit-border-radius: 0px 6px 6px 0px;
+                    border-radius: 0px 6px 6px 0px;
+                }
+
+                #tabs-buttons .ui-tabs-nav li.ui-tabs-selected {
+                    padding-bottom: 0px;
+                    border-bottom: 1px solid #d4ccb0 !important;
+                }
+
+        #tabs-centre .ui-tabs-nav {
+            height: 2.35em;
+            text-align: center;
+        }
+
+            #tabs-centre .ui-tabs-nav li {
+                display: inline-block;
+                float: none;
+                top: 0px;
+                margin: 0em;
+                padding-bottom: 0px;
+            }
+
+        #tabs-to-right .ui-tabs-nav {
+            float: right;
+            border-left: none;
+            -moz-border-radius: 0px 6px 6px 0px;
+            -webkit-border-radius: 0px 6px 6px 0px;
+            border-radius: 0px 6px 6px 0px;
+        }
+
+        #tabs-to-right .tabs-background {
+            height: 2.6em;
+            background: #ece8da url(http://code.jquery.com/ui/1.8.23/themes/south-street/images/ui-bg_gloss-wave_100_ece8da_500x100.png) repeat-x scroll 50% 50%;
+            border: 1px solid #d4ccb0;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+        #tabs-bottom {
+            position: relative;
+            padding-bottom: 3em;
+        }
+
+            #tabs-bottom .ui-tabs-nav {
+                position: absolute;
+                left: 0.25em;
+                right: 0.25em;
+                bottom: 0.25em;
+                padding: 0em 0.2em 0.2em;
+            }
+
+                #tabs-bottom .ui-tabs-nav li {
+                    top: -1px;
+                    border-top: none;
+                    border-bottom: 1px solid #ccc !important;
+                    -moz-border-radius: 0px 0px 4px 4px;
+                    -webkit-border-radius: 0px 0px 4px 4px;
+                    border-radius: 0px 0px 4px 4px;
+                }
+
+        #tabs-left {
+            position: relative;
+            padding-left: 6.5em;
+        }
+
+            #tabs-left .ui-tabs-nav {
+                position: absolute;
+                left: 0.25em;
+                top: 0.25em;
+                bottom: 0.25em;
+                width: 6em;
+                padding: 0.2em 0 0.2em 0.2em;
+            }
+
+                #tabs-left .ui-tabs-nav li {
+                    right: 1px;
+                    width: 100%;
+                    border-right: none;
+                    border-bottom-width: 1px !important;
+                    -moz-border-radius: 4px 0px 0px 4px;
+                    -webkit-border-radius: 4px 0px 0px 4px;
+                    border-radius: 4px 0px 0px 4px;
+                    overflow: hidden;
+                }
+
+                    #tabs-left .ui-tabs-nav li.ui-tabs-selected,
+                    #tabs-left .ui-tabs-nav li.ui-state-active {
+                        border-right: 1px solid transparent;
+                    }
+
+                    #tabs-left .ui-tabs-nav li a {
+                        float: right;
+                        width: 100%;
+                        text-align: right;
+                    }
+
+            #tabs-left > div {
+                height: 35em;
+            }
+
+        #tabs-right {
+            position: relative;
+            padding-right: 6.5em;
+        }
+
+            #tabs-right .ui-tabs-nav {
+                position: absolute;
+                right: 0.25em;
+                top: 0.25em;
+                bottom: 0.25em;
+                width: 6em;
+                padding: 0.2em 0.2em 0.2em 0em;
+            }
+
+                #tabs-right .ui-tabs-nav li {
+                    width: 100%;
+                    border-left: none;
+                    border-bottom-width: 1px !important;
+                    -moz-border-radius: 0px 4px 4px 0px;
+                    -webkit-border-radius: 0px 4px 4px 0px;
+                    border-radius: 0px 4px 4px 0px;
+                    overflow: hidden;
+                }
+
+                    #tabs-right .ui-tabs-nav li.ui-tabs-selected,
+                    #tabs-right .ui-tabs-nav li.ui-state-active {
+                        left: -1px;
+                        border-left: 1px solid transparent;
+                    }
+
+                    #tabs-right .ui-tabs-nav li a {
+                        width: 100%;
+                    }
+
+            #tabs-right > div {
+                height: 33em;
+            }
+
+        #tabs-nested > .ui-tabs-panel {
+            padding: 0em;
+        }
+
+        #tabs-nested-left {
+            position: relative;
+            padding-left: 6.5em;
+        }
+
+            #tabs-nested-left .ui-tabs-nav {
+                position: absolute;
+                left: 0.25em;
+                top: 0.25em;
+                bottom: 0.25em;
+                width: 6em;
+                padding: 0.2em 0 0.2em 0.2em;
+            }
+
+                #tabs-nested-left .ui-tabs-nav li {
+                    right: 1px;
+                    width: 100%;
+                    border-right: none;
+                    border-bottom-width: 1px !important;
+                    -moz-border-radius: 4px 0px 0px 4px;
+                    -webkit-border-radius: 4px 0px 0px 4px;
+                    border-radius: 4px 0px 0px 4px;
+                    overflow: hidden;
+                }
+
+                    #tabs-nested-left .ui-tabs-nav li.ui-tabs-selected,
+                    #tabs-nested-left .ui-tabs-nav li.ui-state-active {
+                        border-right: 1px solid transparent;
+                    }
+
+                    #tabs-nested-left .ui-tabs-nav li a {
+                        float: right;
+                        width: 100%;
+                        text-align: right;
+                    }
+
+            #tabs-nested-left > div {
+                height: 10em;
+                overflow: auto;
+            }
+
+        #tabs-one-line .scroller {
+            overflow: auto;
+        }
+
+        #tabs-one-line ul {
+            width: 1660px;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.bookmark.js"></script>
+    <script src="~/Scripts/jquery.chili-2.2.js"></script>
+    <script src="~/Scripts/demo.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <title>ViewBag.Title</title>
+</head>
+<body>
+    @{int i = 0;};
+    <article>
+        <ul>
+            <li>
+                <a href="#tabs-nobg-1">Motherboards</a>
+                <table class="table-bordered">
+                    <tr>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Processor Socket
+                        </td>
+                        <td>
+                            RAM type
+                        </td>
+                        <td>
+                            Form Factor
+                        </td>
+                        <td>
+                            Integrated Gpu
+                        </td>
+                        <td>
+                            Power Supply Standard
+                        </td>
+                        <td>
+                            Lan Chip
+                        </td>
+                        <td>
+                            Sound Chip
+                        </td>
+                    </tr>
+                    @foreach (var x in ViewBag.mb)
+                    {
+                        <tr>
+                            <td>
+                                @x.motherboard_name
+                            </td>
+                            <td>
+                                @x.processor_sockets.processor_socket_name
+                            </td>
+                            <td>
+                                @x.memory_types.memory_type_name
+                            </td>
+                            <td>
+                                @x.motherboard_form_factors.motherboard_form_factor_name
+                            </td>
+                            <td>
+                                @if (x.gpu_id != null)
+                                {
+                                    @x.gpus.gpu_name
+                                }
+                            </td>
+                            <td>
+                                @x.power_supply_standards.power_supply_standard_name
+                            </td>
+                            <td>
+                                @x.lan_chips.lan_chip_name
+                            </td>
+                            <td>
+                                @x.sound_chips.sound_chip_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.motherboard_id);
+                              ViewBag.type.Add("mb");
+                              i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            </li>
+            <li>
+                <a href="#tabs-nobg-2">Processors</a>
+                <table>
+                    @foreach (var x in ViewBag.pr)
+                    {
+                        <tr>
+                            <td>
+                                @x.processor_name
+                            </td>
+                            <td>
+                                @x.processor_sockets.processor_socket_name
+                            </td>
+                            <td>
+                                @x.frequency_mhz
+                            </td>
+                            <td>
+                                @x.processor_cores.processor_core_count
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.processor_id);
+                            ViewBag.type.Add("pr");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            </li>
+            <li>
+                <a href="#tabs-nobg-3">RAM</a>
+                <table class="memories-table">
+                    @foreach (var x in ViewBag.me)
+                    {
+                        <tr>
+                            <td>
+                                @x.memory_name
+                            </td>
+                            <td>
+                                @x.memory_size_mb
+                            </td>
+                            <td>
+                                @x.memory_types.memory_type_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.memory_id);
+                            ViewBag.type.Add("me");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            </li>
+            <li>
+                <a href="#tabs-nobg-4">Hard Drives</a>
+                <table class="hard-drives-table">
+                    @foreach (var x in ViewBag.hd)
+                    {
+                        <tr>
+                            <td>
+                                @x.hard_drive_name
+                            </td>
+                            <td>
+                                @x.buffer_kb
+                            </td>
+                            <td>
+                                @x.capacity_gb
+                            </td>
+                            <td>
+                                @x.bus_interfaces.bus_interface_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i id="hd" onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.hard_drive_id);
+                            ViewBag.type.Add("hd");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            </li>
+            <li>
+                <a href="#tabs-nobg-5">Sound Cards</a>
+                <table class="sound-cards-table">
+                    @foreach (var x in ViewBag.sc)
+                    {
+                        <tr>
+                            <td>
+                                @x.sound_card_name
+                            </td>
+                            <td>
+                                @x.sound_chips.sound_chip_name
+                            </td>
+                            <td>
+                                @x.sound_chips.sound_channel_standards.sound_channel_standard_name
+                            </td>
+                            <td>
+                                @x.expansion_slots.expansion_slot_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.sound_card_id);
+                            ViewBag.type.Add("sc");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            </li>
+            <li>
+                <a href="#tabs-nobg-6">Video Adapters</a>
+                <table class="video-adapters-table">
+                    @foreach (var x in ViewBag.va)
+                    {
+                        <tr>
+                            <td>
+                                @x.video_adapter_name
+                            </td>
+                            <td>
+                                @x.video_adapter_memory_mb
+                            </td>
+                            <td>
+                                @if (x.gpu_id != null)
+                                {
+                                    @x.gpu.gpu_name
+                                }
+                            </td>
+                            <td>
+                                @if (x.gpu_id != null)
+                                {
+                                    @x.gpu.gpu_name
+                                }
+                            </td>
+                            <td>
+                                @if (x.gpu_id != null)
+                                {
+                                    @x.gpu.gpu_name
+                                }
+                            </td>
+                            <td>
+                                @x.expansion_slots.expansion_slot_name
+                            </td>
+                            <td>
+                                @x.power_supply_standards.power_supply_standard_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.video_adapter_id);
+                            ViewBag.type.Add("mb");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            <li>
+                <a href="#tabs-nobg-7">Optical Drives</a>
+                <table class="optical-drives-table">
+                    @foreach (var x in ViewBag.od)
+                    {
+                        <tr>
+                            <td>
+                                @x.optical_drive_name
+                            </td>
+                            <td>
+                                @x.buffer_kb
+                            </td>
+                            <td>
+                                @x.bus_interfaces.bus_interface_name
+                            </td>
+                            <td>
+                                @x.drive_bay_widths.drive_bay_width_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.optical_drive_id);
+                            ViewBag.type.Add("od");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            </li>
+            <li>
+                <a href="#tabs-nobg-8">Power Supplies</a>
+                <table class="power-supplies-table">
+                    @foreach (var x in ViewBag.ps)
+                    {
+                        <tr>
+                            <td>
+                                @x.power_supply_name
+                            </td>
+                            <td>
+                                @x.total_power_w
+                            </td>
+                            <td>
+                                @x.energy_efficiency_percentage
+                            </td>
+                            <td>
+                                @x.power_supply_standards.power_supply_standard_name
+                            </td>
+                            <td>
+                                @x.motherboard_form_factors.motherboard_form_factor_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.power_supply_id);
+                            ViewBag.type.Add("ps");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table>
+            </li>
+            <li>
+                <a href="#tabs-nobg-9">Computer Cases</a>
+                <table class="computer-cases-table">
+                    @foreach (var x in ViewBag.cc)
+                    {
+                        <tr>
+                            <td>
+                                @x.computer_case_name
+                            </td>
+                            <td>
+                                @x.front_usb_connector_count
+                            </td>
+                            <td>
+                                @x.depth_mm
+                            </td>
+                            <td>
+                                @x.width_mm
+                            </td>
+                            <td>
+                                @x.height_mm
+                            </td>
+                            <td>
+                                @x.color
+                            </td>
+                            <td>
+                                @x.computer_case_sizes.computer_case_size_name
+                            </td>
+                            <td>
+                                @x.motherboard_form_factors.motherboard_form_factor_name
+                            </td>
+                            <td>
+                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                            </td>
+                            @{ViewBag.primary.Add(x.computer_case_id);
+                            ViewBag.type.Add("cc");
+                            i++;
+                            }
+                        </tr>
+                    }
+                </table></li>
+        </ul>
+
+        <div id="tabs-nobg-1">
+            
+        </div>
+
+        <div id="tabs-nobg-2">
+            
+        </div>
+
+        <div id="tabs-nobg-3">
+            
+        </div>
+
+        <div id="tabs-nobg-4">
+            
+        </div>
+
+        <div id="tabs-nobg-5">
+
+        </div>
+
+        <div id="tabs-nobg-6">
+
+        </div>
+
+        <div id="tabs-nobg-7">
+
+        </div>
+
+        <div id="tabs-nobg-8">
+
+        </div>
+
+        <div id="tabs-nobg-9">
+
+        </div>
+
+    </article>
 </body>
 </html>
+<script type="text/javascript">
+
+    var x = this.value;
+    var type = @(ViewBag.type);
+    var primary = @(ViewBag.primary);
+
+    var doajax = function() {
+
+
+        $.ajax({
+            ViewBag.type: "GET",
+            url: "Builds/Index",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: type[x], id_number: primary[x] }),
+            dataType: "json",
+            success: AjaxSucceeded,
+            error: AjaxFailed
+        });
+    }
+</script>
