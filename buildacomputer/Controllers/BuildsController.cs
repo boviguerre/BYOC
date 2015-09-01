@@ -530,7 +530,7 @@ namespace buildacomputer.Controllers
                                             .Select(m => m.gpu_id) != null || build.video_adapter_id != null)
                         Url.Action("Index", "#va");
                     else if (build.power_supply_id == null)
-                        Url.Action("Index", "#ps");
+                        return PartialView(Url.Action("Index", "#ps"));
                     else
                         Url.Action("Index", "#cc");
                     #endregion

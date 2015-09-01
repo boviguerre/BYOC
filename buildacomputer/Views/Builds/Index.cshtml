@@ -438,12 +438,8 @@
                                 @x.sound_chips.sound_chip_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.motherboard_id onclick="doajaxmb(this)">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.motherboard_id);
-                              ViewBag.type.Add("mb");
-                              i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -467,12 +463,8 @@
                                 @x.processor_cores.processor_core_count
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.processor_id onclick="doajaxpr(this)">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.processor_id);
-                            ViewBag.type.Add("pr");
-                            i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -493,12 +485,8 @@
                                 @x.memory_types.memory_type_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.memory_id onclick="doajaxme(this)">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.memory_id);
-                            ViewBag.type.Add("me");
-                            i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -522,12 +510,8 @@
                                 @x.bus_interfaces.bus_interface_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i id="hd" onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.hard_drive_id id="hd" onclick="doajaxhd()">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.hard_drive_id);
-                            ViewBag.type.Add("hd");
-                            i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -551,12 +535,8 @@
                                 @x.expansion_slots.expansion_slot_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.sound_card_id onclick="doajaxsc(this)">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.sound_card_id);
-                            ViewBag.type.Add("sc");
-                            i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -598,12 +578,8 @@
                                 @x.power_supply_standards.power_supply_standard_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.video_adapter_id onclick="doajaxva(this)">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.video_adapter_id);
-                            ViewBag.type.Add("mb");
-                            i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -626,12 +602,8 @@
                                 @x.drive_bay_widths.drive_bay_width_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.optical_drive_id onclick="doajaxod(this)">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.optical_drive_id);
-                            ViewBag.type.Add("od");
-                            i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -658,12 +630,8 @@
                                 @x.motherboard_form_factors.motherboard_form_factor_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@i onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=x.power_supply_id onclick="doajaxps(this)">Add to Cart!</button>
                             </td>
-                            @{ViewBag.primary.Add(x.power_supply_id);
-                            ViewBag.type.Add("ps");
-                            i++;
-                            }
                         </tr>
                     }
                 </table>
@@ -699,9 +667,8 @@
                                 @x.motherboard_form_factors.motherboard_form_factor_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@x.computer_case_id id="cc" onclick="doajax()">Add to Cart!</button>
+                                <button name="" type="button" value=@x.computer_case_id onclick="doajaxcc(this)">Add to Cart!</button>
                             </td>
-                            
                         </tr>
                     }
                 </table></li>
@@ -748,25 +715,113 @@
 </html>
 <script type="text/javascript">
 
-    var x = this.value;
-    @if (true) {
-        <text> 
-    var type = @(ViewBag.type);
-    var primary = @(ViewBag.primary);
-        </text>
-    }
-
-    var doajax = function() {
-
+    function doajaxmb(link) {
 
         $.ajax({
-            ViewBag.type: "GET",
-            url: "Builds/Index",
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: type[x], id_number: primary[x] }),
-            dataType: "json",
-            success: AjaxSucceeded,
-            error: AjaxFailed
+            data: JSON.stringify({ obj: "mb", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxpr(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "pr", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxme(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "me", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxhd(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "hd", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxsc(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "sc", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxps(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxva(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "va", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxod(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "od", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxps(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxcc(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj:"cc" , id_number: $(link).val() }),
+            dataType: "json"
         });
     }
 </script>
