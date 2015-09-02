@@ -1,16 +1,39 @@
-﻿<div class="row">
+﻿@using System.Collections.Generic
+@Model recentBuildDictionary
+
+<div class="row">
     <div class="col-md-4">
         <h2></h2>
     </div>
     <div class="col-md-4">
         <h3 class="font-styling">Recently Built Computers</h3>
-        <ul>
+        @*<ul>
             <li><a href="#">First most recent</a></li>
             <li><a href="#">Second most recent</a></li>
             <li><a href="#">Third most recent</a></li>
             <li><a href="#">Fourth most recent</a></li>
             <li><a href="#">Fifth most recent</a></li>
-        </ul>
+        </ul>*@
+
+        <table>
+            <tr>
+                @foreach (string key in Model.Keys)
+                {
+                    <th>@key</th>
+                }
+            </tr>
+            @for (int i = 0; i < 9; i++)
+            {
+                <tr>
+                    @foreach (string key in Model.Keys)
+                    {
+                        <td>@Model[key][0]</td>
+                    }
+                </tr>
+            }
+
+
+        </table>
     </div>
     <div class="col-md-4">
         <h2></h2>
