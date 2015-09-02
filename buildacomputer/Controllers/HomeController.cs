@@ -16,7 +16,7 @@ namespace buildacomputer.Controllers
         {
             //Get top 5 entries, ordered by DateTime
             
-            //recentBuilds = db.builds.Select(m => m.build )
+            recentBuilds = db.builds.Select(m => m.build )
             
             return View();
         }
