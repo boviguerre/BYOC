@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Linq;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using buildacomputer.Models;
 using System.Web.Services;
+using System.Threading.Tasks;
 
 namespace buildacomputer.Controllers
 {
@@ -470,6 +472,7 @@ namespace buildacomputer.Controllers
                         url = Url.Action("Index", "#cc");
                     #endregion
                 }
+                this.Session["SessionBuild"] = build;
                 return PartialView(url);
             }
             #region View
@@ -512,6 +515,36 @@ namespace buildacomputer.Controllers
                 return View();
             }
             #endregion
+        }
+
+        //Save the build to the database
+        public async Task<ActionResult> Save()
+        {
+            Build build = (Build)this.Session["SessionBuild"];
+            int? i = null;
+            //pull i from db
+
+            i = (int?)db.Builds.Where((b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id)).Select(b => b.iterator).Single();
+
+            Build buildQuery = (from b in db.Builds
+                                where b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id
+                                select b).First<Build>();
+            
+            //if i still null post build
+            if (i == null)
+            {
+                build.iterator = 1;
+                db.Builds.Add(build);
+            }
+            //esle update w i+1
+            else
+            {
+                buildQuery.iterator = (int)i + 1;
+            }
+
+            db.SaveChanges();
+            
+            return View();
         }
 
         //// GET: Builds/Details/5
