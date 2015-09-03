@@ -14,497 +14,432 @@ namespace buildacomputer.Controllers
     public class BuildsController : Controller
     {
         private static PartsAndUsersContext db = new PartsAndUsersContext();
-        private static Build build = new Build();
+       // Build _build = new Build();
+       
+
+       // HttpContext.Current.Session.Add("SessionBuild", new Build);
 
         // GET: Builds
         //public ActionResult Index(long? id_number = null)
         public ActionResult Index(string obj, long? id_number)
         {
+            ViewBag.mb = new List<motherboard>();
+            ViewBag.pr = new List<processor>();
+            ViewBag.me = new List<memory>();
+            ViewBag.hd = new List<hard_drives>();
+            ViewBag.sc = new List<sound_cards>();
+            ViewBag.va = new List<video_adapters>();
+            ViewBag.od = new List<optical_drives>();
+            ViewBag.ps = new List<power_supplies>();
+            ViewBag.cc = new List<computer_cases>();
+            Build build = (Build)this.Session["SessionBuild"];
+
             if (Request.IsAjaxRequest())
             {
+                string url = "Index";
                 // the controller action was invoked with an AJAX request
                 if (obj == "mb")
                 {
                     build.addMotherboard(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    Url.Action("Index", "#pr");
+                    this.Session["SessionBuild"] = build;
+                    url = Url.Action("Index", "#pr");
                 }
                 else if (obj == "pr")
                 {
                     build.addProcessor_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
                     if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#me");
+                        url = Url.Action("Index", "#me");
                 }
                 else if (obj == "me")
                 {
                     build.addMemory_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
                     if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#hd");
+                        url = Url.Action("Index", "#hd");
                 }
                 if (obj == "hd")
                 {
                     build.addHard_drive_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
                     if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#sc");
+                        url = Url.Action("Index", "#sc");
                 }
                 if (obj == "sc")
                 {
                     build.addSound_card_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
                     if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#va");
+                        url = Url.Action("Index", "#va");
                 }
                 if (obj == "va")
                 {
                     build.addVideo_adapter_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
                     if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#od");
+                        url = Url.Action("Index", "#od");
                 }
                 if (obj == "od")
                 {
                     build.addOptical_drive_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
                     if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#ps");
+                        url = Url.Action("Index", "#ps");
                 }
                 if (obj == "ps")
                 {
                     build.addPower_supply_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
                     if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else
-                        Url.Action("Index", "#cc");
+                        url = Url.Action("Index", "#cc");
                 }
                 if (obj == "cc")
                 {
                     build.addComputer_case_id(id_number);
                     #region Recreate Lists
-                    ViewBag.mb.Clear();
-                    foreach (var x in build.processor_ids)
+                    foreach (var x in build.motherboard_ids)
                     {
                         ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x));
                     }
-                    ViewBag.pr.Clear();
                     foreach (var x in build.processor_ids)
                     {
                         ViewBag.pr.AddRange(db.processors.Where(m => m.processor_id == x));
                     }
-                    ViewBag.me.Clear();
                     foreach (var x in build.memory_ids)
                     {
                         ViewBag.me.AddRange(db.memories.Where(m => m.memory_id == x));
                     }
-                    ViewBag.hd.Clear();
                     foreach (var x in build.hard_drive_ids)
                     {
                         ViewBag.hd.AddRange(db.hard_drives.Where(m => m.hard_drive_id == x));
                     }
-                    ViewBag.sc.Clear();
                     foreach (var x in build.sound_card_ids)
                     {
                         ViewBag.sc.AddRange(db.sound_cards.Where(m => m.sound_card_id == x));
                     }
-                    ViewBag.va.Clear();
                     foreach (var x in build.video_adapter_ids)
                     {
                         ViewBag.va.AddRange(db.video_adapters.Where(m => m.video_adapter_id == x));
                     }
-                    ViewBag.od.Clear();
                     foreach (var x in build.optical_drive_ids)
                     {
                         ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x));
                     }
-                    ViewBag.ps.Clear();
                     foreach (var x in build.power_supply_ids)
                     {
                         ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x));
                     }
-                    ViewBag.cc.Clear();
                     foreach (var x in build.computer_case_ids)
                     {
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
@@ -519,42 +454,27 @@ namespace buildacomputer.Controllers
                     #endregion
                     #region Redirects
                     else if (build.motherboard_id == null)
-                        Url.Action("Index", "#mb");
+                        url = Url.Action("Index", "#mb");
                     else if (build.processor_id == null)
-                        Url.Action("Index", "#pr");
+                        url = Url.Action("Index", "#pr");
                     else if (build.memory_id == null)
-                        Url.Action("Index", "#me");
+                        url = Url.Action("Index", "#me");
                     else if (build.hard_drive_id == null)
-                        Url.Action("Index", "#hd");
+                        url = Url.Action("Index", "#hd");
                     else if (db.motherboards.Where(m => m.motherboard_id == build.motherboard_id)
                                             .Select(m => m.gpu_id) != null || build.video_adapter_id != null)
-                        Url.Action("Index", "#va");
+                        url = Url.Action("Index", "#va");
                     else if (build.power_supply_id == null)
-                        return PartialView(Url.Action("Index", "#ps"));
+                        url = Url.Action("Index", "#ps");
                     else
-                        Url.Action("Index", "#cc");
+                        url = Url.Action("Index", "#cc");
                     #endregion
                 }
-                return PartialView();
+                return PartialView(url);
             }
             #region View
             else
             {
-                try
-                {
-                    ViewBag.mb = new List<motherboard>();
-                    ViewBag.pr = new List<processor>();
-                    ViewBag.me = new List<memory>();
-                    ViewBag.hd = new List<hard_drives>();
-                    ViewBag.sc = new List<sound_cards>();
-                    ViewBag.va = new List<video_adapters>();
-                    ViewBag.od = new List<optical_drives>();
-                    ViewBag.ps = new List<power_supplies>();
-                    ViewBag.cc = new List<computer_cases>();
-                    ViewBag.primary = new List<long>();
-                    ViewBag.type = new List<string>();
-                }
-                catch {}
                 try
                 {
                     ViewBag.mb.Clear();
@@ -567,7 +487,7 @@ namespace buildacomputer.Controllers
                     ViewBag.ps.Clear();
                     ViewBag.cc.Clear();
                 }
-                catch {}
+                catch { }
                 foreach (long x in build.motherboard_ids)
                     ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x).ToList());
                 foreach (long x in build.processor_ids)
@@ -588,6 +508,7 @@ namespace buildacomputer.Controllers
                     ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x).ToList());
 
                 //Returns the list of motherboard strings to the view
+                this.Session["SessionBuild"] = build;
                 return View();
             }
             #endregion
