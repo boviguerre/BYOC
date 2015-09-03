@@ -20,9 +20,18 @@ namespace buildacomputer.Controllers
         // GET: PreviousBuilds
         public async Task<ActionResult> Index()
         {
-            string currentUser = db.AspNetUser
-            var oldBuild = db.UserBuilds.Select(b => b.buildID).Where(u => u.UserId == db.Users.Where(u => u.Id == Membership.GetUser().ProviderUserKey).Select(u => u.Id).Single());
+            string currentUser = (string)Membership.GetUser().ProviderUserKey;
+            List<int> oldBuild = db.UserBuilds.Where(u => u.userID == currentUser).Select(b => b.buildID).ToList();
 
+            List<Build> displayBuilds = new List<Build>();
+
+            foreach(int x in oldBuild)
+            {
+                if (x == db.Builds.Select(b => b.buildID))
+                {
+
+                }
+            }
             //var builds = db.Builds.Include(b => b.computer_cases).Include(b => b.hard_drives).Include(b => b.memory).Include(b => b.motherboard).Include(b => b.optical_drives).Include(b => b.power_supplies).Include(b => b.processor).Include(b => b.sound_cards).Include(b => b.video_adapters);
             //return View(await builds.ToListAsync());
         }
