@@ -248,6 +248,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\case.png" />
+    <Content Include="Content\Images\computer.png" />
+    <Content Include="Content\Images\harddrive.png" />
+    <Content Include="Content\Images\memory.png" />
+    <Content Include="Content\Images\motherboard.png" />
+    <Content Include="Content\Images\optical.png" />
+    <Content Include="Content\Images\power.png" />
+    <Content Include="Content\Images\processor.png" />
+    <Content Include="Content\Images\soundcard.png" />
+    <Content Include="Content\Images\video.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -328,6 +338,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\base\minified\images\" />
+    <Folder Include="Scripts\SplashPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

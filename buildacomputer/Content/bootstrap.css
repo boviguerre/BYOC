@@ -337,7 +337,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Palatino Linotype',Cambria;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -361,14 +361,16 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: #fff;
   text-decoration: none;
 }
 
 a:hover,
-a:focus {
-  color: #2a6496;
-  text-decoration: underline;
+a:focus,
+a:active
+{
+  color: #999;
+  text-decoration: none;
 }
 
 a:focus {
@@ -380,6 +382,16 @@ a:focus {
 img {
   vertical-align: middle;
 }
+
+.img-case,
+.img-harddrive,
+.img-memory,
+.img-motherboard,
+.img-optical,
+.img-power,
+.img-processor,
+.img-soundcard,
+.img-video,
 
 .img-responsive {
   display: block;
@@ -397,7 +409,7 @@ img {
   max-width: 100%;
   padding: 4px;
   line-height: 1.428571429;
-  background-color: #ffffff;
+  background-color: #000;
   border: 1px solid #dddddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
