@@ -470,6 +470,7 @@ namespace buildacomputer.Controllers
                         url = Url.Action("Index", "#cc");
                     #endregion
                 }
+                this.Session["SessionBuild"] = build;
                 return PartialView(url);
             }
             #region View
