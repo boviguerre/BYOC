@@ -167,7 +167,8 @@ namespace buildacomputer.Controllers
                     person.Id = user.Id;
 
                     db.Users.Add(person);
-
+                    db.SaveChanges();
+                    
                     return RedirectToAction("Index", "Home");
 
                 }
