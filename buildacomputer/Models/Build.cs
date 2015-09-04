@@ -138,65 +138,52 @@ namespace buildacomputer.Models
         {
             computer_case_id = x;
             computer_case_ids.Clear();
+            Case_Motherboard();
         }
         public void addHard_drive_id(long? x)
         {
             hard_drive_id = x;
             hard_drive_ids.Clear();
+            HardDrive_Motherboard();
         }
         public void addOptical_drive_id(long? x)
         {
             optical_drive_id = x;
             optical_drive_ids.Clear();
+            OpticalDrive_Motherboard();
         }
         public void addPower_supply_id(long? x)
         {
             power_supply_id = x;
             power_supply_ids.Clear();
+            PowerSupply_Motherboard();
         }
         public void addProcessor_id(long? x)
         {
             processor_id = x;
             processor_ids.Clear();
+            Processor_Motherboard();
         }
         public void addSound_card_id(long? x)
         {
             sound_card_id = x;
             sound_card_ids.Clear();
+            SoundCard_Motherboard();
         }
         public void addVideo_adapter_id(long? x)
         {
             video_adapter_id = x;
             video_adapter_ids.Clear();
+            VideoAdapter_Motherboard();
         }
         public void addMemory_id(long? x)
         {
             memory_id = x;
             memory_ids.Clear();
+            Memory_Motherboard();
         }
         #endregion
 
-        public void subtractPart(long id)
-        {
-            if (this.motherboard_id == id)
-                this.motherboard_id = null;
-            else if (this.computer_case_id == id)
-                this.computer_case_id = null;
-            else if (this.hard_drive_id == id)
-                this.hard_drive_id = null;
-            else if (this.optical_drive_id == id)
-                this.optical_drive_id = null;
-            else if (this.power_supply_id == id)
-                this.power_supply_id = null;
-            else if (this.processor_id == id)
-                this.processor_id = null;
-            else if (this.sound_card_id == id)
-                this.sound_card_id = null;
-            else if (this.video_adapter_id == id)
-                this.video_adapter_id = null;
-            else if (this.memory_id == id)
-                this.memory_id = null;
-        }
         private void reseedPotential()
         {
             for (int i = 0; i < defValues.Count; i++)
@@ -247,7 +234,7 @@ namespace buildacomputer.Models
             {
                 List<long> NewProcessor = new List<long>();
                 long[] processor_ID = db.processors.Select(s => s.processor_socket_id).ToArray();
-                long[] processor_ID2 = db.motherboards.Select(s => s.processor_socket_id).ToArray();
+                long[] processor_ID2 = db.motherboards.Where(m => m.motherboard_id == (long)motherboard_id).Select(s => s.processor_socket_id).ToArray();
                 foreach (long x in processor_ID)
                     foreach (long y in processor_ID2)
                         if (x == y)
@@ -256,7 +243,6 @@ namespace buildacomputer.Models
                                                                .Select(s => s.processor_id).ToList()
                                                   );
                         }
-                processor_ids.Clear();
                 processor_ids = NewProcessor;
             }
             else
@@ -264,19 +250,16 @@ namespace buildacomputer.Models
                 List<long> NewProcessor = new List<long>();
                 foreach (long item in motherboard_ids)
                 {
-                    long[] processor_ID = db.memories.Select(s => s.memory_type_id).ToArray();
+                    long[] processor_ID = db.processors.Select(s => s.processor_socket_id).ToArray();
                     long[] processor_ID2 = db.motherboards.Where(m => m.motherboard_id == item)
-                                                       .Select(s => s.memory_type_id).ToArray();
+                                                       .Select(s => s.processor_socket_id).ToArray();
                     foreach (long x in processor_ID)
                         foreach (long y in processor_ID2)
                             if (x == y)
                             {
-                                if (!NewProcessor.Contains(x))
-                                {
-                                    NewProcessor.AddRange(db.memories.Where(s => s.memory_type_id == x)
-                                                                  .Select(s => s.memory_id).ToList()
+                                    NewProcessor.AddRange(db.processors.Where(s => s.processor_socket_id == x && !NewProcessor.Contains(s.processor_id))
+                                                                  .Select(s => s.processor_id).ToList()
                                                       );
-                                }
                             }
                 }
                 processor_ids = NewProcessor;
@@ -288,7 +271,7 @@ namespace buildacomputer.Models
             {
                 List<long> NewMemory = new List<long>();
                 long[] memory_ID = db.memories.Select(s => s.memory_type_id).ToArray();
-                long[] memory_ID2 = db.motherboards.Select(s => s.memory_type_id).ToArray();
+                long[] memory_ID2 = db.motherboards.Where(m => m.motherboard_id == (long)motherboard_id).Select(s => s.memory_type_id).ToArray();
                 foreach (long x in memory_ID)
                     foreach (long y in memory_ID2)
                         if (x == y)
@@ -312,12 +295,9 @@ namespace buildacomputer.Models
                         foreach (long y in memory_ID2)
                             if (x == y)
                             {
-                                if (!NewMemory.Contains(x))
-                                {
-                                    NewMemory.AddRange(db.memories.Where(s => s.memory_type_id == x)
+                                    NewMemory.AddRange(db.memories.Where(s => s.memory_type_id == x && !NewMemory.Contains(s.memory_id))
                                                                   .Select(s => s.memory_id).ToList()
                                                       );
-                                }
                             }
                     }
                     memory_ids = NewMemory;
@@ -346,19 +326,16 @@ namespace buildacomputer.Models
                 List<long> NewHardDrive = new List<long>();
                 foreach (long item in motherboard_ids)
                 {
-                    long[] HardDrive_ID = db.memories.Select(s => s.memory_type_id).ToArray();
-                    long[] HardDrive_ID2 = db.motherboards.Where(m => m.motherboard_id == item)
-                                                       .Select(s => s.memory_type_id).ToArray();
+                    long[] HardDrive_ID = db.hard_drives.Select(s => s.bus_interface_id).ToArray();
+                    long[] HardDrive_ID2 = db.l_motherboard_bus_interfaces.Where(m => m.motherboard_id == item && m.bus_interface_count > 0)
+                                                       .Select(s => s.bus_interface_id).ToArray();
                     foreach (long x in HardDrive_ID)
                         foreach (long y in HardDrive_ID2)
                             if (x == y)
                             {
-                                if (!NewHardDrive.Contains(x))
-                                {
-                                    NewHardDrive.AddRange(db.memories.Where(s => s.memory_type_id == x)
-                                                                  .Select(s => s.memory_id).ToList()
+                                    NewHardDrive.AddRange(db.hard_drives.Where(s => s.bus_interface_id == x && !NewHardDrive.Contains(s.hard_drive_id))
+                                                                  .Select(s => s.hard_drive_id).ToList()
                                                       );
-                                }
                             }
                 }
                 hard_drive_ids = NewHardDrive;
@@ -380,7 +357,25 @@ namespace buildacomputer.Models
                                                                .Select(s => s.sound_card_id).ToList()
                                                   );
                         }
-                sound_card_ids.Clear();
+                sound_card_ids = NewSound;
+            }
+            else
+            {
+                List<long> NewSound = new List<long>();
+                foreach (long item in motherboard_ids)
+                {
+                    long[] sound_ID = db.expansion_slots.Select(s => s.expansion_slot_id).ToArray();
+                    long[] sound_ID2 = db.l_motherboards_expansion_slots.Where(m => m.motherboard_id == item && m.expansion_slot_count > 0)
+                                                       .Select(s => s.expansion_slot_id).ToArray();
+                    foreach (long x in sound_ID)
+                        foreach (long y in sound_ID2)
+                            if (x == y)
+                            {
+                                    NewSound.AddRange(db.sound_cards.Where(s => s.expansion_slot_id == x && !NewSound.Contains(s.sound_card_id))
+                                                                  .Select(s => s.sound_card_id).ToList()
+                                                      );
+                            }
+                }
                 sound_card_ids = NewSound;
             }
         }
@@ -400,8 +395,29 @@ namespace buildacomputer.Models
                                                                .Select(s => s.video_adapter_id).ToList()
                                                   );
                         }
-                processor_ids.Clear();
-                processor_ids = NewVideo;
+                video_adapter_ids = NewVideo;
+            }
+            else
+            {
+                List<long> NewVideo = new List<long>();
+                foreach (long item in motherboard_ids)
+                {
+                    long[] video_ID = db.expansion_slots.Select(s => s.expansion_slot_id).ToArray();
+                    long[] video_ID2 = db.l_motherboards_expansion_slots.Where(m => m.motherboard_id == item && m.expansion_slot_count > 0)
+                                                       .Select(s => s.expansion_slot_id).ToArray();
+                    foreach (long x in video_ID)
+                        foreach (long y in video_ID2)
+                            if (x == y)
+                            {
+                                if (!NewVideo.Contains(x))
+                                {
+                                    NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !video_adapter_ids.Contains(s.video_adapter_id))
+                                                                  .Select(s => s.video_adapter_id).ToList()
+                                                      );
+                                }
+                            }
+                }
+                video_adapter_ids = NewVideo;
             }
         }
         private void MotherBoard_OpticalDrive()
@@ -416,12 +432,33 @@ namespace buildacomputer.Models
                     foreach (long y in optical_ID2)
                         if (x == y)
                         {
-                            NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x)
+                            NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x && !NewOptical.Contains(s.optical_drive_id))
                                                            .Select(s => s.optical_drive_id).ToList()
                                             );
                         }
-                optical_drive_ids.Clear();
-                hard_drive_ids = NewOptical;
+                optical_drive_ids = NewOptical;
+            }
+            else
+            {
+                List<long> NewOptical = new List<long>();
+                foreach (long item in motherboard_ids)
+                {
+                    long[] optical_ID = db.optical_drives.Select(s => s.bus_interface_id).ToArray();
+                    long[] optical_ID2 = db.l_motherboard_bus_interfaces.Where(m => m.motherboard_id == item && m.bus_interface_count > 0)
+                                                       .Select(s => s.bus_interface_id).ToArray();
+                    foreach (long x in optical_ID)
+                        foreach (long y in optical_ID2)
+                            if (x == y)
+                            {
+                                if (!NewOptical.Contains(x))
+                                {
+                                    NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x)
+                                                                  .Select(s => s.optical_drive_id).ToList()
+                                                      );
+                                }
+                            }
+                }
+                optical_drive_ids = NewOptical;
             }
         }
         private void MotherBoard_PowerSupply()
@@ -430,7 +467,8 @@ namespace buildacomputer.Models
             {
                 List<long> NewPower = new List<long>();
                 long[] power_ID = db.power_supplies.Select(s => s.power_supply_standard_id).ToArray();
-                long[] power_ID2 = db.motherboards.Select(s => s.power_supply_standard_id).ToArray();
+                long[] power_ID2 = db.motherboards.Where(m => m.motherboard_id == (long)motherboard_id)
+                                                  .Select(s => s.power_supply_standard_id).ToArray();
                 foreach (long x in power_ID)
                     foreach (long y in power_ID2)
                         if (x == y)
@@ -439,8 +477,29 @@ namespace buildacomputer.Models
                                                                .Select(s => s.power_supply_id).ToList()
                                                   );
                         }
-                processor_ids.Clear();
-                processor_ids = NewPower;
+                power_supply_ids = NewPower;
+            }
+            else
+            {
+                List<long> NewPower = new List<long>();
+                foreach (long item in motherboard_ids)
+                {
+                    long[] power_ID = db.power_supplies.Select(s => s.power_supply_standard_id).ToArray();
+                    long[] power_ID2 = db.motherboards.Where(m => m.motherboard_id == item)
+                                                       .Select(s => s.power_supply_standard_id).ToArray();
+                    foreach (long x in power_ID)
+                        foreach (long y in power_ID2)
+                            if (x == y)
+                            {
+                                if (!NewPower.Contains(x))
+                                {
+                                    NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !power_supply_ids.Contains(s.power_supply_id))
+                                                                  .Select(s => s.power_supply_id).ToList()
+                                                      );
+                                }
+                            }
+                }
+                power_supply_ids = NewPower;
             }
         }
         private void MotherBoard_Case()
@@ -449,7 +508,8 @@ namespace buildacomputer.Models
             {
                 List<long> NewCase = new List<long>();
                 long[] case_ID = db.computer_cases.Select(s => s.motherboard_form_factor_id).ToArray();
-                long[] case_ID2 = db.motherboards.Select(s => s.motherboard_form_factor_id).ToArray();
+                long[] case_ID2 = db.motherboards.Where(m => m.motherboard_id == (long)motherboard_id)
+                                                 .Select(s => s.motherboard_form_factor_id).ToArray();
                 foreach (long x in case_ID)
                     foreach (long y in case_ID2)
                         if (x == y)
@@ -458,8 +518,29 @@ namespace buildacomputer.Models
                                                                .Select(s => s.computer_case_id).ToList()
                                                   );
                         }
-                processor_ids.Clear();
-                processor_ids = NewCase;
+                computer_case_ids = NewCase;
+            }
+            else
+            {
+                List<long> NewCase = new List<long>();
+                foreach (long item in motherboard_ids)
+                {
+                    long[] case_ID = db.motherboard_form_factors.Select(s => s.motherboard_form_factor_id).ToArray();
+                    long[] case_ID2 = db.motherboards.Where(m => m.motherboard_id == item)
+                                                       .Select(s => s.motherboard_form_factor_id).ToArray();
+                    foreach (long x in case_ID)
+                        foreach (long y in case_ID2)
+                            if (x == y)
+                            {
+                                if (!NewCase.Contains(x))
+                                {
+                                    NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x && !computer_case_ids.Contains(s.computer_case_id))
+                                                                  .Select(s => s.computer_case_id).ToList()
+                                                      );
+                                }
+                            }
+                }
+                computer_case_ids = NewCase;
             }
         }
         private void Processor_Motherboard()
@@ -468,16 +549,205 @@ namespace buildacomputer.Models
             {
                 List<long> NewMB = new List<long>();
                 long[] mb_ID = db.motherboards.Select(s => s.processor_socket_id).ToArray();
-                long[] mb_ID2 = db.processors.Select(s => s.processor_socket_id).ToArray();
+                long mb_ID2 = db.processors.Where(s => s.processor_id == processor_id)
+                                           .Select(s => s.processor_socket_id)
+                                           .Single();
                 foreach (long x in mb_ID)
-                    foreach (long y in mb_ID2)
-                        if (x == y)
+                    if (x == mb_ID2)
+                    {
+                        NewMB.AddRange(db.motherboards.Where(s => s.processor_socket_id == x && motherboard_ids.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id))
+                                                      .Select(s => s.motherboard_id).ToList()
+                                          );
+                    }
+                motherboard_ids = NewMB;
+                MotherBoard_Memories();
+                MotherBoard_HardDrive();
+                MotherBoard_SoundCard();
+                MotherBoard_VideoAdapter();
+                MotherBoard_OpticalDrive();
+                MotherBoard_PowerSupply();
+                MotherBoard_Case();
+            }
+        }
+        private void Memory_Motherboard()
+        {
+            if (motherboard_id == null)
+            {
+                List<long> NewMB = new List<long>();
+                long[] memory_ID = db.motherboards.Select(s => s.memory_type_id).ToArray();
+                long memory_ID2 = db.memories.Where(s => s.memory_id == memory_id)
+                                               .Select(s => s.memory_type_id).Single();
+                foreach (long x in memory_ID)
+                        if (x == memory_ID2)
                         {
-                            NewMB.AddRange(db.motherboards.Where(s => s.processor_socket_id == x)
+                            NewMB.AddRange(db.motherboards.Where(s => s.memory_type_id == x && motherboard_ids.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id))
                                                           .Select(s => s.motherboard_id).ToList()
                                               );
                         }
                 motherboard_ids = NewMB;
+                MotherBoard_Processor();
+                MotherBoard_HardDrive();
+                MotherBoard_SoundCard();
+                MotherBoard_VideoAdapter();
+                MotherBoard_OpticalDrive();
+                MotherBoard_PowerSupply();
+                MotherBoard_Case();
+            }
+        }
+        private void HardDrive_Motherboard()
+        {
+            if (motherboard_id == null)
+            {
+                List<long> NewMB = new List<long>();
+                long[] hard_drive_ID = db.l_motherboard_bus_interfaces.Select(s => s.bus_interface_id).ToArray();
+                long hard_drive_ID2 = db.hard_drives.Where(s => s.hard_drive_id == hard_drive_id)
+                                                   .Select(s => s.bus_interface_id).Single();
+                foreach (long x in hard_drive_ID)
+                    if (x == hard_drive_ID2)
+                    {
+                        NewMB.AddRange(db.l_motherboard_bus_interfaces.Where(s => s.bus_interface_id == x && motherboard_ids.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id))
+                                                      .Select(s => s.motherboard_id).ToList()
+                                          );
+                    }
+                motherboard_ids = NewMB;
+                MotherBoard_Processor();
+                MotherBoard_Memories();
+                MotherBoard_SoundCard();
+                MotherBoard_VideoAdapter();
+                MotherBoard_OpticalDrive();
+                MotherBoard_PowerSupply();
+                MotherBoard_Case();
+            }
+        }
+        private void SoundCard_Motherboard()
+        {
+            if (motherboard_id == null)
+            {
+                List<long> NewMB = new List<long>();
+                long[] sound_ID = db.motherboards.Select(s => s.sound_chip_id).ToArray();
+                long sound_ID2 = db.sound_cards.Where(s => s.sound_card_id == sound_card_id)
+                                               .Select(s => s.sound_chip_id).Single();
+                foreach (long x in sound_ID)
+                    if (x == sound_ID2)
+                    {
+                        NewMB.AddRange(db.motherboards.Where(s => s.sound_chip_id == x && motherboard_ids.Contains(db.motherboards.Where(m => m.sound_chip_id == db.sound_cards.Where(c => c.sound_card_id == sound_card_id)
+                                                                                                                                                                               .Select(c => c.sound_chip_id).Single())
+                                                                                                                                  .Select(m => m.motherboard_id).Single()) && !NewMB.Contains(s.motherboard_id))
+                                                      .Select(s => s.motherboard_id).ToList()
+                                          );
+                    }
+                motherboard_ids = NewMB;
+                MotherBoard_Processor();
+                MotherBoard_Memories();
+                MotherBoard_HardDrive();
+                MotherBoard_VideoAdapter();
+                MotherBoard_OpticalDrive();
+                MotherBoard_PowerSupply();
+                MotherBoard_Case();
+            }
+        }
+        private void VideoAdapter_Motherboard()
+        {
+            if (motherboard_id == null)
+            {
+                List<long> NewMB = new List<long>();
+                long[] mb_ID = db.l_motherboards_expansion_slots.Select(s => s.expansion_slot_id).ToArray();
+                long mb_ID2 = db.video_adapters.Where(v => v.video_adapter_id == video_adapter_id)
+                                           .Select(s => s.expansion_slot_id)
+                                           .Single();
+                foreach (long x in mb_ID)
+                    if (x == mb_ID2)
+                    {
+                        NewMB.AddRange(db.l_motherboards_expansion_slots.Where(s => s.expansion_slot_id == x && motherboard_ids.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id))
+                                                      .Select(s => s.motherboard_id).ToList()
+                                          );
+                    }
+                motherboard_ids = NewMB;
+                MotherBoard_Processor();
+                MotherBoard_Memories();
+                MotherBoard_HardDrive();
+                MotherBoard_SoundCard();
+                MotherBoard_OpticalDrive();
+                MotherBoard_PowerSupply();
+                MotherBoard_Case();
+            }
+        }
+        private void OpticalDrive_Motherboard()
+        {
+            if (motherboard_id == null)
+            {
+                List<long> NewMB = new List<long>();
+                long[] mb_ID = db.l_motherboard_bus_interfaces.Where(s => s.bus_interface_count > 0).Select(s => s.bus_interface_id).ToArray();
+                long mb_ID2 = db.optical_drives.Where(s => s.optical_drive_id == optical_drive_id)
+                                           .Select(s => s.bus_interface_id)
+                                           .Single();
+                foreach (long x in mb_ID)
+                    if (x == mb_ID2)
+                    {
+                        NewMB.AddRange(db.l_motherboard_bus_interfaces.Where(s => s.bus_interface_id == x && motherboard_ids.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id))
+                                                      .Select(s => s.motherboard_id).ToList()
+                                          );
+                    }
+                motherboard_ids = NewMB;
+                MotherBoard_Processor();
+                MotherBoard_Memories();
+                MotherBoard_HardDrive();
+                MotherBoard_SoundCard();
+                MotherBoard_VideoAdapter();
+                MotherBoard_PowerSupply();
+                MotherBoard_Case();
+            }
+        }
+        private void PowerSupply_Motherboard()
+        {
+            if (motherboard_id == null)
+            {
+                List<long> NewMB = new List<long>();
+                long[] mb_ID = db.motherboards.Select(s => s.power_supply_standard_id).ToArray();
+                long mb_ID2 = db.power_supplies.Where(s => s.power_supply_id == power_supply_id)
+                                           .Select(s => s.power_supply_standard_id)
+                                           .Single();
+                foreach (long x in mb_ID)
+                    if (x == mb_ID2)
+                    {
+                        NewMB.AddRange(db.motherboards.Where(s => s.power_supply_standard_id == x && motherboard_ids.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id))
+                                                      .Select(s => s.motherboard_id).ToList()
+                                          );
+                    }
+                motherboard_ids = NewMB;
+                MotherBoard_Processor();
+                MotherBoard_Memories();
+                MotherBoard_HardDrive();
+                MotherBoard_SoundCard();
+                MotherBoard_VideoAdapter();
+                MotherBoard_OpticalDrive();
+                MotherBoard_Case();
+            }
+        }
+        private void Case_Motherboard()
+        {
+            if (motherboard_id == null)
+            {
+                List<long> NewMB = new List<long>();
+                long[] mb_ID = db.motherboards.Select(s => s.motherboard_form_factor_id).ToArray();
+                long mb_ID2 = db.computer_cases.Where(s => s.computer_case_id == computer_case_id)
+                                           .Select(s => s.motherboard_form_factor_id)
+                                           .Single();
+                foreach (long x in mb_ID)
+                    if (x == mb_ID2)
+                    {
+                        NewMB.AddRange(db.motherboards.Where(s => s.motherboard_form_factor_id == x && motherboard_ids.Contains(s.motherboard_id) && !NewMB.Contains(s.motherboard_id))
+                                                      .Select(s => s.motherboard_id).ToList()
+                                          );
+                    }
+                motherboard_ids = NewMB;
+                MotherBoard_Processor();
+                MotherBoard_Memories();
+                MotherBoard_HardDrive();
+                MotherBoard_SoundCard();
+                MotherBoard_VideoAdapter();
+                MotherBoard_OpticalDrive();
+                MotherBoard_PowerSupply();
             }
         }
         private void addMotherboardHelper()
