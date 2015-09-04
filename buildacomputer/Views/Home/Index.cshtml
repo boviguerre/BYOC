@@ -1,45 +1,43 @@
-﻿@using System.Collections.Generic
+﻿@using System.Collections.Generic;
 @Model recentBuildDictionary
 
-<div class="row">
-    <div class="col-md-4">
-        <h2></h2>
-    </div>
-    <div class="col-md-4">
-        <h3 class="font-styling">Recently Built Computers</h3>
-        @*<ul>
-            <li><a href="#">First most recent</a></li>
-            <li><a href="#">Second most recent</a></li>
-            <li><a href="#">Third most recent</a></li>
-            <li><a href="#">Fourth most recent</a></li>
-            <li><a href="#">Fifth most recent</a></li>
-        </ul>*@
+    <div class="row">
+        <div class="col-md-4">
+            <h2></h2>
+        </div>
+        <div class="col-md-4">
+            <h3 class="font-styling">Recently Built Computers</h3>
+            @*<ul>
+                    <li><a href="#">First most recent</a></li>
+                    <li><a href="#">Second most recent</a></li>
+                    <li><a href="#">Third most recent</a></li>
+                    <li><a href="#">Fourth most recent</a></li>
+                    <li><a href="#">Fifth most recent</a></li>
+                </ul>*@
 
-        <table>
-            <tr>
-                @foreach (string key in Model.Keys)
-                {
-                    <th>@key</th>
-                }
-            </tr>
-            @for (int i = 0; i < 9; i++)
-            {
+            <table>
                 <tr>
                     @foreach (string key in Model.Keys)
                     {
-                        <td>@Model[key][0]</td>
+                        <th>@key</th>
                     }
                 </tr>
-            }
-
-
-        </table>
+                @for (int i = 0; i < 9; i++)
+                {
+                    <tr>
+                        @foreach (string key in Model.Keys)
+                        {
+                            <td>@Model[key][0]</td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h2></h2>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2></h2>
+    <div class="jumbotron">
+        <h1></h1>
+        <p class="lead"></p>
     </div>
-</div>
-<div class="jumbotron">
-    <h1></h1>
-    <p class="lead"></p>
-</div>

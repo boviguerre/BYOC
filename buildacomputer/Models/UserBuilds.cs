@@ -11,6 +11,7 @@ namespace buildacomputer.Models
         [Key]
         public string userID { get; set; }
         public int buildID { get; set; }
+        public string buildName { get; set; }
 
         public virtual Build Build { get; set; }
         public virtual Users Users {get; set;}

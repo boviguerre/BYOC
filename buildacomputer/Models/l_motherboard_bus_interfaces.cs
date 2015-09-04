@@ -18,7 +18,7 @@
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long bus_interface_id { get; set; }
 
-        public int bus_inteface_count { get; set; }
+        public int bus_interface_count { get; set; }
 
         public virtual motherboard motherboard { get; set; }
         public virtual bus_interfaces bus_interfaces { get; set; }
