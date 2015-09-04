@@ -20,15 +20,15 @@ namespace buildacomputer.Models
 
         public Build()
         {
-            motherboard_ids     = db.motherboards.Select(m => m.motherboard_id).ToList();
-            processor_ids       = db.processors.Select(p => p.processor_id).ToList();
-            memory_ids          = db.memories.Select(m => m.memory_id).ToList();
-            hard_drive_ids      = db.hard_drives.Select(h => h.hard_drive_id).ToList();
-            sound_card_ids      = db.sound_cards.Select(s => s.sound_card_id).ToList();
-            video_adapter_ids   = db.video_adapters.Select(v => v.video_adapter_id).ToList();
-            optical_drive_ids   = db.optical_drives.Select(o => o.optical_drive_id).ToList();
-            power_supply_ids    = db.power_supplies.Select(p => p.power_supply_id).ToList();
-            computer_case_ids   = db.computer_cases.Select(c => c.computer_case_id).ToList();
+            motherboard_ids = db.motherboards.Select(m => m.motherboard_id).ToList();
+            processor_ids = db.processors.Select(p => p.processor_id).ToList();
+            memory_ids = db.memories.Select(m => m.memory_id).ToList();
+            hard_drive_ids = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+            sound_card_ids = db.sound_cards.Select(s => s.sound_card_id).ToList();
+            video_adapter_ids = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+            optical_drive_ids = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+            power_supply_ids = db.power_supplies.Select(p => p.power_supply_id).ToList();
+            computer_case_ids = db.computer_cases.Select(c => c.computer_case_id).ToList();
             //import all possible parts
             defValues.Add(motherboard_ids);
             defValues.Add(processor_ids);
