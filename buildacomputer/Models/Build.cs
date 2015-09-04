@@ -402,7 +402,7 @@ namespace buildacomputer.Models
                 foreach (long item in motherboard_ids)
                 {
                     long[] video_ID = db.expansion_slots.Select(s => s.expansion_slot_id).ToArray();
-                    long[] video_ID2 = db.l_motherboards_expansion_slots.Where(m => m.motherboard_id == item && m.expansion_slot_count > 0)
+                    long[] video_ID2 = db.l_motherboards_expansion_slots.Where(m => m.motherboard_id == item)
                                                        .Select(s => s.expansion_slot_id).ToArray();
                     foreach (long x in video_ID)
                         foreach (long y in video_ID2)
@@ -410,7 +410,7 @@ namespace buildacomputer.Models
                             {
                                 if (!NewVideo.Contains(x))
                                 {
-                                    NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !video_adapter_ids.Contains(s.video_adapter_id))
+                                    NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !NewVideo.Contains(s.video_adapter_id))
                                                                   .Select(s => s.video_adapter_id).ToList()
                                                       );
                                 }
@@ -449,12 +449,9 @@ namespace buildacomputer.Models
                         foreach (long y in optical_ID2)
                             if (x == y)
                             {
-                                if (!NewOptical.Contains(x))
-                                {
-                                    NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x)
+                                    NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x && !NewOptical.Contains(s.optical_drive_id))
                                                                   .Select(s => s.optical_drive_id).ToList()
                                                       );
-                                }
                             }
                 }
                 optical_drive_ids = NewOptical;
@@ -490,12 +487,9 @@ namespace buildacomputer.Models
                         foreach (long y in power_ID2)
                             if (x == y)
                             {
-                                if (!NewPower.Contains(x))
-                                {
-                                    NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !power_supply_ids.Contains(s.power_supply_id))
+                                    NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id))
                                                                   .Select(s => s.power_supply_id).ToList()
                                                       );
-                                }
                             }
                 }
                 power_supply_ids = NewPower;
@@ -533,7 +527,7 @@ namespace buildacomputer.Models
                             {
                                 if (!NewCase.Contains(x))
                                 {
-                                    NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x && !computer_case_ids.Contains(s.computer_case_id))
+                                    NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x && !NewCase.Contains(s.computer_case_id))
                                                                   .Select(s => s.computer_case_id).ToList()
                                                       );
                                 }
