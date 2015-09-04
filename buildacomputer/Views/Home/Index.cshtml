@@ -1,9 +1,30 @@
 ﻿@using System.Collections.Generic;
-@Model recentBuildDictionary
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".body-splash").click(function () {
+            $("p").animate({ bottom: "+=100px" });
+        });
+    });
+</script>
+
+<body class="body-splash">
 
     <div class="row">
+        <img class="img-case" src="@Url.Content("~/Content/Images/case.png")" />
+        <img class="img-harddrive" src="@Url.Content("~/Content/Images/harddrive.png")" />
+        <img class="img-memory" src="@Url.Content("~/Content/Images/memory.png")" />
+        <img class="img-motherboard" src="@Url.Content("~/Content/Images/motherboard.png")" />
+        <img class="img-optical" src="@Url.Content("~/Content/Images/optical.png")" />
+        <img class="img-power" src="@Url.Content("~/Content/Images/power.png")" />
+        <img class="img-processor" src="@Url.Content("~/Content/Images/processor.png")" />
+        <img class="img-soundcard" src="@Url.Content("~/Content/Images/soundcard.png")" />
+        <img class="img-video" src="@Url.Content("~/Content/Images/video.png")" />
+        <img class="img-computer" src="@Url.Content("~/Content/Images/computer.png")" />
+
         <div class="col-md-4">
-            <h2></h2>
+               
         </div>
         <div class="col-md-4">
             <h3 class="font-styling">Recently Built Computers</h3>
@@ -15,11 +36,11 @@
                     <li><a href="#">Fifth most recent</a></li>
                 </ul>*@
 
-            <table>
+            <table class="table">
                 <tr>
                     @foreach (string key in Model.Keys)
                     {
-                        <th>@key</th>
+                        <th><a href="#">@key</a></th>
                     }
                 </tr>
                 @for (int i = 0; i < 5; i++)
@@ -41,3 +62,4 @@
         <h1></h1>
         <p class="lead"></p>
     </div>
+</body>
