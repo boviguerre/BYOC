@@ -180,6 +180,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\BuildsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -324,6 +325,11 @@
     <Content Include="Views\PreviousBuilds\Details.cshtml" />
     <Content Include="Views\PreviousBuilds\Edit.cshtml" />
     <Content Include="Views\PreviousBuilds\Index.cshtml" />
+    <Content Include="Views\Animation\Create.cshtml" />
+    <Content Include="Views\Animation\Delete.cshtml" />
+    <Content Include="Views\Animation\Details.cshtml" />
+    <Content Include="Views\Animation\Edit.cshtml" />
+    <Content Include="Views\Animation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

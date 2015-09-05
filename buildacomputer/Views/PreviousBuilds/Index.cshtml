@@ -1,44 +1,45 @@
-﻿@model IEnumerable<buildacomputer.Models.Build>
+﻿@using System.Collections.Generic;
 
 @{
-    ViewBag.Title = "Previous Builds";
+    ViewBag.Title = "Index";
 }
 
-<h2>Previous Builds</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.computer_cases.computer_case_name)
+            Motherboard
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.hard_drives.hard_drive_name)
+            Processors
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.memory.memory_name)
+            Memory
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.motherboard.motherboard_name)
+            Hard Drive
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.optical_drives.optical_drive_name)
+            Sound Card
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.power_supplies.power_supply_name)
+            Video Adapter
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.processor.processor_name)
+            Optical Drive
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sound_cards.sound_card_name)
+            Power Supply
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.video_adapters.video_adapter_name)
+            Computer Case
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.buildType)
         </th>
         <th>
@@ -46,53 +47,54 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BuildTime)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var oldBuild in Model.displayBuilds)
+{
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+            @Html.DisplayFor(modelItem => oldBuild.computer_cases.computer_case_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+            @Html.DisplayFor(modelItem => oldBuild.hard_drives.hard_drive_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.memory.memory_name)
+            @Html.DisplayFor(modelItem => oldBuild.memory.memory_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+            @Html.DisplayFor(modelItem => oldBuild.motherboard.motherboard_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+            @Html.DisplayFor(modelItem => oldBuild.optical_drives.optical_drive_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+            @Html.DisplayFor(modelItem => oldBuild.power_supplies.power_supply_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.processor.processor_name)
+            @Html.DisplayFor(modelItem => oldBuild.processor.processor_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+            @Html.DisplayFor(modelItem => oldBuild.sound_cards.sound_card_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+            @Html.DisplayFor(modelItem => oldBuild.video_adapters.video_adapter_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.buildType)
+            @Html.DisplayFor(modelItem => oldBuild.buildType)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.iterator)
+            @Html.DisplayFor(modelItem => oldBuild.iterator)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BuildTime)
+            @Html.DisplayFor(modelItem => oldBuild.BuildTime)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
             @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
-        </td>
+        </td>*@
     </tr>
 }
 
