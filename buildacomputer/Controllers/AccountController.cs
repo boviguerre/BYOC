@@ -165,9 +165,14 @@ namespace buildacomputer.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     Users person = new Users();
                     person.Id = user.Id;
+                    person.FirstName = "John";
+                    person.LastName = "Doe";
+                    person.SecurityQuestion = "Question?";
+                    person.SecurityAnswer = "Answer.";
+                    person.Title = "Student";
 
                     db.Users.Add(person);
-                    //db.SaveChanges();
+                    db.SaveChanges();
                     
                     return RedirectToAction("Index", "Home");
 
