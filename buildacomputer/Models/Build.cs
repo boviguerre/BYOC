@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.Linq;
 using System.Data.Common;
 
 namespace buildacomputer.Models

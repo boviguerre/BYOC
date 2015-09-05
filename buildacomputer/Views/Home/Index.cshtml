@@ -43,12 +43,12 @@
                         <th><a href="#">@key</a></th>
                     }
                 </tr>
-                @for (int i = 0; i < 9; i++)
+                @for (int i = 0; i < 5; i++)
                 {
                     <tr>
                         @foreach (string key in Model.Keys)
                         {
-                            <td><a href="#">@Model[key][0]</a></td>
+                            <td>@Model[key][i]</td>
                         }
                     </tr>
                 }
