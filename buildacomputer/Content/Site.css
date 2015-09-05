@@ -1,28 +1,32 @@
 ﻿html
 {
-    background-color: #000;
-    color: #fff;
+    background-color: #E6E6E6;
+    color: #000;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
-    font-size: 14px;
+    font-size: 20px;
 }
 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #000;
-    color: #fff;
+    background-color: #E6E6E6;
+    color: #000;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
     font-size: 14px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: #000;
-    color: #fff;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #E6E6E6;
+    color: #000;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
     
+}
+
+.row {
+    max-width: 70%;
 }
 
 /* Tabs overrides */
