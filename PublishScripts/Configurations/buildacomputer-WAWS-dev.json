@@ -6,7 +6,7 @@
         },
         "databases": [
             {
-                "connectionStringName": "DefaultConnection",
+                "connectionStringName": "computer_hardware",
                 "databaseName": "computer_hardware",
                 "serverName": "",
                 "user": "jyrm",

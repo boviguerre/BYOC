@@ -1,51 +1,77 @@
-﻿.img-case,
-img{
+﻿.flipped {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -khtml-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+.img-case{
     width: 40%;
     height: auto;
+    position: absolute;
+    right: 200px;
+    top: 100px;
 }
-.img-harddrive,
-img{
-    width: 20%;
-    height: auto;
-}
-.img-memory,
-img{
-    width: 10%;
-    height: auto;
-}
-.img-motherboard,
-img{
-    width: 20%;
-    height: auto;
-}
-.img-optical,
-img{
+.img-harddrive{
     width: 15%;
     height: auto;
+    position: absolute;
+    left: 300px;
+    top: 100px;
 }
-.img-power,
-img{
-    width: 20%;
-    height: auto;
-}
-.img-processor,
-img{
+.img-memory{
     width: 10%;
     height: auto;
+    position: absolute;
+    left: 300px;
+    top: 200px;
 }
-.img-soundcard,
-img{
-    width: 20%;
+.img-motherboard{
+    width: 15%;
     height: auto;
+    position: absolute;
+    left: 300px;
+    top: 400px;
 }
-.img-video,
-img{
-    width: 20%;
+.img-optical{
+    width: 12%;
     height: auto;
+    position: absolute;
+    left: 100px;
+    top: 200px;
 }
-.img-computer,
- img{
-    width: 75%;
+.img-power{
+    width: 10%;
+    height: auto;
+    position: absolute;
+    left: 100px;
+    top: 400px;
+}
+.img-processor{
+    width: 7%;
+    height: auto;
+    position: absolute;
+    left: 300px;
+    top: 200px;
+}
+.img-sound{
+    width: 10%;
+    height: auto;
+    position: absolute;
+    left: 100px;
+    top: 300px;
+}
+.img-video{
+    width: 10%;
+    height: auto;
+    position: absolute;
+    left: 100px;
+    top: 250px;
+}
+.img-computer{
+    width: 50%;
     height: auto;
 }
 
@@ -64,6 +90,8 @@ body {
     color: #fff;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
     font-size: 14px;
+    
+    background-image: Url("~/Content/Images/case.png");
 }
 
 /* Set padding to keep content from hitting the edges */

@@ -22,7 +22,7 @@ namespace buildacomputer.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("computer_hardware", throwIfV1Schema: false)
         {
         }
 
