@@ -522,13 +522,8 @@ namespace buildacomputer.Controllers
         {
             Build build = (Build)this.Session["SessionBuild"];
             int? i = null;
-<<<<<<< Updated upstream
-            //pull i from db
 
-            
-=======
-            //pull i from db            
->>>>>>> Stashed changes
+            //pull i from db
 
             i = (int?)db.Builds.Where((b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id)).Select(b => b.iterator).Single();
             
@@ -538,11 +533,8 @@ namespace buildacomputer.Controllers
                 build.iterator = 1;
                 db.Builds.Add(build);
             }
-<<<<<<< Updated upstream
             //else update w i+1
-=======
-            //else update w/ i+1
->>>>>>> Stashed changes
+
             else
             {
                 Build buildQuery = (from b in db.Builds

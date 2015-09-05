@@ -85,15 +85,18 @@ namespace buildacomputer.Controllers
             //}
 
                 //Adds each list of components to the dictionary of recent builds
-            recentBuildDictionary.Add("Motherboard", motherboards);
-            recentBuildDictionary.Add("Processor", processors);
-            recentBuildDictionary.Add("Memory", memories);
-            recentBuildDictionary.Add("Hard Drive", hardDrives);
-            recentBuildDictionary.Add("Sound Card", soundCards);
-            recentBuildDictionary.Add("Video Adapter", videoAdapters);
-            recentBuildDictionary.Add("Optical Drive", opticalDrives);
-            recentBuildDictionary.Add("Power Supply", powerSupplies);
-            recentBuildDictionary.Add("Computer Case", computerCases);
+            if (!recentBuildDictionary.ContainsKey("Motherboard"))
+            {
+                recentBuildDictionary.Add("Motherboard", motherboards);
+                recentBuildDictionary.Add("Processor", processors);
+                recentBuildDictionary.Add("Memory", memories);
+                recentBuildDictionary.Add("Hard Drive", hardDrives);
+                recentBuildDictionary.Add("Sound Card", soundCards);
+                recentBuildDictionary.Add("Video Adapter", videoAdapters);
+                recentBuildDictionary.Add("Optical Drive", opticalDrives);
+                recentBuildDictionary.Add("Power Supply", powerSupplies);
+                recentBuildDictionary.Add("Computer Case", computerCases);
+            }
 
             //ViewData["Five Recent"] = recentBuildDictionary;
             //return View();
