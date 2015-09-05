@@ -3,17 +3,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        $(".body-splash").click(function () {
-            $("p").animate({ bottom: "+=100px" });
+        $(".img-case").click(function () {
+            $(".img-case").animate({ left: "+=400px" });
+            $(".img-harddrive").animate({ top: "+=400px" });
+            $(".img-memory").animate({ left: "+=100px" });
+            $(".img-motherboard").animate({ left: "+=100px" });
+            $(".img-optical").animate({ left: "+=100px" });
+            $(".img-power").animate({ left: "+=100px" });
+            $(".img-sound").animate({ left: "+=100px" });
+            $(".img-video").animate({ left: "+=100px" });
+            $(".img-processor").animate({ left: "+=100px" });
         });
     });
 </script>
 
-<body class="body-splash">
-
-    <div class="row">
-        <img class="img-case" src="@Url.Content("~/Content/Images/case.png")" />
-        <img class="img-harddrive" src="@Url.Content("~/Content/Images/harddrive.png")" />
+<body>
+        <img class="img-case" src="@Url.Content("~/Content/Images/case.png")" style="position: relative;"/>
+        <img class="img-harddrive" src="@Url.Content("~/Content/Images/harddrive.png")" style="position: relative"/>
         <img class="img-memory" src="@Url.Content("~/Content/Images/memory.png")" />
         <img class="img-motherboard" src="@Url.Content("~/Content/Images/motherboard.png")" />
         <img class="img-optical" src="@Url.Content("~/Content/Images/optical.png")" />

@@ -1,4 +1,55 @@
-﻿html
+﻿.img-case,
+img{
+    width: 40%;
+    height: auto;
+}
+.img-harddrive,
+img{
+    width: 20%;
+    height: auto;
+}
+.img-memory,
+img{
+    width: 10%;
+    height: auto;
+}
+.img-motherboard,
+img{
+    width: 20%;
+    height: auto;
+}
+.img-optical,
+img{
+    width: 15%;
+    height: auto;
+}
+.img-power,
+img{
+    width: 20%;
+    height: auto;
+}
+.img-processor,
+img{
+    width: 10%;
+    height: auto;
+}
+.img-soundcard,
+img{
+    width: 20%;
+    height: auto;
+}
+.img-video,
+img{
+    width: 20%;
+    height: auto;
+}
+.img-computer,
+ img{
+    width: 75%;
+    height: auto;
+}
+
+html
 {
     background-color: #000;
     color: #fff;
