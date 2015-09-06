@@ -12,16 +12,28 @@
             $(".img-sound").animate({ left: "+=300px" });
             $(".img-video").animate({ left: "+=300px" });
             $(".img-processor").animate({ left: "+=300px" });
-            $(".img-case").animate({ right: "+=200px"});
-            $("NO .img-case").addClass("flipped");
+            $(".img-case").animate({ right: "+=200px" }, function () {
+                $(".img-case").fadeOut("fast");
+                $(".img-harddrive").fadeOut("fast");
+                $(".img-memory").fadeOut("fast");
+                $(".img-motherboard").fadeOut("fast");
+                $(".img-optical").fadeOut("fast");
+                $(".img-power").fadeOut("fast");
+                $(".img-sound").fadeOut("fast");
+                $(".img-video").fadeOut("fast");
+                $(".img-processor").fadeOut("fast");
+                $(".img-computer").fadeIn("slow");
+            });
+
         });
-    
-});
+
+    });
 
 </script>
 
 <body>
-<div style="text-align:left">
+
+<div class="the-images" style="text-align:left">
     <p><img class="img-case" src="@Url.Content("~/Content/Images/case.png")" /></p>
     <p></p>
     <p><img class="img-harddrive" src="@Url.Content("~/Content/Images/harddrive.png")" /></p>
@@ -35,15 +47,26 @@
     <img class="img-sound" src="@Url.Content("~/Content/Images/soundcard.png")" />
     <img class="img-video" src="@Url.Content("~/Content/Images/video.png")" />
 
+    <img class="img-computer" src="@Url.Content("~/Content/Images/computer.png")" style="text-align: center; display: none" />
 </div>
-
 
 
     <div class="jumbotron">
         <h1></h1>
         <p class="lead"></p>
     </div>
-
+    <div class="jumbotron">
+        <h1></h1>
+        <p class="lead"></p>
+    </div>
+    <div class="jumbotron">
+        <h1></h1>
+        <p class="lead"></p>
+    </div>
+    <div class="jumbotron">
+        <h1></h1>
+        <p class="lead"></p>
+    </div>
 </body>
 
 

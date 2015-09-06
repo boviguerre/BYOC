@@ -3,37 +3,43 @@
 
 <body>
     <h3 class="font-styling">Recently Built Computers</h3>
-        <div class="col-md-1">
+    <div>
 
-            @*<ul>
-                    <li><a href="#">First most recent</a></li>
-                    <li><a href="#">Second most recent</a></li>
-                    <li><a href="#">Third most recent</a></li>
-                    <li><a href="#">Fourth most recent</a></li>
-                    <li><a href="#">Fifth most recent</a></li>
-                </ul>*@
+        @*<ul>
+                <li><a href="#">First most recent</a></li>
+                <li><a href="#">Second most recent</a></li>
+                <li><a href="#">Third most recent</a></li>
+                <li><a href="#">Fourth most recent</a></li>
+                <li><a href="#">Fifth most recent</a></li>
+            </ul>*@
 
-            <table class="table">
+        <table class="table">
+            <tr>
+                @foreach (string key in Model.Keys)
+                {
+                    <th><a href="#">@key</a></th>
+                }
+            </tr>
+            @for (int i = 0; i < 5; i++)
+            {
                 <tr>
                     @foreach (string key in Model.Keys)
                     {
-                        <th><a href="#">@key</a></th>
+                        <td>@Model[key][i]</td>
                     }
                 </tr>
-                @for (int i = 0; i < 5; i++)
-                {
-                    <tr>
-                        @foreach (string key in Model.Keys)
-                        {
-                            <td>@Model[key][i]</td>
-                        }
-                    </tr>
-                }
-            </table>
-        </div>
-      
+            }
+        </table>
+    </div>
+
     <div class="jumbotron">
         <h1></h1>
         <p class="lead"></p>
     </div>
+    <div class="jumbotron">
+        <h1></h1>
+        <p class="lead"></p>
+    </div>
+
 </body>
+

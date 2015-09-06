@@ -15,18 +15,18 @@
     top: 100px;
 }
 .img-harddrive{
-    width: 15%;
+    width: 10%;
     height: auto;
     position: absolute;
     left: 300px;
-    top: 100px;
+    top: 175px;
 }
 .img-memory{
     width: 10%;
     height: auto;
     position: absolute;
     left: 300px;
-    top: 200px;
+    top: 300px;
 }
 .img-motherboard{
     width: 15%;
@@ -36,48 +36,51 @@
     top: 400px;
 }
 .img-optical{
-    width: 12%;
+    width: 8%;
     height: auto;
     position: absolute;
     left: 100px;
-    top: 200px;
+    top: 190px;
 }
 .img-power{
-    width: 10%;
+    width: 15%;
     height: auto;
     position: absolute;
     left: 100px;
-    top: 400px;
+    top: 425px;
 }
 .img-processor{
-    width: 7%;
+    width: 3%;
     height: auto;
     position: absolute;
     left: 300px;
-    top: 200px;
+    top: 295px;
 }
 .img-sound{
     width: 10%;
     height: auto;
     position: absolute;
     left: 100px;
-    top: 300px;
+    top: 250px;
 }
 .img-video{
     width: 10%;
     height: auto;
     position: absolute;
     left: 100px;
-    top: 250px;
+    top: 325px;
 }
 .img-computer{
-    width: 50%;
+    width: 40%;
     height: auto;
+    top: 20px;
+    position: relative;
+    left: 300px;
 }
 
 html
 {
-    background-color: #000;
+    background-color: #808080;
     color: #fff;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
     font-size: 14px;
@@ -86,19 +89,17 @@ html
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #000;
+    background-color: #808080;
     color: #fff;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
     font-size: 14px;
-    
-    background-image: Url("~/Content/Images/case.png");
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #000;
+    background-color: #808080;
     color: #fff;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
     
@@ -109,6 +110,7 @@ body {
     padding: 0px; 
     background: none; 
     border-width: 0px; 
+    background-color: #808080;
 }
 .ui-tabs .ui-tabs-nav { 
     padding-left: 0px; 
@@ -118,9 +120,11 @@ body {
     -moz-border-radius: 0px; 
     -webkit-border-radius: 0px; 
     border-radius: 0px; 
+    background-color: #808080;
 }
 .ui-tabs-nav .ui-state-active {
 	border-color: #3c8243;
+    background-color: #808080;
 }
 .ui-tabs .ui-tabs-panel { 
 	padding: 1em;
