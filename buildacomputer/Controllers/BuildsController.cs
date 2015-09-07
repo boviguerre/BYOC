@@ -473,6 +473,7 @@ namespace buildacomputer.Controllers
                     #endregion
                 }
                 this.Session["SessionBuild"] = build;
+                ViewBag.build = build;
                 return PartialView(url);
             }
             #region View
@@ -512,6 +513,7 @@ namespace buildacomputer.Controllers
 
                 //Returns the list of motherboard strings to the view
                 this.Session["SessionBuild"] = build;
+                ViewBag.build = build;
                 return View();
             }
             #endregion
@@ -525,6 +527,7 @@ namespace buildacomputer.Controllers
 
             //pull i from db
 
+            
             i = (int?)db.Builds.Where((b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id)).Select(b => b.iterator).Single();
             
             //if i still null post build
