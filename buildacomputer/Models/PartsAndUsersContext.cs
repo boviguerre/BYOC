@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Collections.Generic;
     using System.Data.Entity.ModelConfiguration.Conventions;
+    using System.Data.Linq;
     using System.Linq;
     using System.Web;
 

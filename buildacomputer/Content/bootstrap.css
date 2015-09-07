@@ -305,7 +305,7 @@ table {
 
   .table td,
   .table th {
-    background-color: #000 !important;
+    background-color: #808080 !important;
   }
   .btn > .caret,
   .dropup > .btn > .caret {
@@ -337,7 +337,7 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Palatino Linotype',Cambria;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -361,14 +361,16 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: #fff;
   text-decoration: none;
 }
 
 a:hover,
-a:focus {
-  color: #2a6496;
-  text-decoration: underline;
+a:focus,
+a:active
+{
+  color: #999;
+  text-decoration: none;
 }
 
 a:focus {
@@ -380,6 +382,16 @@ a:focus {
 img {
   vertical-align: middle;
 }
+
+.img-case,
+.img-harddrive,
+.img-memory,
+.img-motherboard,
+.img-optical,
+.img-power,
+.img-processor,
+.img-soundcard,
+.img-video,
 
 .img-responsive {
   display: block;
@@ -397,7 +409,7 @@ img {
   max-width: 100%;
   padding: 4px;
   line-height: 1.428571429;
-  background-color: #ffffff;
+  background-color: #808080;
   border: 1px solid #dddddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
@@ -774,7 +786,7 @@ pre code {
   font-size: inherit;
   color: inherit;
   white-space: pre-wrap;
-  background-color: #000;
+  background-color: #808080;
   border: 0;
 }
 
@@ -888,7 +900,7 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  background-color: #000;
+  background-color: #808080;
   font-family: 'Palatino Linotype', Cambria;
 }
 
@@ -4122,6 +4134,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-overflow-scrolling: touch;
   color: #fff;
+  border-bottom-color: #000;
 }
 
 .navbar-collapse:before,
@@ -4968,7 +4981,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: #fff;
-  background-color: #000;
+  background-color: #808080;
 }
 
 .jumbotron h1 {
@@ -5701,7 +5714,7 @@ body.modal-open,
   bottom: 0;
   left: 0;
   z-index: 1030;
-  background-color: #000000;
+  background-color: #808080;
 }
 
 .modal-backdrop.fade {
@@ -5830,7 +5843,7 @@ body.modal-open,
   color: #ffffff;
   text-align: center;
   text-decoration: none;
-  background-color: #000000;
+  background-color: #808080;
   border-radius: 4px;
 }
 
