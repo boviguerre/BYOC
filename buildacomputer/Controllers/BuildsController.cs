@@ -38,7 +38,6 @@ namespace buildacomputer.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                string url = "Index";
                 // the controller action was invoked with an AJAX request
                 if (obj == "mb")
                 {
@@ -81,8 +80,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    this.Session["SessionBuild"] = build;
-                    url = Url.Action("Index", "#pr");
                 }
                 else if (obj == "pr")
                 {
@@ -125,10 +122,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else
-                        url = Url.Action("Index", "#me");
                 }
                 else if (obj == "me")
                 {
@@ -171,10 +164,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else
-                        url = Url.Action("Index", "#hd");
                 }
                 if (obj == "hd")
                 {
@@ -217,10 +206,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else
-                        url = Url.Action("Index", "#sc");
                 }
                 if (obj == "sc")
                 {
@@ -263,10 +248,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else
-                        url = Url.Action("Index", "#va");
                 }
                 if (obj == "va")
                 {
@@ -309,10 +290,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else
-                        url = Url.Action("Index", "#od");
                 }
                 if (obj == "od")
                 {
@@ -355,10 +332,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else
-                        url = Url.Action("Index", "#ps");
                 }
                 if (obj == "ps")
                 {
@@ -401,10 +374,6 @@ namespace buildacomputer.Controllers
                         ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x));
                     }
                     #endregion
-                    if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else
-                        url = Url.Action("Index", "#cc");
                 }
                 if (obj == "cc")
                 {
@@ -454,44 +423,14 @@ namespace buildacomputer.Controllers
                         build.computer_case_id != null)
                         Url.Action("Save");
                     #endregion
-                    #region Redirects
-                    else if (build.motherboard_id == null)
-                        url = Url.Action("Index", "#mb");
-                    else if (build.processor_id == null)
-                        url = Url.Action("Index", "#pr");
-                    else if (build.memory_id == null)
-                        url = Url.Action("Index", "#me");
-                    else if (build.hard_drive_id == null)
-                        url = Url.Action("Index", "#hd");
-                    else if (db.motherboards.Where(m => m.motherboard_id == build.motherboard_id)
-                                            .Select(m => m.gpu_id) != null || build.video_adapter_id != null)
-                        url = Url.Action("Index", "#va");
-                    else if (build.power_supply_id == null)
-                        url = Url.Action("Index", "#ps");
-                    else
-                        url = Url.Action("Index", "#cc");
-                    #endregion
                 }
                 this.Session["SessionBuild"] = build;
                 ViewBag.build = build;
-                return PartialView(url);
+                return PartialView();
             }
             #region View
             else
             {
-                try
-                {
-                    ViewBag.mb.Clear();
-                    ViewBag.pr.Clear();
-                    ViewBag.me.Clear();
-                    ViewBag.hd.Clear();
-                    ViewBag.sc.Clear();
-                    ViewBag.va.Clear();
-                    ViewBag.od.Clear();
-                    ViewBag.ps.Clear();
-                    ViewBag.cc.Clear();
-                }
-                catch { }
                 foreach (long x in build.motherboard_ids)
                     ViewBag.mb.AddRange(db.motherboards.Where(m => m.motherboard_id == x).ToList());
                 foreach (long x in build.processor_ids)
