@@ -22,7 +22,12 @@
                 $(".img-sound").fadeOut("fast");
                 $(".img-video").fadeOut("fast");
                 $(".img-processor").fadeOut("fast");
-                $(".img-computer").fadeIn("slow");
+                $(".img-3").fadeIn("fast", function () {
+                    $(".img-3").fadeOut("slow", function () {
+                        $(".img-computer").fadeIn("fast");
+                    });
+                });
+                
             });
 
         });
@@ -47,6 +52,7 @@
     <img class="img-sound" src="@Url.Content("~/Content/Images/soundcard.png")" />
     <img class="img-video" src="@Url.Content("~/Content/Images/video.png")" />
 
+    <img class="img-3" src="@Url.Content("~/Content/Images/3.png")" style="text-align: center; display: none" />
     <img class="img-computer" src="@Url.Content("~/Content/Images/computer.png")" style="text-align: center; display: none" />
 </div>
 
