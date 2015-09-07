@@ -411,7 +411,7 @@ namespace buildacomputer.Models
                             {
                                 if (!NewVideo.Contains(x))
                                 {
-                                    NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !video_adapter_ids.Contains(s.video_adapter_id))
+                                    NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !NewVideo.Contains(s.video_adapter_id))
                                                                   .Select(s => s.video_adapter_id).ToList()
                                                       );
                                 }
@@ -452,7 +452,7 @@ namespace buildacomputer.Models
                             {
                                 if (!NewOptical.Contains(x))
                                 {
-                                    NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x)
+                                    NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x && !NewOptical.Contains(s.optical_drive_id))
                                                                   .Select(s => s.optical_drive_id).ToList()
                                                       );
                                 }
@@ -473,7 +473,7 @@ namespace buildacomputer.Models
                     foreach (long y in power_ID2)
                         if (x == y)
                         {
-                            NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x)
+                            NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id))
                                                                .Select(s => s.power_supply_id).ToList()
                                                   );
                         }
@@ -514,7 +514,7 @@ namespace buildacomputer.Models
                     foreach (long y in case_ID2)
                         if (x == y)
                         {
-                            NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x)
+                            NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x && !NewCase.Contains(s.computer_case_id))
                                                                .Select(s => s.computer_case_id).ToList()
                                                   );
                         }
