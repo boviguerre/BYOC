@@ -473,6 +473,7 @@ namespace buildacomputer.Controllers
                     #endregion
                 }
                 this.Session["SessionBuild"] = build;
+                ViewBag.build = build;
                 return PartialView(url);
             }
             #region View
@@ -512,6 +513,7 @@ namespace buildacomputer.Controllers
 
                 //Returns the list of motherboard strings to the view
                 this.Session["SessionBuild"] = build;
+                ViewBag.build = build;
                 return View();
             }
             #endregion

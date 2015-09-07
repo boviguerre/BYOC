@@ -20,10 +20,22 @@
                 @Html.ActionLink("BUILD A COMPUTER", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { area = "" }, null)</li>
-                    <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
-                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Index", "PreviousBuilds", new { area = "" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
+                    </ul>
+                }
+
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { area = "" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
+                    </ul>
+                }
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
