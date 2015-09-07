@@ -12,6 +12,7 @@
     <title>ViewBag.Title</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $(".button-motherboards").click(function () {
@@ -43,40 +44,40 @@
             });
         });
 
-        //$(document).ready(function () {
-        //    $(".button-motherboards").click(function () {
-        //        $(".tr-hidden").toggle()
-        //    });
-        //});
+        $(document).ready(function () {
+            $(".button-videoadapters").click(function () {
+                $(".tr-videoadapters-hidden").toggle()
+            });
+        });
 
-        //$(document).ready(function () {
-        //    $(".button-motherboards").click(function () {
-        //        $(".tr-hidden").toggle()
-        //    });
-        //});
+        $(document).ready(function () {
+            $(".button-opticaldrives").click(function () {
+                $(".tr-opticaldrives-hidden").toggle()
+            });
+        });
 
-        //$(document).ready(function () {
-        //    $(".button-motherboards").click(function () {
-        //        $(".tr-hidden").toggle()
-        //    });
-        //});
+        $(document).ready(function () {
+            $(".button-powersupplies").click(function () {
+                $(".tr-powersupplies-hidden").toggle()
+            });
+        });
 
-        //$(document).ready(function () {
-        //    $(".button-motherboards").click(function () {
-        //        $(".tr-hidden").toggle()
-        //    });
-        //});
+        $(document).ready(function () {
+            $(".button-computercases").click(function () {
+                $(".tr-computercases-hidden").toggle()
+            });
+        });
     </script>
 
 </head>
 
 <body>
-    <button class="button-motherboards">MOTHERBOARDS</button><button class="button-processors">PROCESSORS</button><button class="button-memories">RAM</button><button class="button-harddrives">HARD DRIVES</button><button class="button-soundcards">SOUND CARDS</button>
+    <button class="button-motherboards">MOTHERBOARDS</button><button class="button-processors">PROCESSORS</button><button class="button-memories">RAM</button><button class="button-harddrives">HARD DRIVES</button><button class="button-soundcards">SOUND CARDS</button><button class="button-videoadapters">VIDEO ADAPTERS</button><button class="button-opticaldrives">OPTICAL DRIVES</button><button class="button-powersupplies">POWER SUPPLIES</button><button class="button-computercases">COMPUTER CASES</button>
 
     <p>&nbsp;</p>
 
     @*MOTHERBOARDS TABLE*@
-    <table>
+    <table class="table">
         <tr class="tr-motherboards-hidden" style="display:none">
             <th>
                 MOTHERBOARD NAME
@@ -142,7 +143,7 @@
 
 
     @*PROCESSORS TABLE*@
-    <table>
+    <table class="table" valign="top">
         <tr class="tr-processors-hidden" style="display:none">
             <th>
                 PROCESSOR NAME
@@ -182,13 +183,13 @@
 
 
     @*MEMORIES TABLE*@
-    <table>
+    <table class="table">
         <tr class="tr-memories-hidden" style="display:none">
             <th>
                 RAM NAME
             </th>
             <th>
-                Memory size (mB)
+                Memory size (mb)
             </th>
             <th>
                 Memory type name
@@ -215,7 +216,7 @@
 
 
         @*HARD DRIVES TABLE*@
-        <table>
+        <table class="table">
             <tr class="tr-harddrives-hidden" style="display:none">
                 <th>
                     HARD DRIVE NAME
@@ -255,7 +256,7 @@
 
 
         @*SOUND CARDS TABLE*@
-        <table>
+        <table class="table">
 
             <tr class="tr-soundcards-hidden" style="display:none">
                 <th>
@@ -292,80 +293,114 @@
                 </tr>
             }
         </table>
-        </li>
-        <li>
-            <a href="#tabs-nobg-6">Video Adapters</a>
-            <table class="video-adapters-table">
-                @foreach (var x in ViewBag.va)
-                {
-                    <tr>
-                        <td>
-                            @x.video_adapter_name
-                        </td>
-                        <td>
-                            @x.video_adapter_memory_mb
-                        </td>
-                        <td>
-                            @if (x.gpu_id != null)
-                            {
-                                @x.gpu.gpu_name
-                            }
-                        </td>
-                        <td>
-                            @if (x.gpu_id != null)
-                            {
-                                @x.gpu.gpu_name
-                            }
-                        </td>
-                        <td>
-                            @if (x.gpu_id != null)
-                            {
-                                @x.gpu.gpu_name
-                            }
-                        </td>
-                        <td>
-                            @x.expansion_slots.expansion_slot_name
-                        </td>
-                        <td>
-                            @x.power_supply_standards.power_supply_standard_name
-                        </td>
-                        <td>
-                            <button name="" type="button" value=@x.video_adapter_id onclick="doajaxva(this)">Add to Cart!</button>
-                        </td>
-                    </tr>
-                }
-            </table>
-        <li>
-            <a href="#tabs-nobg-7">Optical Drives</a>
-            <table class="optical-drives-table">
+
+        @*VIDEO ADAPTERS TABLE*@
+        <table class="table">
+            <tr class="tr-videocards-hidden" style="display:none">
+                <th>
+                    VIDEO ADAPTER NAME
+                </th>
+                <th>
+                    Memory (mb)
+                </th>
+                <th>
+                    GPU (if applic.)
+                </th>
+                <th>
+                    Expansion slot
+                </th>
+                <th>
+                    Power supply standard
+                </th>
+            </tr>
+            @foreach (var x in ViewBag.va)
+            {
+                <tr class="tr-videocards-hidden" style="display:none">
+                    <td>
+                        @x.video_adapter_name
+                    </td>
+                    <td>
+                        @x.video_adapter_memory_mb
+                    </td>
+                    <td>
+                        @if (x.gpu_id != null)
+                        {
+                            @x.gpu.gpu_name
+                        }
+                    </td>
+                    <td>
+                        @x.expansion_slots.expansion_slot_name
+                    </td>
+                    <td>
+                        @x.power_supply_standards.power_supply_standard_name
+                    </td>
+                    <td>
+                        <button name="" type="button" value=@x.video_adapter_id onclick="doajaxva(this)">Add to Cart!</button>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        @*OPTICAL DRIVES TABLE*@
+        <table class="table">
+            <tr class="tr-opticaldrives-hidden" style="display:none">
+                <th>
+                    OPTICAL DRIVE NAME
+                </th>
+                <th>
+                    Buffer (Kb)
+                </th>
+                <th>
+                    Bus interface
+                </th>
+                <th>
+                    Drive bay width
+                </th>
+
                 @foreach (var x in ViewBag.od)
                 {
-                    <tr>
-                        <td>
-                            @x.optical_drive_name
-                        </td>
-                        <td>
-                            @x.buffer_kb
-                        </td>
-                        <td>
-                            @x.bus_interfaces.bus_interface_name
-                        </td>
-                        <td>
-                            @x.drive_bay_widths.drive_bay_width_name
-                        </td>
-                        <td>
-                            <button name="" type="button" value=@x.optical_drive_id onclick="doajaxod(this)">Add to Cart!</button>
-                        </td>
-                    </tr>
+                <tr class="tr-opticaldrives-hidden" style="display:none">
+                    <td>
+                        @x.optical_drive_name
+                    </td>
+                    <td>
+                        @x.buffer_kb
+                    </td>
+                    <td>
+                        @x.bus_interfaces.bus_interface_name
+                    </td>
+                    <td>
+                        @x.drive_bay_widths.drive_bay_width_name
+                    </td>
+                    <td>
+                        <button name="" type="button" value=@x.optical_drive_id onclick="doajaxod(this)">Add to Cart!</button>
+                    </td>
+                </tr>
                 }
             </table>
-        </li>
-        <li>
-            <a href="#tabs-nobg-8">Power Supplies</a>
-            <table class="power-supplies-table">
+
+            @*POWER SUPPLIES TABLE*@
+            <table class="table">
+                <tr class="tr-powersupplies-hidden" style="display:none">
+                    <th>
+                        POWER SUPPLY NAME
+                    </th>
+                    <th>
+                        Total power (w)
+                    </th>
+                    <th>
+                        Energy eff. %
+                    </th>
+                    <th>
+                        Power supply standard
+                    </th>
+                    <th>
+                        Motherboard form factor
+                    </th>
+                </tr>
                 @foreach (var x in ViewBag.ps)
                 {
-                    <tr>
+                    <tr class="tr-powersupplies-hidden" style="display:none">
                         <td>
                             @x.power_supply_name
                         </td>
@@ -387,13 +422,36 @@
                     </tr>
                 }
             </table>
-        </li>
-        <li>
-            <a href="#tabs-nobg-9">Computer Cases</a>
-            <table class="computer-cases-table">
+
+            @*COMPUTER CASES TABLE*@
+            <table class="table">
+                <tr class="tr-computercases-hidden" style="display:none">
+                    <th>
+                        COMPUTER CASE NAME
+                    </th>
+                    <th>
+                        Front USB connector count
+                    </th>
+                    <th>
+                        Depth (mm)
+                    </th>
+                    <th>
+                        Width (mm)
+                    </th>
+                    <th>
+                        Height (mm)
+                    </th>
+                    <th>
+                        Size name
+                    </th>
+                    <th>
+                        Form factor
+                    </th>
+                </tr>
                 @foreach (var x in ViewBag.cc)
                 {
-                    <tr>
+                    <tr class="tr-computercases-hidden" style="display:none">
+
                         <td>
                             @x.computer_case_name
                         </td>
@@ -424,163 +482,123 @@
                     </tr>
                 }
             </table>
-        </li>
-        </ul>
 
-        @Html.ActionLink("Save", "Save")
+            @*@Html.ActionLink("Save", "Save")*@
 
-        <div id="tabs-nobg-1">
-
-        </div>
-
-        <div id="tabs-nobg-2">
-
-        </div>
-
-        <div id="tabs-nobg-3">
-
-        </div>
-
-        <div id="tabs-nobg-4">
-
-        </div>
-
-        <div id="tabs-nobg-5">
-
-        </div>
-
-        <div id="tabs-nobg-6">
-
-        </div>
-
-        <div id="tabs-nobg-7">
-
-        </div>
-
-        <div id="tabs-nobg-8">
-
-        </div>
-
-        <div id="tabs-nobg-9">
-
-        </div>
-
-        </article>
-    </body>
+        </body>
 
 
+    </html>
+    <script type="text/javascript">
 
-</html>
-<script type="text/javascript">
+        function doajaxmb(link) {
 
-    function doajaxmb(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "mb", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "mb", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxpr(link) {
 
-    function doajaxpr(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "pr", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "pr", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxme(link) {
 
-    function doajaxme(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "me", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "me", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxhd(link) {
 
-    function doajaxhd(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "hd", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "hd", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxsc(link) {
 
-    function doajaxsc(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "sc", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "sc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxps(link) {
 
-    function doajaxps(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxva(link) {
 
-    function doajaxva(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "va", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "va", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxod(link) {
 
-    function doajaxod(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "od", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "od", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxps(link) {
 
-    function doajaxps(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+        function doajaxcc(link) {
 
-    function doajaxcc(link) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Index", "Builds")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ obj: "cc", id_number: $(link).val() }),
+                dataType: "json"
+            });
+        }
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "cc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-</script>
+    </script>
