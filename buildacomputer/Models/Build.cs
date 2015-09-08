@@ -263,7 +263,7 @@ namespace buildacomputer.Models
                     foreach (long y in processor_ID2)
                         if (x == y)
                         {
-                            NewProcessor.AddRange(db.processors.Where(s => s.processor_socket_id == x)
+                            NewProcessor.AddRange(db.processors.Where(s => s.processor_socket_id == x && !NewProcessor.Contains(s.processor_id))
                                                                .Select(s => s.processor_id).ToList()
                                                   );
                         }

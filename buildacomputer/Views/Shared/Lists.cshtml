@@ -8,7 +8,66 @@
 <html>
 
 <head>
+
     <title>Parts</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".button-motherboards").click(function () {
+                $(".tr-motherboards-hidden").toggle()
+            });
+        });
+
+        $(document).ready(function () {
+            $(".button-processors").click(function () {
+                $(".tr-processors-hidden").toggle()
+            });
+        });
+
+        $(document).ready(function () {
+            $(".button-memories").click(function () {
+                $(".tr-memories-hidden").toggle()
+            });
+        });
+
+        $(document).ready(function () {
+            $(".button-harddrives").click(function () {
+                $(".tr-harddrives-hidden").toggle()
+            });
+        });
+
+        $(document).ready(function () {
+            $(".button-soundcards").click(function () {
+                $(".tr-soundcards-hidden").toggle()
+            });
+        });
+
+        $(document).ready(function () {
+            $(".button-videoadapters").click(function () {
+                $(".tr-videoadapters-hidden").toggle()
+            });
+        });
+
+        $(document).ready(function () {
+            $(".button-opticaldrives").click(function () {
+                $(".tr-opticaldrives-hidden").toggle()
+            });
+        });
+
+        $(document).ready(function () {
+            $(".button-powersupplies").click(function () {
+                $(".tr-powersupplies-hidden").toggle()
+            });
+        });
+
+        $(".button-computercases").ready(function () {
+            $(".button-computercases").click(function () {
+                $(".tr-computercases-hidden").toggle()
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -75,7 +134,7 @@
                         @x.sound_chips.sound_chip_name
                     </td>
                     <td>
-                        <button name="" type="button" value=@x.motherboard_id onclick="doajaxmb(this)">Add to Cart!</button>
+                        <button name="" type="button" value=@x.motherboard_id class="doajaxmb">Add to Cart!</button>
                     </td>
                 </tr>
             }
@@ -115,7 +174,7 @@
                         @x.processor_cores.processor_core_count
                     </td>
                     <td>
-                        <button name="" type="button" value=@x.processor_id onclick="doajaxpr(this)">Add to Cart!</button>
+                        <button name="" type="button" value=@x.processor_id class="doajaxpr">Add to Cart!</button>
                     </td>
                 </tr>
             }
@@ -431,28 +490,27 @@
     </html>
 <script type="text/javascript">
 
-    function doajaxmb(link) {
+    $(".doajaxmb").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=mb&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+    });
 
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("Index", "Builds")',
-            AjaxOptions: { UpdateTargetId: "Lists" },
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "mb", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxpr(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "pr", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+    $(".doajaxpr").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=pr&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+    });
 
     function doajaxme(link) {
 

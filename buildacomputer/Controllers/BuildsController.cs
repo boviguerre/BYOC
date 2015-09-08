@@ -36,7 +36,7 @@ namespace buildacomputer.Controllers
             ViewBag.cc = new List<computer_cases>();
             Build build = (Build)this.Session["SessionBuild"];
 
-            if (Request.IsAjaxRequest())
+            if (id_number != null)
             {
                 // the controller action was invoked with an AJAX request
                 if (obj == "mb")
