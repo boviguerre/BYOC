@@ -165,11 +165,11 @@ namespace buildacomputer.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     Users person = new Users();
                     person.Id = user.Id;
-                    person.FirstName = "John";
-                    person.LastName = "Doe";
-                    person.SecurityQuestion = "Question?";
-                    person.SecurityAnswer = "Answer.";
-                    person.Title = "Student";
+                    person.FirstName = model.FirstName;
+                    person.LastName = model.LastName;
+                    person.SecurityQuestion = model.SecurityQuestion;
+                    person.SecurityAnswer = model.SecurityAnswer;
+                    person.Title = model.Title;
 
                     db.Users.Add(person);
                     db.SaveChanges();

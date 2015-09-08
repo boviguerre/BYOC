@@ -44,7 +44,7 @@ namespace buildacomputer.Models
         #endregion
 
         [Key]
-        public long? buildID { get; set; }
+        public int? buildID { get; set; }
         public long? motherboard_id { get; set; }
         public long? computer_case_id { get; set; }
         public long? hard_drive_id { get; set; }
@@ -435,7 +435,7 @@ namespace buildacomputer.Models
                             {
                                 if (!NewVideo.Contains(x))
                                 {
-                                    NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !video_adapter_ids.Contains(s.video_adapter_id))
+                                    NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !NewVideo.Contains(s.video_adapter_id))
                                                                   .Select(s => s.video_adapter_id).ToList()
                                                       );
                                 }
@@ -497,7 +497,7 @@ namespace buildacomputer.Models
                     foreach (long y in power_ID2)
                         if (x == y)
                         {
-                            NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x)
+                            NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id))
                                                                .Select(s => s.power_supply_id).ToList()
                                                   );
                         }
@@ -538,7 +538,7 @@ namespace buildacomputer.Models
                     foreach (long y in case_ID2)
                         if (x == y)
                         {
-                            NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x)
+                            NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x && !NewCase.Contains(s.computer_case_id))
                                                                .Select(s => s.computer_case_id).ToList()
                                                   );
                         }
