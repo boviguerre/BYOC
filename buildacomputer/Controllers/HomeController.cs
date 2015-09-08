@@ -18,7 +18,7 @@ namespace buildacomputer.Controllers
             //Get top 5 entries, ordered by DateTime
             var recentBuilds = (from build in db.Builds
                                 orderby build.BuildTime
-                                select build).Take(5);
+                                select build).Take(5).ToList<Build>();
 
             List<string> motherboards = new List<string>();
             List<string> processors = new List<string>();
@@ -30,59 +30,66 @@ namespace buildacomputer.Controllers
             List<string> powerSupplies = new List<string>();
             List<string> computerCases = new List<string>();
 
-            //Temporary seed method for lists
-            for (int i = 0; i < 5; i++)
-            {
-                motherboards.Add("Motherboard " + i);
-                processors.Add("Processor " + i);
-                memories.Add("Memory " + i);
-                hardDrives.Add("Hard Drive " + i);
-                soundCards.Add("Sound Card " + i);
-                videoAdapters.Add("Video Adapter " + i);
-                opticalDrives.Add("Optical Drive " + i);
-                powerSupplies.Add("Power Supply " + i);
-                computerCases.Add("Computer Case " + i);
-            }
+            ////Temporary seed method for lists
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    motherboards.Add("Motherboard " + i);
+            //    processors.Add("Processor " + i);
+            //    memories.Add("Memory " + i);
+            //    hardDrives.Add("Hard Drive " + i);
+            //    soundCards.Add("Sound Card " + i);
+            //    videoAdapters.Add("Video Adapter " + i);
+            //    opticalDrives.Add("Optical Drive " + i);
+            //    powerSupplies.Add("Power Supply " + i);
+            //    computerCases.Add("Computer Case " + i);
+            //}
 
             //Populates each list with the build components in order
-            //foreach (Build element in recentBuilds)
-            //{
-            //    motherboards.Add((from motherboard in db.motherboards
-            //                      where motherboard.motherboard_id == element.motherboard_id
-            //                      select motherboard.motherboard_name).ToString());
+            foreach (Build element in recentBuilds)
+            {
+                var current_motherboard = db.motherboards.Where(m => m.motherboard_id == element.motherboard_id).Select(m => m.motherboard_name).SingleOrDefault();
+                motherboards.Add(current_motherboard);
 
-            //    processors.Add((from processor in db.processors
-            //                    where processor.processor_id == element.processor_id
-            //                    select processor.processor_name).ToString());
+                var current_processor = (from processor in db.processors
+                                        where processor.processor_id == element.processor_id
+                                        select processor.processor_name).SingleOrDefault();
+                processors.Add(current_processor);
 
-            //    memories.Add((from memory in db.memories
-            //                  where memory.memory_id == element.memory_id
-            //                  select memory.memory_name).ToString());
+                var current_memory = (from memory in db.memories
+                                    where memory.memory_id == element.memory_id
+                                    select memory.memory_name).SingleOrDefault();
+                memories.Add(current_memory);
 
-            //    hardDrives.Add((from hard_drive in db.hard_drives
-            //                    where hard_drive.hard_drive_id == element.hard_drive_id
-            //                    select hard_drive.hard_drive_name).ToString());
+                var current_hardDrive = (from hard_drive in db.hard_drives
+                                        where hard_drive.hard_drive_id == element.hard_drive_id
+                                        select hard_drive.hard_drive_name).SingleOrDefault();
+                hardDrives.Add(current_hardDrive);
 
-            //    soundCards.Add((from sound_card in db.sound_cards
-            //                    where sound_card.sound_card_id == element.sound_card_id
-            //                    select sound_card.sound_card_name).ToString());
+                var current_soundCard = (from sound_card in db.sound_cards
+                                        where sound_card.sound_card_id == element.sound_card_id
+                                        select sound_card.sound_card_name).SingleOrDefault();
+                soundCards.Add(current_soundCard);
 
-            //    videoAdapters.Add((from video_adapter in db.video_adapters
-            //                       where video_adapter.video_adapter_id == element.video_adapter_id
-            //                       select video_adapter.video_adapter_name).ToString());
+                var current_videoAdapter = (from video_adapter in db.video_adapters
+                                            where video_adapter.video_adapter_id == element.video_adapter_id
+                                            select video_adapter.video_adapter_name).SingleOrDefault();
+                videoAdapters.Add(current_videoAdapter);
 
-            //    opticalDrives.Add((from optical_drive in db.optical_drives
-            //                       where optical_drive.optical_drive_id == element.optical_drive_id
-            //                       select optical_drive.optical_drive_name).ToString());
+                var current_opticalDrive = (from optical_drive in db.optical_drives
+                                            where optical_drive.optical_drive_id == element.optical_drive_id
+                                            select optical_drive.optical_drive_name).SingleOrDefault();
+                opticalDrives.Add(current_opticalDrive);
 
-            //    powerSupplies.Add((from power_supply in db.power_supplies
-            //                       where power_supply.power_supply_id == element.power_supply_id
-            //                       select power_supply.power_supply_name).ToString());
+                var current_powerSupply = (from power_supply in db.power_supplies
+                                           where power_supply.power_supply_id == element.power_supply_id
+                                           select power_supply.power_supply_name).SingleOrDefault();
+                powerSupplies.Add(current_powerSupply);
 
-            //    computerCases.Add((from computer_case in db.computer_cases
-            //                       where computer_case.computer_case_id == element.computer_case_id
-            //                       select computer_case.computer_case_name).ToString());
-            //}
+                var current_copmuterCase = (from computer_case in db.computer_cases
+                                            where computer_case.computer_case_id == element.computer_case_id
+                                            select computer_case.computer_case_name).SingleOrDefault();
+                computerCases.Add(current_copmuterCase);
+            }
 
                 //Adds each list of components to the dictionary of recent builds
             if (!recentBuildDictionary.ContainsKey("Motherboard"))
