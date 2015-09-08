@@ -11,6 +11,52 @@
 
     <title>ViewBag.Title</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            redo();
+        });
+
+        function redo () {
+            $(".button-motherboards").click(function () {
+                $(".tr-motherboards-hidden").toggle()
+            });
+
+            $(".button-processors").click(function () {
+                $(".tr-processors-hidden").toggle()
+            });
+
+            $(".button-memories").click(function () {
+                $(".tr-memories-hidden").toggle()
+            });
+
+            $(".button-harddrives").click(function () {
+                $(".tr-harddrives-hidden").toggle()
+            });
+
+            $(".button-soundcards").click(function () {
+                $(".tr-soundcards-hidden").toggle()
+            });
+
+            $(".button-videoadapters").click(function () {
+                $(".tr-videoadapters-hidden").toggle()
+            });
+
+            $(".button-opticaldrives").click(function () {
+                $(".tr-opticaldrives-hidden").toggle()
+            });
+
+            $(".button-powersupplies").click("Click", function () {
+                $(".tr-powersupplies-hidden").toggle()
+            });
+
+            $(".button-computercases").click(function () {
+                $('.tr-computercases-hidden').toggle()
+            });
+        };
+    </script>
+
 </head>
 
 <body>
@@ -23,3 +69,223 @@
 
 </body>
 </html>
+<script type="text/javascript">
+
+    $(".doajaxmb").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=mb&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxpr").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=pr&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxme").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=me&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxhd").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=hd&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxsc").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=sc&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxva").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=va&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxod").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=od&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxps").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=ps&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    $(".doajaxcc").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=cc&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
+
+    function doajaxxmb(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xmb", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxpr(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xpr", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxme(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xme", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxhd(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xhd", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxsc(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xsc", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxps(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xps", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxva(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xva", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxod(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xod", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxps(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xps", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+
+    function doajaxxcc(link) {
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Index", "Builds")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ obj: "xcc", id_number: $(link).val() }),
+            dataType: "json"
+        });
+    }
+</script>

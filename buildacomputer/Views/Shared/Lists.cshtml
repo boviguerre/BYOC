@@ -11,63 +11,6 @@
 
     <title>Parts</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $(".button-motherboards").click(function () {
-                $(".tr-motherboards-hidden").toggle()
-            });
-        });
-
-        $(document).ready(function () {
-            $(".button-processors").click(function () {
-                $(".tr-processors-hidden").toggle()
-            });
-        });
-
-        $(document).ready(function () {
-            $(".button-memories").click(function () {
-                $(".tr-memories-hidden").toggle()
-            });
-        });
-
-        $(document).ready(function () {
-            $(".button-harddrives").click(function () {
-                $(".tr-harddrives-hidden").toggle()
-            });
-        });
-
-        $(document).ready(function () {
-            $(".button-soundcards").click(function () {
-                $(".tr-soundcards-hidden").toggle()
-            });
-        });
-
-        $(document).ready(function () {
-            $(".button-videoadapters").click(function () {
-                $(".tr-videoadapters-hidden").toggle()
-            });
-        });
-
-        $(document).ready(function () {
-            $(".button-opticaldrives").click(function () {
-                $(".tr-opticaldrives-hidden").toggle()
-            });
-        });
-
-        $(document).ready(function () {
-            $(".button-powersupplies").click(function () {
-                $(".tr-powersupplies-hidden").toggle()
-            });
-        });
-
-        $(".button-computercases").ready(function () {
-            $(".button-computercases").click(function () {
-                $(".tr-computercases-hidden").toggle()
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -207,7 +150,7 @@
                         @x.memory_types.memory_type_name
                     </td>
                     <td>
-                        <button name="" type="button" value=@x.memory_id onclick="doajaxme(this)">Add to Cart!</button>
+                        <button name="" type="button" value=@x.memory_id class="doajaxme">Add to Cart!</button>
                     </td>
                 </tr>
                 }
@@ -247,7 +190,7 @@
                             @x.bus_interfaces.bus_interface_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.hard_drive_id id="hd" onclick="doajaxhd(this)">Add to Cart!</button>
+                            <button name="" type="button" value=@x.hard_drive_id id="hd" class="doajaxhd">Add to Cart!</button>
                         </td>
                     </tr>
                 }
@@ -287,7 +230,7 @@
                             @x.expansion_slots.expansion_slot_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.sound_card_id onclick="doajaxsc(this)">Add to Cart!</button>
+                            <button name="" type="button" value=@x.sound_card_id class="doajaxsc">Add to Cart!</button>
                         </td>
                     </tr>
                 }
@@ -334,7 +277,7 @@
                             @x.power_supply_standards.power_supply_standard_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.video_adapter_id onclick="doajaxva(this)">Add to Cart!</button>
+                            <button name="" type="button" value=@x.video_adapter_id class="doajaxva">Add to Cart!</button>
                         </td>
                     </tr>
                 }
@@ -372,7 +315,7 @@
                             @x.drive_bay_widths.drive_bay_width_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.optical_drive_id onclick="doajaxod(this)">Add to Cart!</button>
+                            <button name="" type="button" value=@x.optical_drive_id class="doajaxod">Add to Cart!</button>
                         </td>
                     </tr>
                     }
@@ -416,7 +359,7 @@
                                 @x.motherboard_form_factors.motherboard_form_factor_name
                             </td>
                             <td>
-                                <button name="" type="button" value=x.power_supply_id onclick="doajaxps(this)">Add to Cart!</button>
+                                <button name="" type="button" value=x.power_supply_id class="doajaxps">Add to Cart!</button>
                             </td>
                         </tr>
                     }
@@ -476,7 +419,7 @@
                                 @x.motherboard_form_factors.motherboard_form_factor_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@x.computer_case_id onclick="doajaxcc(this)">Add to Cart!</button>
+                                <button name="" type="button" value=@x.computer_case_id class="doajaxcc">Add to Cart!</button>
                             </td>
                         </tr>
                     }
@@ -488,225 +431,3 @@
 
 
     </html>
-<script type="text/javascript">
-
-    $(".doajaxmb").on("click", function () {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
-            }
-        }
-        xmlhttp.open("POST", "Index?obj=mb&id_number=" + $(this).val(), true);
-        xmlhttp.send();
-    });
-
-    $(".doajaxpr").on("click", function () {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
-            }
-        }
-        xmlhttp.open("POST", "Index?obj=pr&id_number=" + $(this).val(), true);
-        xmlhttp.send();
-    });
-
-    function doajaxme(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "me", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxhd(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "hd", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxsc(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "sc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxps(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxva(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "va", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxod(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "od", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxps(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "ps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxcc(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "cc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxmb(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xmb", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxpr(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xpr", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxme(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xme", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxhd(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xhd", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxsc(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xsc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxps(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxva(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xva", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxod(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xod", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxps(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxcc(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xcc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-</script>
