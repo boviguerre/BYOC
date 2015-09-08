@@ -44,7 +44,7 @@ namespace buildacomputer.Models
         #endregion
 
         [Key]
-        public long? buildID { get; set; }
+        public int? buildID { get; set; }
         public long? motherboard_id { get; set; }
         public long? computer_case_id { get; set; }
         public long? hard_drive_id { get; set; }

@@ -17,6 +17,8 @@
         {
             <th><a href="#">@key</a></th>
         }
+        
+
         @*<th>
             @Html.DisplayNameFor(model => model.buildType)
         </th>
@@ -30,9 +32,10 @@
     </tr>
 
     
-        <tr>
+        
             @for (int i = 0; i < Model["Motherboard"].Count; i++)
             {
+                <tr>
                 <td>@Model["Motherboard"][i];</td>
                 <td>@Model["Processor"][i];</td>
                 <td>@Model["Memory"][i];</td>
@@ -42,8 +45,9 @@
                 <td>@Model["Optical Drive"][i];</td>
                 <td>@Model["Power Supply"][i];</td>
                 <td>@Model["Computer Case"][i];</td>
+                    </tr>
             }
-        </tr>
+        
     
 
 </table>

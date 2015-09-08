@@ -11,7 +11,7 @@
                     <th><a href="#">@key</a></th>
                 }
             </tr>
-            @for (int i = 0; i < 5; i++)
+            @for (int i = 0; i < Model["Motherboard"].Count; i++)
             {
                 <tr>
                     @foreach (string key in Model.Keys)
