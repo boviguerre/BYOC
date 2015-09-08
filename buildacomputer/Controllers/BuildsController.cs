@@ -447,7 +447,7 @@ namespace buildacomputer.Controllers
                     ViewBag.od.AddRange(db.optical_drives.Where(m => m.optical_drive_id == x).ToList());
                 foreach (long x in build.power_supply_ids)
                     ViewBag.ps.AddRange(db.power_supplies.Where(m => m.power_supply_id == x).ToList());
-                foreach (long x in build.memory_ids)
+                foreach (long x in build.computer_case_ids)
                     ViewBag.cc.AddRange(db.computer_cases.Where(m => m.computer_case_id == x).ToList());
 
                 //Returns the list of motherboard strings to the view
