@@ -24,6 +24,10 @@ namespace buildacomputer.Controllers
         {
             string currentUserID = User.Identity.GetUserId();
             List<int> oldBuild = db.UserBuilds.Where(u => u.userID == currentUserID).Select(b => b.buildID).ToList();
+            if(displayBuilds.Any())
+            {
+                displayBuilds.Clear();
+            }
 
             foreach(int inOldBuilds in oldBuild)
             {
