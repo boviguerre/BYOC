@@ -349,11 +349,11 @@
     <Content Include="Views\Animation\Details.cshtml" />
     <Content Include="Views\Animation\Edit.cshtml" />
     <Content Include="Views\Animation\Index.cshtml" />
-    <Content Include="Views\BuildsTest\Create.cshtml" />
-    <Content Include="Views\BuildsTest\Delete.cshtml" />
-    <Content Include="Views\BuildsTest\Details.cshtml" />
-    <Content Include="Views\BuildsTest\Edit.cshtml" />
-    <Content Include="Views\BuildsTest\Index.cshtml" />
+    <Content Include="Views\AllBuilds\Create.cshtml" />
+    <Content Include="Views\AllBuilds\Delete.cshtml" />
+    <Content Include="Views\AllBuilds\Details.cshtml" />
+    <Content Include="Views\AllBuilds\Edit.cshtml" />
+    <Content Include="Views\AllBuilds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,18 +10,18 @@ using buildacomputer.Models;
 
 namespace buildacomputer.Controllers
 {
-    public class BuildsTestController : Controller
+    public class AllBuildsController : Controller
     {
         private PartsAndUsersContext db = new PartsAndUsersContext();
 
-        // GET: BuildsTest
+        // GET: AllBuilds
         public ActionResult Index()
         {
             var builds = db.Builds.Include(b => b.computer_cases).Include(b => b.hard_drives).Include(b => b.memory).Include(b => b.motherboard).Include(b => b.optical_drives).Include(b => b.power_supplies).Include(b => b.processor).Include(b => b.sound_cards).Include(b => b.video_adapters);
             return View(builds.ToList());
         }
 
-        // GET: BuildsTest/Details/5
+        // GET: AllBuilds/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +36,7 @@ namespace buildacomputer.Controllers
             return View(build);
         }
 
-        // GET: BuildsTest/Create
+        // GET: AllBuilds/Create
         public ActionResult Create()
         {
             ViewBag.computer_case_id = new SelectList(db.computer_cases, "computer_case_id", "computer_case_name");
@@ -51,7 +51,7 @@ namespace buildacomputer.Controllers
             return View();
         }
 
-        // POST: BuildsTest/Create
+        // POST: AllBuilds/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -77,7 +77,7 @@ namespace buildacomputer.Controllers
             return View(build);
         }
 
-        // GET: BuildsTest/Edit/5
+        // GET: AllBuilds/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,7 +101,7 @@ namespace buildacomputer.Controllers
             return View(build);
         }
 
-        // POST: BuildsTest/Edit/5
+        // POST: AllBuilds/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -126,7 +126,7 @@ namespace buildacomputer.Controllers
             return View(build);
         }
 
-        // GET: BuildsTest/Delete/5
+        // GET: AllBuilds/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -141,7 +141,7 @@ namespace buildacomputer.Controllers
             return View(build);
         }
 
-        // POST: BuildsTest/Delete/5
+        // POST: AllBuilds/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
