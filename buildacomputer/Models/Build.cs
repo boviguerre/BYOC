@@ -73,23 +73,23 @@ namespace buildacomputer.Models
 
         public void subtractPart(string id)
         {
-            if (id == "mb")
+            if (id == "xmb")
                 this.motherboard_id = null;
-            else if (id == "pr")
+            else if (id == "xpr")
                 this.processor_id = null;
-            else if (id == "me")
+            else if (id == "xme")
                 this.memory_id = null;
-            else if (id == "hd")
+            else if (id == "xhd")
                 this.hard_drive_id = null;
-            else if (id == "sc")
+            else if (id == "xsc")
                 this.sound_card_id = null;
-            else if (id == "va")
+            else if (id == "xva")
                 this.video_adapter_id = null;
-            else if (id == "od")
+            else if (id == "xod")
                 this.optical_drive_id = null;
-            else if (id == "ps")
+            else if (id == "xps")
                 this.power_supply_id = null;
-            else if (id == "cc")
+            else if (id == "xcc")
                 this.computer_case_id = null;
             reseedPotential();
             if (motherboard_id != null)
@@ -98,21 +98,45 @@ namespace buildacomputer.Models
                 motherboard_ids.Clear();
             }
             if (processor_id != null)
-                processor_ids.Clear();
+                if (motherboard_id == null)
+                    Processor_Motherboard();
+                else
+                    MotherBoard_Processor();
             if (memory_id != null)
-                memory_ids.Clear();
+                if (motherboard_id == null)
+                    Memory_Motherboard();
+                else
+                    MotherBoard_Memories();
             if (hard_drive_id != null)
-                hard_drive_ids.Clear();
+                if (motherboard_id == null)
+                    HardDrive_Motherboard();
+                else
+                    MotherBoard_HardDrive();
             if (sound_card_id != null)
-                sound_card_ids.Clear();
+                if (motherboard_id == null)
+                    SoundCard_Motherboard();
+                else
+                    MotherBoard_SoundCard();
             if (video_adapter_id != null)
-                video_adapter_ids.Clear();
+                if (motherboard_id == null)
+                    VideoAdapter_Motherboard();
+                else
+                    MotherBoard_VideoAdapter();
             if (optical_drive_id != null)
-                optical_drive_ids.Clear();
+                if (motherboard_id == null)
+                    OpticalDrive_Motherboard();
+                else
+                    MotherBoard_OpticalDrive();
             if (power_supply_id != null)
-                power_supply_ids.Clear();
+                if (motherboard_id == null)
+                    PowerSupply_Motherboard();
+                else
+                    MotherBoard_PowerSupply();
             if (computer_case_id != null)
-                computer_case_ids.Clear();
+                if (motherboard_id == null)
+                    Case_Motherboard();
+                else
+                    MotherBoard_Case();
         }
 
         #region Possible parts
@@ -239,7 +263,7 @@ namespace buildacomputer.Models
                     foreach (long y in processor_ID2)
                         if (x == y)
                         {
-                            NewProcessor.AddRange(db.processors.Where(s => s.processor_socket_id == x)
+                            NewProcessor.AddRange(db.processors.Where(s => s.processor_socket_id == x && !NewProcessor.Contains(s.processor_id))
                                                                .Select(s => s.processor_id).ToList()
                                                   );
                         }
@@ -493,7 +517,7 @@ namespace buildacomputer.Models
                             {
                                 if (!NewPower.Contains(x))
                                 {
-                                    NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !power_supply_ids.Contains(s.power_supply_id))
+                                    NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id))
                                                                   .Select(s => s.power_supply_id).ToList()
                                                       );
                                 }
@@ -534,7 +558,7 @@ namespace buildacomputer.Models
                             {
                                 if (!NewCase.Contains(x))
                                 {
-                                    NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x && !computer_case_ids.Contains(s.computer_case_id))
+                                    NewCase.AddRange(db.computer_cases.Where(s => s.motherboard_form_factor_id == x && !NewCase.Contains(s.computer_case_id))
                                                                   .Select(s => s.computer_case_id).ToList()
                                                       );
                                 }

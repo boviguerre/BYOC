@@ -349,6 +349,7 @@
     <Content Include="Views\Animation\Details.cshtml" />
     <Content Include="Views\Animation\Edit.cshtml" />
     <Content Include="Views\Animation\Index.cshtml" />
+    <Content Include="Views\Shared\Lists.cshtml" />
     <Content Include="Views\AllBuilds\Create.cshtml" />
     <Content Include="Views\AllBuilds\Delete.cshtml" />
     <Content Include="Views\AllBuilds\Details.cshtml" />
