@@ -86,6 +86,13 @@
     position: relative;
     left: 300px;
 }
+.img-3-layout{
+    width: 3%;
+    top: 5px;
+    position: absolute;
+    left: 62px;
+    display: inline;
+}
 
 html
 {

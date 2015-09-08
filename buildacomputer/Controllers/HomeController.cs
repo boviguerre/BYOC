@@ -12,7 +12,7 @@ namespace buildacomputer.Controllers
         private static PartsAndUsersContext db = new PartsAndUsersContext();
         //private static List<Build> recentBuilds = new List<Build>();
         private static Dictionary<string, List<string>> recentBuildDictionary = new Dictionary<string, List<string>>();
-        
+
         public ActionResult Index()
         {
             //Get top 5 entries, ordered by DateTime
@@ -86,23 +86,23 @@ namespace buildacomputer.Controllers
                 motherboards.Add(current_motherboard);
 
                 var current_processor = (from processor in db.processors
-                                        where processor.processor_id == element.processor_id
-                                        select processor.processor_name).SingleOrDefault();
+                                         where processor.processor_id == element.processor_id
+                                         select processor.processor_name).SingleOrDefault();
                 processors.Add(current_processor);
 
                 var current_memory = (from memory in db.memories
-                                    where memory.memory_id == element.memory_id
-                                    select memory.memory_name).SingleOrDefault();
+                                      where memory.memory_id == element.memory_id
+                                      select memory.memory_name).SingleOrDefault();
                 memories.Add(current_memory);
 
                 var current_hardDrive = (from hard_drive in db.hard_drives
-                                        where hard_drive.hard_drive_id == element.hard_drive_id
-                                        select hard_drive.hard_drive_name).SingleOrDefault();
+                                         where hard_drive.hard_drive_id == element.hard_drive_id
+                                         select hard_drive.hard_drive_name).SingleOrDefault();
                 hardDrives.Add(current_hardDrive);
 
                 var current_soundCard = (from sound_card in db.sound_cards
-                                        where sound_card.sound_card_id == element.sound_card_id
-                                        select sound_card.sound_card_name).SingleOrDefault();
+                                         where sound_card.sound_card_id == element.sound_card_id
+                                         select sound_card.sound_card_name).SingleOrDefault();
                 soundCards.Add(current_soundCard);
 
                 var current_videoAdapter = (from video_adapter in db.video_adapters
@@ -126,7 +126,7 @@ namespace buildacomputer.Controllers
                 computerCases.Add(current_copmuterCase);
             }
 
-                //Adds each list of components to the dictionary of recent builds
+            //Adds each list of components to the dictionary of recent builds
             if (!recentBuildDictionary.ContainsKey("Motherboard"))
             {
                 recentBuildDictionary.Add("Motherboard", motherboards);
