@@ -27,7 +27,7 @@ namespace buildacomputer.Controllers
 
             foreach(int inOldBuilds in oldBuild)
             {
-                displayBuilds.Add(db.Builds.Where(b => b.buildID == inOldBuilds).Select(b => b).Single<Build>());
+                displayBuilds.Add(db.Builds.Where(b => b.buildID == inOldBuilds).Select(b => b).Single<Build>()); //should it be first? it sounds like .Single will throw an exception if there's more than one build matching the id, which theoretically is something that could happen.
             }
 
             return View(displayBuilds);
