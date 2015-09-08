@@ -1,4 +1,6 @@
-﻿@{
+﻿@using buildacomputer.Models
+
+@{
     Layout = null;
 }
 
@@ -17,6 +19,8 @@
     <button class="button-motherboards">MOTHERBOARDS</button><button class="button-processors">PROCESSORS</button><button class="button-memories">RAM</button><button class="button-harddrives">HARD DRIVES</button><button class="button-soundcards">SOUND CARDS</button><button class="button-videoadapters">VIDEO ADAPTERS</button><button class="button-opticaldrives">OPTICAL DRIVES</button><button class="button-powersupplies">POWER SUPPLIES</button><button class="button-computercases">COMPUTER CASES</button>
 
     <p>&nbsp;</p>
+
+    @{ Build build = (Build)this.Session["SessionBuild"]; }
 
         @*MOTHERBOARDS TABLE*@
         <table class="table">
@@ -77,7 +81,15 @@
                         @x.sound_chips.sound_chip_name
                     </td>
                     <td>
-                        <button name="" type="button" value=@x.motherboard_id class="doajaxmb">Add to Cart!</button>
+                        @if (build.motherboard_id == null)
+                        {
+                            <button name="" type="button" value=@x.motherboard_id class="doajaxmb">Add to Build</button>
+                        }
+                        @if (build.motherboard_id != null)
+                        {
+                            <button name="" type="button" value=@x.motherboard_id color="red" class="doajaxxmb">Remove from Build</button>
+                        }
+
                     </td>
                 </tr>
             }
@@ -117,7 +129,7 @@
                         @x.processor_cores.processor_core_count
                     </td>
                     <td>
-                        <button name="" type="button" value=@x.processor_id class="doajaxpr">Add to Cart!</button>
+                        <button name="" type="button" value=@x.processor_id class="doajaxpr">Add to Build</button>
                     </td>
                 </tr>
             }
@@ -150,7 +162,7 @@
                         @x.memory_types.memory_type_name
                     </td>
                     <td>
-                        <button name="" type="button" value=@x.memory_id class="doajaxme">Add to Cart!</button>
+                        <button name="" type="button" value=@x.memory_id class="doajaxme">Add to Build</button>
                     </td>
                 </tr>
                 }
@@ -190,7 +202,7 @@
                             @x.bus_interfaces.bus_interface_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.hard_drive_id id="hd" class="doajaxhd">Add to Cart!</button>
+                            <button name="" type="button" value=@x.hard_drive_id id="hd" class="doajaxhd">Add to Build</button>
                         </td>
                     </tr>
                 }
@@ -230,7 +242,7 @@
                             @x.expansion_slots.expansion_slot_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.sound_card_id class="doajaxsc">Add to Cart!</button>
+                            <button name="" type="button" value=@x.sound_card_id class="doajaxsc">Add to Build</button>
                         </td>
                     </tr>
                 }
@@ -277,7 +289,7 @@
                             @x.power_supply_standards.power_supply_standard_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.video_adapter_id class="doajaxva">Add to Cart!</button>
+                            <button name="" type="button" value=@x.video_adapter_id class="doajaxva">Add to Build</button>
                         </td>
                     </tr>
                 }
@@ -315,7 +327,7 @@
                             @x.drive_bay_widths.drive_bay_width_name
                         </td>
                         <td>
-                            <button name="" type="button" value=@x.optical_drive_id class="doajaxod">Add to Cart!</button>
+                            <button name="" type="button" value=@x.optical_drive_id class="doajaxod">Add to Build</button>
                         </td>
                     </tr>
                     }
@@ -359,7 +371,7 @@
                                 @x.motherboard_form_factors.motherboard_form_factor_name
                             </td>
                             <td>
-                                <button name="" type="button" value=x.power_supply_id class="doajaxps">Add to Cart!</button>
+                                <button name="" type="button" value=x.power_supply_id class="doajaxps">Add to Build</button>
                             </td>
                         </tr>
                     }
@@ -419,7 +431,7 @@
                                 @x.motherboard_form_factors.motherboard_form_factor_name
                             </td>
                             <td>
-                                <button name="" type="button" value=@x.computer_case_id class="doajaxcc">Add to Cart!</button>
+                                <button name="" type="button" value=@x.computer_case_id class="doajaxcc">Add to Build</button>
                             </td>
                         </tr>
                     }

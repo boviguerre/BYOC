@@ -179,16 +179,17 @@
         location.reload();
     });
 
-    function doajaxxmb(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xmb", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+    $(".doajaxxmb").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xmb&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
     function doajaxxpr(link) {
 

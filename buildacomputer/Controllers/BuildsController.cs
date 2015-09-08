@@ -165,7 +165,7 @@ namespace buildacomputer.Controllers
                     }
                     #endregion
                 }
-                if (obj == "hd")
+                else if (obj == "hd")
                 {
                     build.addHard_drive_id(id_number);
                     #region Recreate Lists
@@ -207,7 +207,7 @@ namespace buildacomputer.Controllers
                     }
                     #endregion
                 }
-                if (obj == "sc")
+                else if (obj == "sc")
                 {
                     build.addSound_card_id(id_number);
                     #region Recreate Lists
@@ -249,7 +249,7 @@ namespace buildacomputer.Controllers
                     }
                     #endregion
                 }
-                if (obj == "va")
+                else if (obj == "va")
                 {
                     build.addVideo_adapter_id(id_number);
                     #region Recreate Lists
@@ -291,7 +291,7 @@ namespace buildacomputer.Controllers
                     }
                     #endregion
                 }
-                if (obj == "od")
+                else if (obj == "od")
                 {
                     build.addOptical_drive_id(id_number);
                     #region Recreate Lists
@@ -333,7 +333,7 @@ namespace buildacomputer.Controllers
                     }
                     #endregion
                 }
-                if (obj == "ps")
+                else if (obj == "ps")
                 {
                     build.addPower_supply_id(id_number);
                     #region Recreate Lists
@@ -375,7 +375,7 @@ namespace buildacomputer.Controllers
                     }
                     #endregion
                 }
-                if (obj == "cc")
+                else if (obj == "cc")
                 {
                     build.addComputer_case_id(id_number);
                     #region Recreate Lists
@@ -423,6 +423,10 @@ namespace buildacomputer.Controllers
                         build.computer_case_id != null)
                         Url.Action("Save");
                     #endregion
+                }
+                else
+                {
+                    build.subtractPart(obj);
                 }
                 this.Session["SessionBuild"] = build;
                 ViewBag.build = build;

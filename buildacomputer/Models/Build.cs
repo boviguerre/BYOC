@@ -21,25 +21,7 @@ namespace buildacomputer.Models
 
         public Build()
         {
-            motherboard_ids = db.motherboards.Select(m => m.motherboard_id).ToList();
-            processor_ids = db.processors.Select(p => p.processor_id).ToList();
-            memory_ids = db.memories.Select(m => m.memory_id).ToList();
-            hard_drive_ids = db.hard_drives.Select(h => h.hard_drive_id).ToList();
-            sound_card_ids = db.sound_cards.Select(s => s.sound_card_id).ToList();
-            video_adapter_ids = db.video_adapters.Select(v => v.video_adapter_id).ToList();
-            optical_drive_ids = db.optical_drives.Select(o => o.optical_drive_id).ToList();
-            power_supply_ids = db.power_supplies.Select(p => p.power_supply_id).ToList();
-            computer_case_ids = db.computer_cases.Select(c => c.computer_case_id).ToList();
-            //import all possible parts
-            defValues.Add(motherboard_ids);
-            defValues.Add(processor_ids);
-            defValues.Add(memory_ids);
-            defValues.Add(hard_drive_ids);
-            defValues.Add(sound_card_ids);
-            defValues.Add(video_adapter_ids);
-            defValues.Add(optical_drive_ids);
-            defValues.Add(power_supply_ids);
-            defValues.Add(computer_case_ids);
+            reseedPotential();
         }
         #endregion
 
@@ -57,7 +39,6 @@ namespace buildacomputer.Models
         public string buildType { get; set; }
         public int iterator { get; set; }  //how many times this build has been built
         public DateTime BuildTime { get; set; }
-        private List<List<long>> defValues = new List<List<long>>();
         private PartsAndUsersContext db = new PartsAndUsersContext();
 
         public virtual ICollection<UserBuilds> UserBuilds { get; set; }
@@ -156,6 +137,7 @@ namespace buildacomputer.Models
         {
             motherboard_id = x;
             motherboard_ids.Clear();
+            motherboard_ids.Add((long)motherboard_id);
             addMotherboardHelper();
         }
         public void addComputer_case_id(long? x)
@@ -210,45 +192,15 @@ namespace buildacomputer.Models
 
         private void reseedPotential()
         {
-            for (int i = 0; i < defValues.Count; i++)
-            {
-                if (i == 0)
-                {
-                    motherboard_ids = defValues[i];
-                }
-                if (i == 1)
-                {
-                    processor_ids = defValues[i];
-                }
-                if (i == 2)
-                {
-                    memory_ids = defValues[i];
-                }
-                if (i == 3)
-                {
-                    hard_drive_ids = defValues[i];
-                }
-                if (i == 4)
-                {
-                    sound_card_ids = defValues[i];
-                }
-                if (i == 5)
-                {
-                    video_adapter_ids = defValues[i];
-                }
-                if (i == 6)
-                {
-                    optical_drive_ids = defValues[i];
-                }
-                if (i == 7)
-                {
-                    power_supply_ids = defValues[i];
-                }
-                if (i == 8)
-                {
-                    computer_case_ids = defValues[i];
-                }
-            }
+            motherboard_ids = db.motherboards.Select(m => m.motherboard_id).ToList();
+            processor_ids = db.processors.Select(p => p.processor_id).ToList();
+            memory_ids = db.memories.Select(m => m.memory_id).ToList();
+            hard_drive_ids = db.hard_drives.Select(h => h.hard_drive_id).ToList();
+            sound_card_ids = db.sound_cards.Select(s => s.sound_card_id).ToList();
+            video_adapter_ids = db.video_adapters.Select(v => v.video_adapter_id).ToList();
+            optical_drive_ids = db.optical_drives.Select(o => o.optical_drive_id).ToList();
+            power_supply_ids = db.power_supplies.Select(p => p.power_supply_id).ToList();
+            computer_case_ids = db.computer_cases.Select(c => c.computer_case_id).ToList();
         }
 
         #region
