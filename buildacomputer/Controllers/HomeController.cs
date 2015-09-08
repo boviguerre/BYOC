@@ -85,10 +85,10 @@ namespace buildacomputer.Controllers
                                            select power_supply.power_supply_name).SingleOrDefault();
                 powerSupplies.Add(current_powerSupply);
 
-                var current_copmuterCase = (from computer_case in db.computer_cases
+                var current_computerCase = (from computer_case in db.computer_cases
                                             where computer_case.computer_case_id == element.computer_case_id
                                             select computer_case.computer_case_name).SingleOrDefault();
-                computerCases.Add(current_copmuterCase);
+                computerCases.Add(current_computerCase);
             }
 
                 //Adds each list of components to the dictionary of recent builds

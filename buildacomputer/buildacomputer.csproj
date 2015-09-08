@@ -193,6 +193,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\BuildsController.cs" />
+    <Compile Include="Controllers\BuildsTestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PreviousBuildsController.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Models\video_adapters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\BuildPortfolio.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -347,6 +349,11 @@
     <Content Include="Views\Animation\Details.cshtml" />
     <Content Include="Views\Animation\Edit.cshtml" />
     <Content Include="Views\Animation\Index.cshtml" />
+    <Content Include="Views\BuildsTest\Create.cshtml" />
+    <Content Include="Views\BuildsTest\Delete.cshtml" />
+    <Content Include="Views\BuildsTest\Details.cshtml" />
+    <Content Include="Views\BuildsTest\Edit.cshtml" />
+    <Content Include="Views\BuildsTest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
