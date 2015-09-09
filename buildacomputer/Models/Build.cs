@@ -137,55 +137,63 @@ namespace buildacomputer.Models
         {
             motherboard_id = x;
             motherboard_ids.Clear();
-            motherboard_ids.Add((long)motherboard_id);
+            motherboard_ids.Add((long)x);
             addMotherboardHelper();
         }
         public void addComputer_case_id(long? x)
         {
             computer_case_id = x;
             computer_case_ids.Clear();
+            computer_case_ids.Add((long)x);
             Case_Motherboard();
         }
         public void addHard_drive_id(long? x)
         {
             hard_drive_id = x;
             hard_drive_ids.Clear();
+            hard_drive_ids.Add((long)x);
             HardDrive_Motherboard();
         }
         public void addOptical_drive_id(long? x)
         {
             optical_drive_id = x;
             optical_drive_ids.Clear();
+            optical_drive_ids.Add((long)x);
             OpticalDrive_Motherboard();
         }
         public void addPower_supply_id(long? x)
         {
             power_supply_id = x;
             power_supply_ids.Clear();
+            power_supply_ids.Add((long)x);
             PowerSupply_Motherboard();
         }
         public void addProcessor_id(long? x)
         {
             processor_id = x;
             processor_ids.Clear();
+            processor_ids.Add((long)x);
             Processor_Motherboard();
         }
         public void addSound_card_id(long? x)
         {
             sound_card_id = x;
             sound_card_ids.Clear();
+            sound_card_ids.Add((long)x);
             SoundCard_Motherboard();
         }
         public void addVideo_adapter_id(long? x)
         {
             video_adapter_id = x;
             video_adapter_ids.Clear();
+            video_adapter_ids.Add((long)x);
             VideoAdapter_Motherboard();
         }
         public void addMemory_id(long? x)
         {
             memory_id = x;
             memory_ids.Clear();
+            memory_ids.Add((long)x);
             Memory_Motherboard();
         }
         #endregion

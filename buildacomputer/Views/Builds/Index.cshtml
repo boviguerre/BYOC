@@ -15,46 +15,115 @@
 
     <script>
         $(document).ready(function () {
-            redo();
-        });
 
-        function redo () {
             $(".button-motherboards").click(function () {
-                $(".tr-motherboards-hidden").toggle()
+                $("#tr-processors-hidden").hide()
+                $("#tr-memories-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").show()
             });
 
             $(".button-processors").click(function () {
-                $(".tr-processors-hidden").toggle()
+                $("#tr-memories-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-processors-hidden").show()
             });
 
             $(".button-memories").click(function () {
-                $(".tr-memories-hidden").toggle()
+                $("#tr-processors-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-memories-hidden").show()
             });
 
             $(".button-harddrives").click(function () {
-                $(".tr-harddrives-hidden").toggle()
+                $("#tr-processors-hidden").hide()
+                $("#tr-memories-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-harddrives-hidden").show()
             });
 
             $(".button-soundcards").click(function () {
-                $(".tr-soundcards-hidden").toggle()
+                $("#tr-processors-hidden").hide()
+                $("#tr-memories-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-soundcards-hidden").show()
             });
 
             $(".button-videoadapters").click(function () {
-                $(".tr-videocards-hidden").toggle()
+                $("#tr-processors-hidden").hide()
+                $("#tr-memories-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-videocards-hidden").show()
             });
 
             $(".button-opticaldrives").click(function () {
-                $(".tr-opticaldrives-hidden").toggle()
+                $("#tr-processors-hidden").hide()
+                $("#tr-memories-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-opticaldrives-hidden").show()
             });
 
-            $(".button-powersupplies").click("Click", function () {
-                $(".tr-powersupplies-hidden").toggle()
+            $(".button-powersupplies").click(function () {
+                $("#tr-processors-hidden").hide()
+                $("#tr-memories-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-computercases-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-powersupplies-hidden").show()
             });
 
             $(".button-computercases").click(function () {
-                $('.tr-computercases-hidden').toggle()
+                $("#tr-processors-hidden").hide()
+                $("#tr-memories-hidden").hide()
+                $("#tr-harddrives-hidden").hide()
+                $("#tr-soundcards-hidden").hide()
+                $("#tr-videocards-hidden").hide()
+                $("#tr-opticaldrives-hidden").hide()
+                $("#tr-powersupplies-hidden").hide()
+                $("#tr-motherboards-hidden").hide()
+                $("#tr-computercases-hidden").show()
             });
-        };
+        });
     </script>
 
 </head>
@@ -191,102 +260,100 @@
         location.reload();
     });
 
-    function doajaxxpr(link) {
+    $(".doajaxxpr").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xpr&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xpr", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+    $(".doajaxxme").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xme&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
-    function doajaxxme(link) {
+    $(".doajaxxhd").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xhd&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xme", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+    $(".doajaxxsc").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xsc&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
-    function doajaxxhd(link) {
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xhd", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+    $(".doajaxxva").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xva&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
-    function doajaxxsc(link) {
+    $(".doajaxxod").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xod&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xsc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+    $(".doajaxxps").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xps&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 
-    function doajaxxps(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxva(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xva", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxod(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xod", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxps(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xps", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
-
-    function doajaxxcc(link) {
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Index", "Builds")',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ obj: "xcc", id_number: $(link).val() }),
-            dataType: "json"
-        });
-    }
+    $(".doajaxxcc").on("click", function () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Lists").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "Index?obj=xcc&id_number=" + $(this).val(), true);
+        xmlhttp.send();
+        location.reload();
+    });
 </script>
