@@ -20,6 +20,7 @@ namespace buildacomputer.Controllers
         private static List<Build> displayBuilds = new List<Build>();
 
         // GET: PreviousBuilds
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             string currentUserID = User.Identity.GetUserId();
