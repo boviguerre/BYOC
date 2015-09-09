@@ -25,6 +25,7 @@ namespace buildacomputer.Controllers
 
         // GET: Builds
         //public ActionResult Index(long? id_number = null)
+        [Authorize]
         public ActionResult Index(string obj, long? id_number)
         {
             ViewBag.mb = new List<motherboard>();
