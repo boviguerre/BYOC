@@ -24,7 +24,7 @@ namespace buildacomputer.Controllers
         public async Task<ActionResult> Index()
         {
             string currentUserID = User.Identity.GetUserId();
-            List<int> oldBuild = db.UserBuilds.Where(u => u.userID == currentUserID).Select(b => b.buildID).ToList();
+            List<int> oldBuild = db.UserBuilds.Where(u => u.UserId == currentUserID).Select(b => b.buildID).ToList();
             if(displayBuilds.Any())
             {
                 displayBuilds.Clear();

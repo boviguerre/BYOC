@@ -21,5 +21,7 @@ namespace buildacomputer.ViewModel
         public string buildType { get; set; }
 
         public DateTime buildTime { get; set; }
+
+        public Build build { get; set; }
     }
 }

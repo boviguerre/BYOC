@@ -26,7 +26,8 @@ namespace buildacomputer.Models
         #endregion
 
         [Key]
-        public int? buildID { get; set; }
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
+        public int buildID { get; set; }
         public long? motherboard_id { get; set; }
         public long? computer_case_id { get; set; }
         public long? hard_drive_id { get; set; }
