@@ -491,7 +491,7 @@ namespace buildacomputer.Controllers
             }
 
             // Initialize new instance of the data model
-            UserBuilds currentLink = new UserBuilds();
+            Models.UserBuilds currentLink = new Models.UserBuilds();
 
             Build build = (Build)this.Session["SessionBuild"];
             int i = 0;
@@ -523,6 +523,7 @@ namespace buildacomputer.Controllers
                 build.iterator = 1;
                 build.buildType = model.buildType;
                 build.BuildTime = DateTime.Now;
+                build.buildID = (int)db.Builds.Max(b => b.buildID) + 1;
                 db.Builds.Add(build);
                 db.SaveChanges();
                 currentBuildID = (int)db.Builds.Where(b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id).Select(b => b.buildID).Single();                     
