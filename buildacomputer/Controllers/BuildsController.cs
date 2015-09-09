@@ -475,9 +475,30 @@ namespace buildacomputer.Controllers
             ViewBag.prs = db.processors.Where(p => p.processor_id == model.build.processor_id).Select(p => p.processor_name).SingleOrDefault().ToString();
             ViewBag.mes = db.memories.Where(m => m.memory_id == model.build.memory_id).Select(m => m.memory_name).SingleOrDefault().ToString();
             ViewBag.hds = db.hard_drives.Where(h => h.hard_drive_id == model.build.hard_drive_id).Select(h => h.hard_drive_name).SingleOrDefault().ToString();
-            ViewBag.scs = db.sound_cards.Where(s => s.sound_card_id == model.build.sound_card_id).Select(s => s.sound_card_name).SingleOrDefault().ToString();
-            ViewBag.vas = db.video_adapters.Where(v => v.video_adapter_id == model.build.video_adapter_id).Select(v => v.video_adapter_name).SingleOrDefault().ToString();
-            ViewBag.ods = db.optical_drives.Where(o => o.optical_drive_id == model.build.optical_drive_id).Select(o => o.optical_drive_name).SingleOrDefault().ToString();
+            if (model.build.sound_card_id != null)
+            {
+                ViewBag.scs = db.sound_cards.Where(s => s.sound_card_id == model.build.sound_card_id).Select(s => s.sound_card_name).SingleOrDefault().ToString();
+            }
+            else
+            {
+                ViewBag.scs = "No Selection";
+            }
+            if (model.build.video_adapter_id != null)
+            {
+                ViewBag.vas = db.video_adapters.Where(v => v.video_adapter_id == model.build.video_adapter_id).Select(v => v.video_adapter_name).SingleOrDefault().ToString();
+            }
+            else
+            {
+                ViewBag.vas = "No Selection";
+            }
+            if (model.build.optical_drive_id != null)
+            {
+                ViewBag.ods = db.optical_drives.Where(o => o.optical_drive_id == model.build.optical_drive_id).Select(o => o.optical_drive_name).SingleOrDefault().ToString();
+            }
+            else
+            {
+                ViewBag.ods = "No Selection";
+            }
             ViewBag.pss = db.power_supplies.Where(p => p.power_supply_id == model.build.power_supply_id).Select(p => p.power_supply_name).SingleOrDefault().ToString();
             ViewBag.ccs = db.computer_cases.Where(c => c.computer_case_id == model.build.computer_case_id).Select(c => c.computer_case_name).SingleOrDefault().ToString();
             return View(model);

@@ -457,12 +457,12 @@ namespace buildacomputer.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            return Redirect(returnUrl);
-            //if (Url.IsLocalUrl(returnUrl))
-            //{
-            //    return Redirect(returnUrl);
-            //}
-            //return RedirectToAction("Index", "Home");
+            //return Redirect(returnUrl);
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
