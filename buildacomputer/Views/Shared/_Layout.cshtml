@@ -24,6 +24,7 @@
                 @if (Request.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Index", "PreviousBuilds", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
                     </ul>
@@ -32,6 +33,7 @@
                 else
                 {
                     <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
                     </ul>

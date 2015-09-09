@@ -1,68 +1,72 @@
 ﻿@model IEnumerable<buildacomputer.Models.Build>
 
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All Builds";
 }
 
-<h2>Index</h2>
+<h2>All Builds</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.motherboard.motherboard_name)
+            @Html.ActionLink("Motherboards", "Index", new { sortOrder = "motherboard" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.processor.processor_name)
+            @Html.ActionLink("Processors", "Index", new { sortOrder = "PROC" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.memory.memory_name)
+            @Html.ActionLink("RAM", "Index", new { sortOrder = "MEM"})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.hard_drives.hard_drive_name)
+            @Html.ActionLink("Hard Drives", "Index", new { sortOrder = "HD"})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sound_cards.sound_card_name)
+            @Html.ActionLink("Sound Cards", "Index", new { sortOrder = "SOUND"})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.video_adapters.video_adapter_name)
+            @Html.ActionLink("Video Cards", "Index", new { sortOrder = "VIDEO"})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.optical_drives.optical_drive_name)
+            @Html.ActionLink("Optical Drives", "Index", new { sortOrder = "OD"})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.power_supplies.power_supply_name)
+            @Html.ActionLink("Power Supplies", "Index", new { sortOrder = "PS" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.computer_cases.computer_case_name)
+            @Html.ActionLink("Computer Cases", "Index", new { sortOrder = "CC"})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.buildType)
+            Build Type
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.iterator)
+            Number of Times Built
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BuildTime)
+            @Html.ActionLink("Build Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
-        <th></th>
+
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+            @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+            @Html.DisplayFor(modelItem => item.processor.processor_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.memory.memory_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+            @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
@@ -71,13 +75,7 @@
             @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.processor.processor_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+            @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.buildType)
