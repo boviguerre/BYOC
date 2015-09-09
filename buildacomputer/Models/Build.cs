@@ -81,45 +81,61 @@ namespace buildacomputer.Models
                 motherboard_ids.Add((long)motherboard_id);
             }
             if (processor_id != null)
+            {
                 if (motherboard_id == null)
                     Processor_Motherboard();
                 else
                     MotherBoard_Processor();
+            }
             if (memory_id != null)
+            {
                 if (motherboard_id == null)
                     Memory_Motherboard();
                 else
                     MotherBoard_Memories();
+            }
             if (hard_drive_id != null)
+            {
                 if (motherboard_id == null)
                     HardDrive_Motherboard();
                 else
                     MotherBoard_HardDrive();
+            }
             if (sound_card_id != null)
+            {
                 if (motherboard_id == null)
                     SoundCard_Motherboard();
                 else
                     MotherBoard_SoundCard();
+            }
             if (video_adapter_id != null)
+            {
                 if (motherboard_id == null)
                     VideoAdapter_Motherboard();
                 else
                     MotherBoard_VideoAdapter();
+            }
             if (optical_drive_id != null)
+            {
                 if (motherboard_id == null)
                     OpticalDrive_Motherboard();
                 else
                     MotherBoard_OpticalDrive();
+            }
             if (power_supply_id != null)
+            {
                 if (motherboard_id == null)
                     PowerSupply_Motherboard();
                 else
                     MotherBoard_PowerSupply();
+            }
             if (computer_case_id != null)
+            {
                 if (motherboard_id == null)
                     Case_Motherboard();
                 else
                     MotherBoard_Case();
+            }
         }
 
         #region Possible parts
