@@ -1,6 +1,4 @@
-﻿@*@using System.Collections.Generic;
-@using buildacomputer.Models;*@
-@model IEnumerable<buildacomputer.Models.Build>
+﻿@model IEnumerable<buildacomputer.Models.Build>
 
 @{
     ViewBag.Title = "Index";
@@ -51,18 +49,6 @@
             Build Date
         </th>
         <th></th>
-        
-
-        @*<th>
-            @Html.DisplayNameFor(model => model.buildType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.iterator)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BuildTime)
-        </th>*@
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -105,30 +91,6 @@
                 @Html.DisplayFor(modelItem => item.BuildTime)
             </td>
             <td></td>
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
-                </td>*@
         </tr>
     }
-
-            @*@for (int i = 0; i < Model["Motherboard"].Count; i++)
-            {
-                <tr>
-                <td>@Model["Motherboard"][i];</td>
-                <td>@Model["Processor"][i];</td>
-                <td>@Model["Memory"][i];</td>
-                <td>@Model["Hard Drive"][i];</td>
-                <td>@Model["Sound Card"][i];</td>
-                <td>@Model["Video Adapter"][i];</td>
-
-                <td>@Model["Optical Drive"][i];</td>
-                <td>@Model["Power Supply"][i];</td>
-                <td>@Model["Computer Case"][i];</td>
-                    </tr>
-            }*@
-        
-    
-
 </table>

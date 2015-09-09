@@ -1,4 +1,4 @@
-﻿@model IEnumerable<buildacomputer.Models.Build>
+﻿@using buildacomputer.Models
 
 @{
     ViewBag.Title = "Index";
@@ -6,6 +6,10 @@
 
 <h2>Recent Computer Builds</h2>
 
+@{
+    var recBuilds = (List<Build>)ViewData["Recent Builds"];
+    var popBuilds = (List<Build>)ViewData["Popular Builds"];
+}
 
 <table class="table">
     <tr>
@@ -48,7 +52,98 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in recBuilds)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.processor.processor_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.memory.memory_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.buildType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iterator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildTime)
+            </td>
+            <td></td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            Motherboards
+        </th>
+        <th>
+            Processors
+        </th>
+        <th>
+            RAM
+        </th>
+        <th>
+            Hard Drives
+        </th>
+        <th>
+            Sound Cards
+        </th>
+        <th>
+            Video Adapters
+        </th>
+        <th>
+            Optical Drives
+        </th>
+        <th>
+            Power Supplies
+        </th>
+        <th>
+            Computer Cases
+        </th>
+        <th>
+            Build Type
+        </th>
+        <th>
+            Number of Times Built
+        </th>
+        <th>
+            Build Date
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in popBuilds)
     {
         <tr>
             <td>
