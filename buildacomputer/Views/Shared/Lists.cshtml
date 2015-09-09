@@ -513,67 +513,86 @@
              {
                 <script>
                     $("#tr-motherboards-hidden").show()
+                    $(".button-motherboards").css('background-color', 'inherit')
+                    $(".button-motherboards").css('color', 'white')
                 </script>
              }
              else if (build.processor_id == null)
              {
                 <script>
                     $("#tr-processors-hidden").show()
+                    $(".button-processors").css('background-color', 'inherit')
+                    $(".button-processors").css('color', 'white')
                 </script>
              }
              else if (build.memory_id == null)
              {
                 <script>
                     $("#tr-memories-hidden").show()
+                    $(".button-memories").css('background-color', 'inherit')
+                    $(".button-memories").css('color', 'white')
                 </script>
              }
              else if (build.hard_drive_id == null)
              {
                 <script>
                     $("#tr-harddrives-hidden").show()
+                    $(".button-harddrives").css('background-color', 'inherit')
+                    $(".button-harddrives").css('color', 'white')
                 </script>
              }
              else if (build.sound_card_id == null)
              {
                 <script>
                     $("#tr-soundcards-hidden").show()
+                    $(".button-soundcards").css('background-color', 'inherit')
+                    $(".button-soundcards").css('color', 'white')
                 </script>
              }
              else if (build.video_adapter_id == null)
              {
                 <script>
                     $("#tr-videoadapters-hidden").show()
+                    $(".button-videoadapters").css('background-color', 'inherit')
+                    $(".button-videoadapters").css('color', 'white')
                 </script>
              }
              else if (build.optical_drive_id == null)
              {
                 <script>
                     $("#tr-opticaldrives-hidden").show()
+                    $(".button-opticaldrives").css('background-color', 'inherit')
+                    $(".button-opticaldrives").css('color', 'white')
                 </script>
              }
              else if (build.power_supply_id == null)
              {
                 <script>
                     $("#tr-powersupplies-hidden").show()
+                    $(".button-powersupplies").css('background-color', 'inherit')
+                    $(".button-powersupplies").css('color', 'white')
                 </script>
              }
              else if (build.computer_case_id == null)
              {
                 <script>
                     $("#tr-computercases-hidden").show()
+                    $(".button-computercases").css('background-color', 'inherit')
+                    $(".button-computercases").css('color', 'white')
                 </script>
              }
              else
              {
-                 <script>
-                     alert("You can now safely save")
-                 </script>
+                <script>
+                    alert("You can now safely save")
+                </script>
              }
             }
 
             @*@Html.ActionLink("Save", "Save")*@
 
         </body>
+
 
 
     </html>
