@@ -192,3 +192,76 @@
     }
 
 </table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DemoCarousel").carousel();
+
+        //Carousel Controls
+        $(".left").click(function () {
+            $("#DemoCarousel").carousel('prev');
+        });
+        $(".right").click(function () {
+            $("#DemoCarousel").carousel('next');
+        });
+
+        //Carousel Indicators
+        $(".slide-1").click(function () {
+            $("#DemoCarousel").carousel(0);
+        });
+        $(".slide-2").click(function () {
+            $("#DemoCarousel").carousel(1);
+        });
+        $(".slide-3").click(function () {
+            $("#DemoCarousel").carousel(2);
+        });
+    });
+</script> @*- See more at: http://www.dotnetfunda.com/articles/show/2915/carousel-sliders-in-bootstrap#sthash.3DtHUMFh.dpuf*@
+
+<div id="DemoCarousel" class="carousel slide" data-interval="2000" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li class="slide-1 active"></li>
+        <li class="slide-2"></li>
+        <li class="slide-3"></li>
+    </ol>
+    <!-- Items -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <h2>Item 1</h2>
+            <div class="carousel-caption">
+                <h3>This is the First Label</h3>
+                <p>"~/Content/Images/motherboard.png"</p>
+            </div>
+        </div>
+        <div class="item">
+            <h2>Item 2</h2>
+            <div class="carousel-caption">
+                <h3>This is the Second Label</h3>
+                <p>The Content of the Second Slide goes in here</p>
+            </div>
+        </div>
+        <div class="item">
+            <h2>Item 3</h2>
+            <div class="carousel-caption">
+                <h3>This is the Third Label</h3>
+                <p>The Content of the Third Slide goes in here</p>
+            </div>
+        </div>
+    </div>
+    <!-- Controls -->
+    <a class="carousel-control left">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="carousel-control right">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div> @*- See more at: http://www.dotnetfunda.com/articles/show/2915/carousel-sliders-in-bootstrap#sthash.3DtHUMFh.dpuf*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DemoCarousel").carousel({
+            pause: 'hover'
+        });
+    });
+</script> @*- See more at: http://www.dotnetfunda.com/articles/show/2915/carousel-sliders-in-bootstrap#sthash.pr4uYunu.dpuf*@
+
