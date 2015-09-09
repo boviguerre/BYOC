@@ -199,9 +199,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AllBuildsController.cs" />
     <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\BuildsController.cs" />
-    <Compile Include="Controllers\AllBuildsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PreviousBuildsController.cs" />
@@ -256,6 +256,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\BuildPortfolio.cs" />
+    <Compile Include="ViewModel\UserBuildViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -364,6 +365,7 @@
     <Content Include="Views\AllBuilds\Edit.cshtml" />
     <Content Include="Views\AllBuilds\Index.cshtml" />
     <Content Include="Views\Shared\Lists.cshtml" />
+    <Content Include="Views\Builds\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

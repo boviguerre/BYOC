@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using buildacomputer.Models;
 using System.Web.Services;
 using System.Threading.Tasks;
+using buildacomputer.ViewModel;
+using Microsoft.AspNet.Identity;
 
 namespace buildacomputer.Controllers
 {
@@ -23,6 +25,7 @@ namespace buildacomputer.Controllers
 
         // GET: Builds
         //public ActionResult Index(long? id_number = null)
+        [Authorize]
         public ActionResult Index(string obj, long? id_number)
         {
             ViewBag.mb = new List<motherboard>();
@@ -462,37 +465,127 @@ namespace buildacomputer.Controllers
             #endregion
         }
 
-        //Save the build to the database
-        public async Task<ActionResult> Save()
+        //GET Add info to the build
+        public ActionResult Save()
         {
+            UserBuildViewModel model = new UserBuildViewModel();
             Build build = (Build)this.Session["SessionBuild"];
-            int? i = null;
+            ViewBag.mbs = db.motherboards.Where(m => m.motherboard_id == build.motherboard_id).Select(m => m.motherboard_name).SingleOrDefault().ToString();
+            ViewBag.prs = db.processors.Where(p => p.processor_id == build.processor_id).Select(p => p.processor_name).SingleOrDefault().ToString();
+            ViewBag.mes = db.memories.Where(m => m.memory_id == build.memory_id).Select(m => m.memory_name).SingleOrDefault().ToString();
+            ViewBag.hds = db.hard_drives.Where(h => h.hard_drive_id == build.hard_drive_id).Select(h => h.hard_drive_name).SingleOrDefault().ToString();
+            ViewBag.scs = db.sound_cards.Where(s => s.sound_card_id == build.sound_card_id).Select(s => s.sound_card_name).SingleOrDefault().ToString();
+            ViewBag.vas = db.video_adapters.Where(v => v.video_adapter_id == build.video_adapter_id).Select(v => v.video_adapter_name).SingleOrDefault().ToString();
+            ViewBag.ods = db.optical_drives.Where(o => o.optical_drive_id == build.optical_drive_id).Select(o => o.optical_drive_name).SingleOrDefault().ToString();
+            ViewBag.pss = db.power_supplies.Where(p => p.power_supply_id == build.power_supply_id).Select(p => p.power_supply_name).SingleOrDefault().ToString();
+            ViewBag.ccs = db.computer_cases.Where(c => c.computer_case_id == build.computer_case_id).Select(c => c.computer_case_name).SingleOrDefault().ToString();
+            return View(model);
+        }
+        
+        //POST Save the build to the database and link it to the current user
+        [HttpPost]
+        public ActionResult Save(UserBuildViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // Initialize new instance of the data model
+            Models.UserBuilds currentLink = new Models.UserBuilds();
+
+            Build build = (Build)this.Session["SessionBuild"];
+            int i = 0;
+            int currentBuildID;
+            //Dictionary<String, String> buildDictionary = new Dictionary<String, String>();
 
             //pull i from db
 
-            
-            i = (int?)db.Builds.Where((b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id)).Select(b => b.iterator).Single();
-            
-            //if i still null post build
-            if (i == null)
-            {
-                build.iterator = 1;
-                db.Builds.Add(build);
-            }
-            //else update w i+1
+            i = db.Builds.Where((b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id)).Select(b => b.iterator).SingleOrDefault();
 
-            else
+            //Need to add user input to: BuildType, BuildName, BuildTime
+
+            //if i not null update iterator
+            if (!(i == 0))
             {
                 Build buildQuery = (from b in db.Builds
                                     where b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id
                                     select b).Single<Build>();
-                buildQuery.iterator = (int)i + 1;
+                buildQuery.iterator = i + 1;
+                buildQuery.buildType = model.buildType;
+                buildQuery.BuildTime = DateTime.Now;
+                db.SaveChanges();
+                currentBuildID = (int)buildQuery.buildID;
             }
 
-            db.SaveChanges();
+            //else add Build with user input
+            else
+            {
+                build.iterator = 1;
+                build.buildType = model.buildType;
+                build.BuildTime = DateTime.Now;
+                build.buildID = (int)db.Builds.Max(b => b.buildID) + 1;
+                db.Builds.Add(build);
+                db.SaveChanges();
+                currentBuildID = (int)db.Builds.Where(b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id).Select(b => b.buildID).Single();                     
+            }
             
-            return View();
+            // Map properties from view model to data model
+            currentLink.userID = User.Identity.GetUserId();
+            currentLink.buildName = model.buildName;
+            currentLink.buildID = currentBuildID;
+            
+            // Save and redirect
+            db.UserBuilds.Add(currentLink);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
+        
+        ////GET Save the build to the database
+        //public ActionResult Save()
+        //{
+        //    Build build = (Build)this.Session["SessionBuild"];
+        //    int i = 0;
+        //    //Dictionary<String, String> buildDictionary = new Dictionary<String, String>();
+
+        //    //pull i from db
+
+        //    i = db.Builds.Where((b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id)).Select(b => b.iterator).SingleOrDefault();
+
+        //    //Need to add user input to: BuildType, BuildName, BuildTime
+
+        //    //if i not null update iterator
+        //    if (!(i == 0))
+        //    {
+        //        Build buildQuery = (from b in db.Builds
+        //                            where b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id
+        //                            select b).Single<Build>();
+        //        buildQuery.iterator = i + 1;
+        //    }
+
+        //    //else add Build with user input
+        //    else
+        //    {
+        //        build.iterator = 1;
+        //    }
+        //    ViewData["Motherboard"] = db.motherboards.Where(m => m.motherboard_id == build.motherboard_id).Select(m => m.motherboard_name).SingleOrDefault();
+        //    ViewData["Processor"] = db.processors.Where(p => p.processor_id == build.processor_id).Select(p => p.processor_name).SingleOrDefault();
+        //    ViewData["Memory"] = db.memories.Where(m => m.memory_id == build.memory_id).Select(m => m.memory_name).SingleOrDefault();
+        //    ViewData["Hard Drive"] = db.hard_drives.Where(h => h.hard_drive_id == build.hard_drive_id).Select(h => h.hard_drive_name).SingleOrDefault();
+        //    ViewData["Sound Card"] = db.sound_cards.Where(s => s.sound_card_id == build.sound_card_id).Select(s => s.sound_card_name).SingleOrDefault();
+        //    ViewData["Video Adapter"] = db.video_adapters.Where(v => v.video_adapter_id == build.video_adapter_id).Select(v => v.video_adapter_name).SingleOrDefault();
+        //    ViewData["Optical Drive"] = db.optical_drives.Where(o => o.optical_drive_id == build.optical_drive_id).Select(o => o.optical_drive_name).SingleOrDefault();
+        //    ViewData["Power Supply"] = db.power_supplies.Where(p => p.power_supply_id == build.power_supply_id).Select(p => p.power_supply_name).SingleOrDefault();
+        //    ViewData["Computer Case"] = db.computer_cases.Where(c => c.computer_case_id == build.computer_case_id).Select(c => c.computer_case_name).SingleOrDefault();
+        //    return View();
+        }
+        ////POST Save Build to the database
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Saved([Bind(Include = "buildID,motherboard_id,computer_case_id,hard_drive_id,optical_drive_id,power_supply_id,processer_id,sound_card_id,video_adapter_id,memory_id,buildType,iterator,BuildTime")] Build build, string buildName, string buildType)
+        //{
+
+        //}
 
         //// GET: Builds/Details/5
         //public ActionResult Details(long? id)
@@ -629,5 +722,4 @@ namespace buildacomputer.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
-    }
 }
