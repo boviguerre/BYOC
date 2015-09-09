@@ -77,6 +77,7 @@ namespace buildacomputer.Models
             {
                 addMotherboardHelper();
                 motherboard_ids.Clear();
+                motherboard_ids.Add((long)motherboard_id);
             }
             if (processor_id != null)
                 if (motherboard_id == null)
@@ -264,7 +265,6 @@ namespace buildacomputer.Models
                                                           .Select(s => s.memory_id).ToList()
                                               );
                         }
-                memory_ids.Clear();
                 memory_ids = NewMemory;
             }
             else
@@ -299,7 +299,7 @@ namespace buildacomputer.Models
                     foreach (long y in hard_ID2)
                         if (x == y)
                         {
-                            NewHard.AddRange(db.hard_drives.Where(s => s.bus_interface_id == x)
+                            NewHard.AddRange(db.hard_drives.Where(s => s.bus_interface_id == x && !NewHard.Contains(s.hard_drive_id))
                                                            .Select(s => s.hard_drive_id).ToList()
                                             );
                         }
@@ -337,7 +337,7 @@ namespace buildacomputer.Models
                     foreach (long y in sound_ID2)
                         if (x == y)
                         {
-                            NewSound.AddRange(db.sound_cards.Where(s => s.expansion_slot_id == x)
+                            NewSound.AddRange(db.sound_cards.Where(s => s.expansion_slot_id == x && !NewSound.Contains(s.sound_card_id))
                                                                .Select(s => s.sound_card_id).ToList()
                                                   );
                         }
@@ -375,7 +375,7 @@ namespace buildacomputer.Models
                     foreach (long y in video_ID2)
                         if (x == y)
                         {
-                            NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x)
+                            NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !NewVideo.Contains(s.video_adapter_id))
                                                                .Select(s => s.video_adapter_id).ToList()
                                                   );
                         }
@@ -393,12 +393,9 @@ namespace buildacomputer.Models
                         foreach (long y in video_ID2)
                             if (x == y)
                             {
-                                if (!NewVideo.Contains(x))
-                                {
                                     NewVideo.AddRange(db.video_adapters.Where(s => s.expansion_slot_id == x && !NewVideo.Contains(s.video_adapter_id))
                                                                   .Select(s => s.video_adapter_id).ToList()
                                                       );
-                                }
                             }
                 }
                 video_adapter_ids = NewVideo;
@@ -434,12 +431,9 @@ namespace buildacomputer.Models
                         foreach (long y in optical_ID2)
                             if (x == y)
                             {
-                                if (!NewOptical.Contains(x))
-                                {
                                     NewOptical.AddRange(db.optical_drives.Where(s => s.bus_interface_id == x && !NewOptical.Contains(s.optical_drive_id))
                                                                   .Select(s => s.optical_drive_id).ToList()
                                                       );
-                                }
                             }
                 }
                 optical_drive_ids = NewOptical;
@@ -457,7 +451,8 @@ namespace buildacomputer.Models
                     foreach (long y in power_ID2)
                         if (x == y)
                         {
-                            NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id))
+                            NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id) && s.motherboard_form_factor_id == db.motherboards.Where(m => m.motherboard_id == motherboard_id)
+                                                                                                                                                                                                      .Select(m => m.motherboard_form_factor_id).FirstOrDefault())
                                                                .Select(s => s.power_supply_id).ToList()
                                                   );
                         }
@@ -477,7 +472,8 @@ namespace buildacomputer.Models
                             {
                                 if (!NewPower.Contains(x))
                                 {
-                                    NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id))
+                                    NewPower.AddRange(db.power_supplies.Where(s => s.power_supply_standard_id == x && !NewPower.Contains(s.power_supply_id) && s.motherboard_form_factor_id == db.motherboards.Where(m => m.motherboard_id == item)
+                                                                                                                                                                                                      .Select(m => m.motherboard_form_factor_id).FirstOrDefault())
                                                                   .Select(s => s.power_supply_id).ToList()
                                                       );
                                 }

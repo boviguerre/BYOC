@@ -22,8 +22,8 @@
 
     @{ Build build = (Build)this.Session["SessionBuild"]; }
 
-        @*MOTHERBOARDS TABLE*@
-    <table class="table" id="tr-motherboards-hidden">
+    @*MOTHERBOARDS TABLE*@
+    <table class="table" id="tr-motherboards-hidden" style="display:none">
         <tr>
             <th>
                 MOTHERBOARD NAME
@@ -99,7 +99,7 @@
 
 
 
-        @*PROCESSORS TABLE*@
+    @*PROCESSORS TABLE*@
     <table class="table" id="tr-processors-hidden" style="display:none">
         <tr>
             <th>
@@ -150,7 +150,7 @@
 
 
 
-        @*MEMORIES TABLE*@
+    @*MEMORIES TABLE*@
     <table class="table" id="tr-memories-hidden" style="display:none">
         <tr>
             <th>
@@ -165,349 +165,411 @@
 
             @foreach (var x in ViewBag.me)
             {
-        <tr>
-            <td>
-                @x.memory_name
-            </td>
-            <td>
-                @x.memory_size_mb
-            </td>
-            <td>
-                @x.memory_types.memory_type_name
-            </td>
-            <td>
-                @if (build.memory_id == null)
-                {
-                <button name="" type="button" value=@x.memory_id class="doajaxme" style="background-color:lightgreen">Add to Build</button>
-                }
-                @if (build.memory_id != null)
-                {
-                <button name="" type="button" value=@x.memory_id class="doajaxxme" style="background-color:#FF3333">Remove from Build</button>
-                }
-            </td>
+            <tr>
+                <td>
+                    @x.memory_name
+                </td>
+                <td>
+                    @x.memory_size_mb
+                </td>
+                <td>
+                    @x.memory_types.memory_type_name
+                </td>
+                <td>
+                    @if (build.memory_id == null)
+                    {
+                        <button name="" type="button" value=@x.memory_id class="doajaxme" style="background-color:lightgreen">Add to Build</button>
+                    }
+                    @if (build.memory_id != null)
+                    {
+                        <button name="" type="button" value=@x.memory_id class="doajaxxme" style="background-color:#FF3333">Remove from Build</button>
+                    }
+                </td>
 
-        </tr>
-        }
-    </table>
-
-
-            @*HARD DRIVES TABLE*@
-    <table class="table" id="tr-harddrives-hidden" style="display:none">
-        <tr>
-            <th>
-                HARD DRIVE NAME
-            </th>
-            <th>
-                Buffer (Kb)
-            </th>
-            <th>
-                Capacity (Gb)
-            </th>
-            <th>
-                Bus interface name
-            </th>
-        </tr>
-
-        @foreach (var x in ViewBag.hd)
-        {
-        <tr>
-            <td>
-                @x.hard_drive_name
-            </td>
-            <td>
-                @x.buffer_kb
-            </td>
-            <td>
-                @x.capacity_gb
-            </td>
-            <td>
-                @x.bus_interfaces.bus_interface_name
-            </td>
-            <td>
-                @if (build.hard_drive_id == null)
-                {
-                <button name="" type="button" value=@x.hard_drive_id id="hd" class="doajaxhd" style="background-color:lightgreen">Add to Build</button>
-                }
-                @if (build.hard_drive_id != null)
-                {
-                <button name="" type="button" value=@x.hard_drive_id class="doajaxxhd" style="background-color:#FF3333">Remove from Build</button>
-                }
-            </td>
-
-        </tr>
-        }
-    </table>
+            </tr>
+            }
+        </table>
 
 
-            @*SOUND CARDS TABLE*@
-    <table class="table" id="tr-soundcards-hidden" style="display:none">
+        @*HARD DRIVES TABLE*@
+        <table class="table" id="tr-harddrives-hidden" style="display:none">
+            <tr>
+                <th>
+                    HARD DRIVE NAME
+                </th>
+                <th>
+                    Buffer (Kb)
+                </th>
+                <th>
+                    Capacity (Gb)
+                </th>
+                <th>
+                    Bus interface name
+                </th>
+            </tr>
 
-        <tr>
-            <th>
-                SOUND CARD NAME
-            </th>
-            <th>
-                Sound chip name
-            </th>
-            <th>
-                Sound channel standard
-            </th>
-            <th>
-                Expansion slot name
-            </th>
-        </tr>
-        @foreach (var x in ViewBag.sc)
-        {
-        <tr>
-            <td>
-                @x.sound_card_name
-            </td>
-            <td>
-                @x.sound_chips.sound_chip_name
-            </td>
-            <td>
-                @x.sound_chips.sound_channel_standards.sound_channel_standard_name
-            </td>
-            <td>
-                @x.expansion_slots.expansion_slot_name
-            </td>
-            <td>
-                @if (build.sound_card_id == null)
-                {
-                <button name="" type="button" value=@x.sound_card_id class="doajaxsc" style="background-color:lightgreen">Add to Build</button>
-                }
-                @if (build.sound_card_id != null)
-                {
-                <button name="" type="button" value=@x.sound_card_id class="doajaxxsc" style="background-color:#FF3333">Remove from Build</button>
-                }
-            </td>
-
-        </tr>
-        }
-    </table>
-
-            @*VIDEO ADAPTERS TABLE*@
-    <table class="table" id="tr-videoadapters-hidden" style="display:none">
-        <tr>
-            <th>
-                VIDEO ADAPTER NAME
-            </th>
-            <th>
-                Memory (mb)
-            </th>
-            <th>
-                GPU (if applic.)
-            </th>
-            <th>
-                Expansion slot
-            </th>
-            <th>
-                Power supply standard
-            </th>
-        </tr>
-        @foreach (var x in ViewBag.va)
-        {
-        <tr>
-            <td>
-                @x.video_adapter_name
-            </td>
-            <td>
-                @x.video_adapter_memory_mb
-            </td>
-            <td>
-                @if (x.gpu_id != null)
-                {
-                @x.gpu.gpu_name
-                }
-            </td>
-            <td>
-                @x.expansion_slots.expansion_slot_name
-            </td>
-            <td>
-                @x.power_supply_standards.power_supply_standard_name
-            </td>
-            <td>
-                @if (build.video_adapter_id == null)
-                {
-                <button name="" type="button" value=@x.video_adapter_id class="doajaxva" style="background-color:lightgreen">Add to Build</button>
-                }
-                @if (build.video_adapter_id != null)
-                {
-                <button name="" type="button" value=@x.video_adapter_id class="doajaxxva" style="background-color:#FF3333">Remove from Build</button>
-                }
-            </td>
-        </tr>
-        }
-    </table>
-
-            @*OPTICAL DRIVES TABLE*@
-    <table class="table" id="tr-opticaldrives-hidden" style="display:none">
-        <tr>
-            <th>
-                OPTICAL DRIVE NAME
-            </th>
-            <th>
-                Buffer (Kb)
-            </th>
-            <th>
-                Bus interface
-            </th>
-            <th>
-                Drive bay width
-            </th>
-
-            @foreach (var x in ViewBag.od)
+            @foreach (var x in ViewBag.hd)
             {
-        <tr>
-            <td>
-                @x.optical_drive_name
-            </td>
-            <td>
-                @x.buffer_kb
-            </td>
-            <td>
-                @x.bus_interfaces.bus_interface_name
-            </td>
-            <td>
-                @x.drive_bay_widths.drive_bay_width_name
-            </td>
-            <td>
-                @if (build.optical_drive_id == null)
+                <tr>
+                    <td>
+                        @x.hard_drive_name
+                    </td>
+                    <td>
+                        @x.buffer_kb
+                    </td>
+                    <td>
+                        @x.capacity_gb
+                    </td>
+                    <td>
+                        @x.bus_interfaces.bus_interface_name
+                    </td>
+                    <td>
+                        @if (build.hard_drive_id == null)
+                        {
+                            <button name="" type="button" value=@x.hard_drive_id id="hd" class="doajaxhd" style="background-color:lightgreen">Add to Build</button>
+                        }
+                        @if (build.hard_drive_id != null)
+                        {
+                            <button name="" type="button" value=@x.hard_drive_id class="doajaxxhd" style="background-color:#FF3333">Remove from Build</button>
+                        }
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+
+        @*SOUND CARDS TABLE*@
+        <table class="table" id="tr-soundcards-hidden" style="display:none">
+
+            <tr>
+                <th>
+                    SOUND CARD NAME
+                </th>
+                <th>
+                    Sound chip name
+                </th>
+                <th>
+                    Sound channel standard
+                </th>
+                <th>
+                    Expansion slot name
+                </th>
+            </tr>
+            @foreach (var x in ViewBag.sc)
+            {
+                <tr>
+                    <td>
+                        @x.sound_card_name
+                    </td>
+                    <td>
+                        @x.sound_chips.sound_chip_name
+                    </td>
+                    <td>
+                        @x.sound_chips.sound_channel_standards.sound_channel_standard_name
+                    </td>
+                    <td>
+                        @x.expansion_slots.expansion_slot_name
+                    </td>
+                    <td>
+                        @if (build.sound_card_id == null)
+                        {
+                            <button name="" type="button" value=@x.sound_card_id class="doajaxsc" style="background-color:lightgreen">Add to Build</button>
+                        }
+                        @if (build.sound_card_id != null)
+                        {
+                            <button name="" type="button" value=@x.sound_card_id class="doajaxxsc" style="background-color:#FF3333">Remove from Build</button>
+                        }
+                    </td>
+
+                </tr>
+            }
+        </table>
+
+        @*VIDEO ADAPTERS TABLE*@
+        <table class="table" id="tr-videoadapters-hidden" style="display:none">
+            <tr>
+                <th>
+                    VIDEO ADAPTER NAME
+                </th>
+                <th>
+                    Memory (mb)
+                </th>
+                <th>
+                    GPU (if applic.)
+                </th>
+                <th>
+                    Expansion slot
+                </th>
+                <th>
+                    Power supply standard
+                </th>
+            </tr>
+            @foreach (var x in ViewBag.va)
+            {
+                <tr>
+                    <td>
+                        @x.video_adapter_name
+                    </td>
+                    <td>
+                        @x.video_adapter_memory_mb
+                    </td>
+                    <td>
+                        @if (x.gpu_id != null)
+                        {
+                            @x.gpu.gpu_name
+                        }
+                    </td>
+                    <td>
+                        @x.expansion_slots.expansion_slot_name
+                    </td>
+                    <td>
+                        @x.power_supply_standards.power_supply_standard_name
+                    </td>
+                    <td>
+                        @if (build.video_adapter_id == null)
+                        {
+                            <button name="" type="button" value=@x.video_adapter_id class="doajaxva" style="background-color:lightgreen">Add to Build</button>
+                        }
+                        @if (build.video_adapter_id != null)
+                        {
+                            <button name="" type="button" value=@x.video_adapter_id class="doajaxxva" style="background-color:#FF3333">Remove from Build</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+
+        @*OPTICAL DRIVES TABLE*@
+        <table class="table" id="tr-opticaldrives-hidden" style="display:none">
+            <tr>
+                <th>
+                    OPTICAL DRIVE NAME
+                </th>
+                <th>
+                    Buffer (Kb)
+                </th>
+                <th>
+                    Bus interface
+                </th>
+                <th>
+                    Drive bay width
+                </th>
+
+                @foreach (var x in ViewBag.od)
                 {
-                <button name="" style="background-color:lightgreen" type="button" value=@x.optical_drive_id class="doajaxod">Add to Build</button>
+                <tr>
+                    <td>
+                        @x.optical_drive_name
+                    </td>
+                    <td>
+                        @x.buffer_kb
+                    </td>
+                    <td>
+                        @x.bus_interfaces.bus_interface_name
+                    </td>
+                    <td>
+                        @x.drive_bay_widths.drive_bay_width_name
+                    </td>
+                    <td>
+                        @if (build.optical_drive_id == null)
+                        {
+                            <button name="" style="background-color:lightgreen" type="button" value=@x.optical_drive_id class="doajaxod">Add to Build</button>
+                        }
+                        @if (build.optical_drive_id != null)
+                        {
+                            <button name="" type="button" value=@x.optical_drive_id class="doajaxxod" style="background-color:#FF3333">Remove from Build</button>
+                        }
+                    </td>
+
+                </tr>
                 }
-                @if (build.optical_drive_id != null)
+            </table>
+
+            @*POWER SUPPLIES TABLE*@
+            <table class="table" id="tr-powersupplies-hidden" style="display:none">
+                <tr>
+                    <th>
+                        POWER SUPPLY NAME
+                    </th>
+                    <th>
+                        Total power (w)
+                    </th>
+                    <th>
+                        Energy eff. %
+                    </th>
+                    <th>
+                        Power supply standard
+                    </th>
+                    <th>
+                        Motherboard form factor
+                    </th>
+                </tr>
+                @foreach (var x in ViewBag.ps)
                 {
-                <button name="" type="button" value=@x.optical_drive_id class="doajaxxod" style="background-color:#FF3333">Remove from Build</button>
+                    <tr>
+                        <td>
+                            @x.power_supply_name
+                        </td>
+                        <td>
+                            @x.total_power_w
+                        </td>
+                        <td>
+                            @x.energy_efficiency_percentage
+                        </td>
+                        <td>
+                            @x.power_supply_standards.power_supply_standard_name
+                        </td>
+                        <td>
+                            @x.motherboard_form_factors.motherboard_form_factor_name
+                        </td>
+                        <td>
+                            @if (build.power_supply_id == null)
+                            {
+                                <button name="" style="background-color:lightgreen" type="button" value=@x.power_supply_id class="doajaxps">Add to Build</button>
+                            }
+                            @if (build.power_supply_id != null)
+                            {
+
+                                <button name="" type="button" value=@x.power_supply_id class="doajaxxps" style="background-color:#FF3333">Remove from Build</button>}
+                        </td>
+
+                    </tr>
                 }
-            </td>
+            </table>
 
-        </tr>
-        }
-    </table>
-
-                @*POWER SUPPLIES TABLE*@
-    <table class="table" id="tr-powersupplies-hidden" style="display:none">
-        <tr>
-            <th>
-                POWER SUPPLY NAME
-            </th>
-            <th>
-                Total power (w)
-            </th>
-            <th>
-                Energy eff. %
-            </th>
-            <th>
-                Power supply standard
-            </th>
-            <th>
-                Motherboard form factor
-            </th>
-        </tr>
-        @foreach (var x in ViewBag.ps)
-        {
-        <tr>
-            <td>
-                @x.power_supply_name
-            </td>
-            <td>
-                @x.total_power_w
-            </td>
-            <td>
-                @x.energy_efficiency_percentage
-            </td>
-            <td>
-                @x.power_supply_standards.power_supply_standard_name
-            </td>
-            <td>
-                @x.motherboard_form_factors.motherboard_form_factor_name
-            </td>
-            <td>
-                @if (build.power_supply_id == null)
+            @*COMPUTER CASES TABLE*@
+            <table class="table" id="tr-computercases-hidden" style="display:none">
+                <tr>
+                    <th>
+                        COMPUTER CASE NAME
+                    </th>
+                    <th>
+                        Front USB connector count
+                    </th>
+                    <th>
+                        Depth (mm)
+                    </th>
+                    <th>
+                        Width (mm)
+                    </th>
+                    <th>
+                        Height (mm)
+                    </th>
+                    <th>
+                        Color
+                    </th>
+                    <th>
+                        Size
+                    </th>
+                    <th>
+                        Form factor
+                    </th>
+                </tr>
+                @foreach (var x in ViewBag.cc)
                 {
-                <button name="" style="background-color:lightgreen" type="button" value=@x.power_supply_id class="doajaxps">Add to Build</button>
+                    <tr>
+
+                        <td>
+                            @x.computer_case_name
+                        </td>
+                        <td>
+                            @x.front_usb_connector_count
+                        </td>
+                        <td>
+                            @x.depth_mm
+                        </td>
+                        <td>
+                            @x.width_mm
+                        </td>
+                        <td>
+                            @x.height_mm
+                        </td>
+                        <td>
+                            @x.color
+                        </td>
+                        <td>
+                            @x.computer_case_sizes.computer_case_size_name
+                        </td>
+                        <td>
+                            @x.motherboard_form_factors.motherboard_form_factor_name
+                        </td>
+                        <td>
+                            @if (build.computer_case_id == null)
+                            {
+                                <button name="" style="background-color:lightgreen" type="button" value=@x.computer_case_id class="doajaxcc">Add to Build</button>
+                            }
+                            @if (build.computer_case_id != null)
+                            {
+                                <button name="" type="button" value=@x.computer_case_id class="doajaxxcc" style="background-color:#FF3333">Remove from Build</button>
+                            }
+                        </td>
+
+                    </tr>
                 }
-                @if (build.power_supply_id != null)
-                {
+            </table>
 
-                <button name="" type="button" value=@x.power_supply_id class="doajaxxps" style="background-color:#FF3333">Remove from Build</button>}
-            </td>
-
-        </tr>
-        }
-    </table>
-
-                @*COMPUTER CASES TABLE*@
-    <table class="table" id="tr-computercases-hidden" style="display:none">
-        <tr>
-            <th>
-                COMPUTER CASE NAME
-            </th>
-            <th>
-                Front USB connector count
-            </th>
-            <th>
-                Depth (mm)
-            </th>
-            <th>
-                Width (mm)
-            </th>
-            <th>
-                Height (mm)
-            </th>
-            <th>
-                Color
-            </th>
-            <th>
-                Size
-            </th>
-            <th>
-                Form factor
-            </th>
-        </tr>
-        @foreach (var x in ViewBag.cc)
-        {
-        <tr>
-
-            <td>
-                @x.computer_case_name
-            </td>
-            <td>
-                @x.front_usb_connector_count
-            </td>
-            <td>
-                @x.depth_mm
-            </td>
-            <td>
-                @x.width_mm
-            </td>
-            <td>
-                @x.height_mm
-            </td>
-            <td>
-                @x.color
-            </td>
-            <td>
-                @x.computer_case_sizes.computer_case_size_name
-            </td>
-            <td>
-                @x.motherboard_form_factors.motherboard_form_factor_name
-            </td>
-            <td>
-                @if (build.computer_case_id == null)
-                {
-                <button name="" style="background-color:lightgreen" type="button" value=@x.computer_case_id class="doajaxcc">Add to Build</button>
-                }
-                @if (build.computer_case_id != null)
-                {
-                <button name="" type="button" value=@x.computer_case_id class="doajaxxcc" style="background-color:#FF3333">Remove from Build</button>
-                }
-            </td>
-
-        </tr>
-        }
-    </table>
+            @{ if (build.motherboard_id == null)
+             {
+                <script>
+                    $("#tr-motherboards-hidden").show()
+                </script>
+             }
+             else if (build.processor_id == null)
+             {
+                <script>
+                    $("#tr-processors-hidden").show()
+                </script>
+             }
+             else if (build.memory_id == null)
+             {
+                <script>
+                    $("#tr-memories-hidden").show()
+                </script>
+             }
+             else if (build.hard_drive_id == null)
+             {
+                <script>
+                    $("#tr-harddrives-hidden").show()
+                </script>
+             }
+             else if (build.sound_card_id == null)
+             {
+                <script>
+                    $("#tr-soundcards-hidden").show()
+                </script>
+             }
+             else if (build.video_adapter_id == null)
+             {
+                <script>
+                    $("#tr-videoadapters-hidden").show()
+                </script>
+             }
+             else if (build.optical_drive_id == null)
+             {
+                <script>
+                    $("#tr-opticaldrives-hidden").show()
+                </script>
+             }
+             else if (build.power_supply_id == null)
+             {
+                <script>
+                    $("#tr-powersupplies-hidden").show()
+                </script>
+             }
+             else if (build.computer_case_id == null)
+             {
+                <script>
+                    $("#tr-computercases-hidden").show()
+                </script>
+             }
+             else
+             {
+                 <script>
+                     alert("You can now safely save")
+                 </script>
+             }
+            }
 
             @*@Html.ActionLink("Save", "Save")*@
 
