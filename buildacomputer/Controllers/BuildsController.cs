@@ -551,10 +551,8 @@ namespace buildacomputer.Controllers
                 model.build.buildID = db.Builds.Max(b => b.buildID) + 1;
                 db.Builds.Add(model.build);
                 currentBuildID = model.build.buildID;
-                //currentLink.Build = model.build;
             }
-            //try to change column on database to get proper addition
-            // Map properties from view model to data model
+
             currentLink.UserId = User.Identity.GetUserId();
             currentLink.buildName = model.buildName;
             currentLink.buildID = currentBuildID;
@@ -562,6 +560,8 @@ namespace buildacomputer.Controllers
             // Save and redirect
             db.UserBuilds.Add(currentLink);
             db.SaveChanges();
+
+            this.Session["SessionBuild"] = new Build();
 
             return RedirectToAction("Index", "Home");
         }
