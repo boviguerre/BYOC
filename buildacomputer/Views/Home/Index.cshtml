@@ -11,6 +11,7 @@
     var popBuilds = (List<Build>)ViewData["Popular Builds"];
 }
 
+
 <table class="table">
     <tr>
         <th>
@@ -89,7 +90,7 @@
                 @Html.DisplayFor(modelItem => item.iterator)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BuildTime)
+                <p>@item.BuildTime.ToString("M/d/yyyy")</p>
             </td>
             <td></td>
             @*<td>
@@ -99,6 +100,7 @@
                 </td>*@
         </tr>
     }
+
 
 </table>
 
@@ -182,7 +184,7 @@
                 @Html.DisplayFor(modelItem => item.iterator)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BuildTime)
+                <p>@item.BuildTime.ToString("M/d/yyyy")</p>
             </td>
             <td></td>
             @*<td>
@@ -195,7 +197,7 @@
 
 </table>
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Bootstrap Example</title>
@@ -317,7 +319,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </div>
+    </div>*@
 
 </body>
 </html>
