@@ -17,6 +17,8 @@ namespace buildacomputer.Models
         [Column(Order=2)]
         public int buildID { get; set; }
         
+        [Key]
+        [Column(Order=3)]
         public string buildName { get; set; }
 
         public virtual Build Build { get; set; }
