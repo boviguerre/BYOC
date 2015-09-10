@@ -13,38 +13,47 @@
     <tr>
         <th>Motherboard: </th>
         <td>@ViewBag.mbs</td>
+        @Html.HiddenFor(model => model.build.motherboard_id)
     </tr>
     <tr>
         <th>Processor: </th>
         <td>@ViewBag.prs</td>
+        @Html.HiddenFor(model => model.build.processor_id)
     </tr>
     <tr>
         <th>Memory: </th>
         <td>@ViewBag.mes</td>
+        @Html.HiddenFor(model => model.build.memory_id)
     </tr>
     <tr>
         <th>Hard Drive: </th>
         <td>@ViewBag.hds</td>
+        @Html.HiddenFor(model => model.build.hard_drive_id)
     </tr>
     <tr>
         <th>Sound Card: </th>
         <td>@ViewBag.scs</td>
+        @Html.HiddenFor(model => model.build.sound_card_id)
     </tr>
     <tr>
         <th>Video Adapter: </th>
         <td>@ViewBag.vas</td>
+        @Html.HiddenFor(model => model.build.video_adapter_id)
     </tr>
     <tr>
         <th>Optical Drive: </th>
         <td>@ViewBag.ods</td>
+        @Html.HiddenFor(model => model.build.optical_drive_id)
     </tr>
     <tr>
         <th>Power Supply: </th>
         <td>@ViewBag.pss</td>
+        @Html.HiddenFor(model => model.build.power_supply_id)
     </tr>
     <tr>
         <th>Computer Case: </th>
         <td>@ViewBag.ccs</td>
+        @Html.HiddenFor(model => model.build.computer_case_id)
     </tr>
 </table>
 

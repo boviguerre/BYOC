@@ -469,16 +469,17 @@ namespace buildacomputer.Controllers
         public ActionResult Save()
         {
             UserBuildViewModel model = new UserBuildViewModel();
-            Build build = (Build)this.Session["SessionBuild"];
-            ViewBag.mbs = db.motherboards.Where(m => m.motherboard_id == build.motherboard_id).Select(m => m.motherboard_name).SingleOrDefault().ToString();
-            ViewBag.prs = db.processors.Where(p => p.processor_id == build.processor_id).Select(p => p.processor_name).SingleOrDefault().ToString();
-            ViewBag.mes = db.memories.Where(m => m.memory_id == build.memory_id).Select(m => m.memory_name).SingleOrDefault().ToString();
-            ViewBag.hds = db.hard_drives.Where(h => h.hard_drive_id == build.hard_drive_id).Select(h => h.hard_drive_name).SingleOrDefault().ToString();
-            ViewBag.scs = db.sound_cards.Where(s => s.sound_card_id == build.sound_card_id).Select(s => s.sound_card_name).SingleOrDefault().ToString();
-            ViewBag.vas = db.video_adapters.Where(v => v.video_adapter_id == build.video_adapter_id).Select(v => v.video_adapter_name).SingleOrDefault().ToString();
-            ViewBag.ods = db.optical_drives.Where(o => o.optical_drive_id == build.optical_drive_id).Select(o => o.optical_drive_name).SingleOrDefault().ToString();
-            ViewBag.pss = db.power_supplies.Where(p => p.power_supply_id == build.power_supply_id).Select(p => p.power_supply_name).SingleOrDefault().ToString();
-            ViewBag.ccs = db.computer_cases.Where(c => c.computer_case_id == build.computer_case_id).Select(c => c.computer_case_name).SingleOrDefault().ToString();
+            model.build = (Build)Session["SessionBuild"];
+            
+            ViewBag.mbs = db.motherboards.Where(m => m.motherboard_id == model.build.motherboard_id).Select(m => m.motherboard_name).SingleOrDefault().ToString();
+            ViewBag.prs = db.processors.Where(p => p.processor_id == model.build.processor_id).Select(p => p.processor_name).SingleOrDefault().ToString();
+            ViewBag.mes = db.memories.Where(m => m.memory_id == model.build.memory_id).Select(m => m.memory_name).SingleOrDefault().ToString();
+            ViewBag.hds = db.hard_drives.Where(h => h.hard_drive_id == model.build.hard_drive_id).Select(h => h.hard_drive_name).SingleOrDefault().ToString();
+            ViewBag.scs = db.sound_cards.Where(s => s.sound_card_id == model.build.sound_card_id).Select(s => s.sound_card_name).SingleOrDefault().ToString();
+            ViewBag.vas = db.video_adapters.Where(v => v.video_adapter_id == model.build.video_adapter_id).Select(v => v.video_adapter_name).SingleOrDefault().ToString();
+            ViewBag.ods = db.optical_drives.Where(o => o.optical_drive_id == model.build.optical_drive_id).Select(o => o.optical_drive_name).SingleOrDefault().ToString();
+            ViewBag.pss = db.power_supplies.Where(p => p.power_supply_id == model.build.power_supply_id).Select(p => p.power_supply_name).SingleOrDefault().ToString();
+            ViewBag.ccs = db.computer_cases.Where(c => c.computer_case_id == model.build.computer_case_id).Select(c => c.computer_case_name).SingleOrDefault().ToString();
             return View(model);
         }
         
@@ -492,16 +493,19 @@ namespace buildacomputer.Controllers
             }
 
             // Initialize new instance of the data model
+            model.build = (Build)this.Session["SessionBuild"];
             Models.UserBuilds currentLink = new Models.UserBuilds();
 
-            Build build = (Build)this.Session["SessionBuild"];
             int i = 0;
             int currentBuildID;
             //Dictionary<String, String> buildDictionary = new Dictionary<String, String>();
 
             //pull i from db
 
-            i = db.Builds.Where((b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id)).Select(b => b.iterator).SingleOrDefault();
+            if (db.Builds.Any((b => b.motherboard_id == model.build.motherboard_id && b.processor_id == model.build.processor_id && b.memory_id == model.build.memory_id && b.hard_drive_id == model.build.hard_drive_id && b.sound_card_id == model.build.sound_card_id && b.video_adapter_id == model.build.video_adapter_id && b.optical_drive_id == model.build.optical_drive_id && b.power_supply_id == model.build.power_supply_id && b.computer_case_id == model.build.computer_case_id)))
+            {
+                i = db.Builds.Where((b => b.motherboard_id == model.build.motherboard_id && b.processor_id == model.build.processor_id && b.memory_id == model.build.memory_id && b.hard_drive_id == model.build.hard_drive_id && b.sound_card_id == model.build.sound_card_id && b.video_adapter_id == model.build.video_adapter_id && b.optical_drive_id == model.build.optical_drive_id && b.power_supply_id == model.build.power_supply_id && b.computer_case_id == model.build.computer_case_id)).Select(b => b.iterator).SingleOrDefault();
+            }
 
             //Need to add user input to: BuildType, BuildName, BuildTime
 
@@ -509,36 +513,36 @@ namespace buildacomputer.Controllers
             if (!(i == 0))
             {
                 Build buildQuery = (from b in db.Builds
-                                    where b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id
+                                    where b.motherboard_id == model.build.motherboard_id && b.processor_id == model.build.processor_id && b.memory_id == model.build.memory_id && b.hard_drive_id == model.build.hard_drive_id && b.sound_card_id == model.build.sound_card_id && b.video_adapter_id == model.build.video_adapter_id && b.optical_drive_id == model.build.optical_drive_id && b.power_supply_id == model.build.power_supply_id && b.computer_case_id == model.build.computer_case_id
                                     select b).Single<Build>();
                 buildQuery.iterator = i + 1;
                 buildQuery.buildType = model.buildType;
                 buildQuery.BuildTime = DateTime.Now;
-                db.SaveChanges();
                 currentBuildID = (int)buildQuery.buildID;
             }
 
             //else add Build with user input
             else
             {
-                build.iterator = 1;
-                build.buildType = model.buildType;
-                build.BuildTime = DateTime.Now;
-                build.buildID = (int)db.Builds.Max(b => b.buildID) + 1;
-                db.Builds.Add(build);
-                db.SaveChanges();
-                currentBuildID = (int)db.Builds.Where(b => b.motherboard_id == build.motherboard_id && b.processor_id == build.processor_id && b.memory_id == build.memory_id && b.hard_drive_id == build.hard_drive_id && b.sound_card_id == build.sound_card_id && b.video_adapter_id == build.video_adapter_id && b.optical_drive_id == build.optical_drive_id && b.power_supply_id == build.power_supply_id && b.computer_case_id == build.computer_case_id).Select(b => b.buildID).Single();                     
+                model.build.iterator = 1;
+                model.build.buildType = model.buildType;
+                model.build.BuildTime = DateTime.Now;
+                model.build.buildID = db.Builds.Max(b => b.buildID) + 1;
+                db.Builds.Add(model.build);
+                currentBuildID = model.build.buildID;
             }
-            
-            // Map properties from view model to data model
-            currentLink.userID = User.Identity.GetUserId();
+
+            currentLink.UserId = User.Identity.GetUserId();
             currentLink.buildName = model.buildName;
             currentLink.buildID = currentBuildID;
             
             // Save and redirect
             db.UserBuilds.Add(currentLink);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            this.Session["SessionBuild"] = new Build();
+
+            return RedirectToAction("Index", "Home");
         }
         
         ////GET Save the build to the database

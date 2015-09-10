@@ -9,6 +9,7 @@
     public partial class Users
     {
 
+        [Key]
         public string Id { get; set; }
         
         [Required]
