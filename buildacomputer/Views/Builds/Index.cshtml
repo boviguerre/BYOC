@@ -292,7 +292,42 @@
                 $(".button-computercases").css('color', 'white') 
             });
         });
-    </script>
+
+
+    $(document).ready(function () {
+        $(".img-case").click(function () {
+            $(".img-harddrive").animate({ left: "+=300px" });
+            $(".img-memory").animate({ left: "+=300px" });
+            $(".img-motherboard").animate({ left: "+=300px" });
+            $(".img-optical").animate({ left: "+=300px" });
+            $(".img-power").animate({ left: "+=300px" });
+            $(".img-sound").animate({ left: "+=300px" });
+            $(".img-video").animate({ left: "+=300px" });
+            $(".img-processor").animate({ left: "+=300px" });
+            $(".img-case").animate({ right: "+=200px" }, function () {
+                $(".img-case").fadeOut("fast");
+                $(".img-harddrive").fadeOut("fast");
+                $(".img-memory").fadeOut("fast");
+                $(".img-motherboard").fadeOut("fast");
+                $(".img-optical").fadeOut("fast");
+                $(".img-power").fadeOut("fast");
+                $(".img-sound").fadeOut("fast");
+                $(".img-video").fadeOut("fast");
+                $(".img-processor").fadeOut("fast");
+                $(".img-3").fadeIn("fast", function () {
+                    $(".img-3").fadeOut("slow", function () {
+                        $(".img-computer").fadeIn("fast");
+                    });
+                });
+                
+            });
+
+        });
+
+    });
+
+        </script>
+
 
 </head>
 
@@ -340,13 +375,13 @@
             @{ Html.RenderPartial("Lists"); }
         </div>
 
-
         @Html.ActionLink("Save", "Save")
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Agile Aperture</p>
         </footer>
     </div>
+
 
 </body>
 </html>

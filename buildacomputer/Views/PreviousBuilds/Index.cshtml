@@ -1,51 +1,52 @@
 ﻿@model IEnumerable<buildacomputer.Models.Build>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Your Saved Builds";
 }
 <div class="container">
-    <h2>Saved Builds</h2>
+    
+<h2>Your Saved Builds</h2>
 
-    <table class="table">
-        <tr>
-            <th>
-                Motherboards
-            </th>
-            <th>
-                Processors
-            </th>
-            <th>
-                RAM
-            </th>
-            <th>
-                Hard Drives
-            </th>
-            <th>
-                Sound Cards
-            </th>
-            <th>
-                Video Adapters
-            </th>
-            <th>
-                Optical Drives
-            </th>
-            <th>
-                Power Supplies
-            </th>
-            <th>
-                Computer Cases
-            </th>
-            <th>
-                Build Type
-            </th>
-            <th>
-                Number of Times Built
-            </th>
-            <th>
-                Build Date
-            </th>
-            <th></th>
-        </tr>
+<table class="table">
+    <tr>
+        <th>
+            Motherboards
+        </th>
+        <th>
+            Processors
+        </th>
+        <th>
+            RAM
+        </th>
+        <th>
+            Hard Drives
+        </th>
+        <th>
+            Sound Cards
+        </th>
+        <th>
+            Video Adapters
+        </th>
+        <th>
+            Optical Drives
+        </th>
+        <th>
+            Power Supplies
+        </th>
+        <th>
+            Computer Cases
+        </th>
+        <th>
+            Build Type
+        </th>
+        <th>
+            Number of Times Built
+        </th>
+        <th>
+            Build Date
+        </th>
+        <th></th>
+    </tr>
 
         @foreach (var item in Model)
         {
