@@ -6,307 +6,307 @@
 @{
     ViewBag.Title = "Save";
 }
+<div class="container">
+    <h2>Save your build!</h2>
 
-<h2>Save your build!</h2>
+    <table class="table">
+        <tr>
+            <th>Motherboard: </th>
+            <td>@ViewBag.mbs</td>
+            @Html.HiddenFor(model => model.build.motherboard_id)
+        </tr>
+        <tr>
+            <th>Processor: </th>
+            <td>@ViewBag.prs</td>
+            @Html.HiddenFor(model => model.build.processor_id)
+        </tr>
+        <tr>
+            <th>Memory: </th>
+            <td>@ViewBag.mes</td>
+            @Html.HiddenFor(model => model.build.memory_id)
+        </tr>
+        <tr>
+            <th>Hard Drive: </th>
+            <td>@ViewBag.hds</td>
+            @Html.HiddenFor(model => model.build.hard_drive_id)
+        </tr>
+        <tr>
+            <th>Sound Card: </th>
+            <td>@ViewBag.scs</td>
+            @Html.HiddenFor(model => model.build.sound_card_id)
+        </tr>
+        <tr>
+            <th>Video Adapter: </th>
+            <td>@ViewBag.vas</td>
+            @Html.HiddenFor(model => model.build.video_adapter_id)
+        </tr>
+        <tr>
+            <th>Optical Drive: </th>
+            <td>@ViewBag.ods</td>
+            @Html.HiddenFor(model => model.build.optical_drive_id)
+        </tr>
+        <tr>
+            <th>Power Supply: </th>
+            <td>@ViewBag.pss</td>
+            @Html.HiddenFor(model => model.build.power_supply_id)
+        </tr>
+        <tr>
+            <th>Computer Case: </th>
+            <td>@ViewBag.ccs</td>
+            @Html.HiddenFor(model => model.build.computer_case_id)
+        </tr>
+    </table>
 
-<table class="table">
-    <tr>
-        <th>Motherboard: </th>
-        <td>@ViewBag.mbs</td>
-        @Html.HiddenFor(model => model.build.motherboard_id)
-    </tr>
-    <tr>
-        <th>Processor: </th>
-        <td>@ViewBag.prs</td>
-        @Html.HiddenFor(model => model.build.processor_id)
-    </tr>
-    <tr>
-        <th>Memory: </th>
-        <td>@ViewBag.mes</td>
-        @Html.HiddenFor(model => model.build.memory_id)
-    </tr>
-    <tr>
-        <th>Hard Drive: </th>
-        <td>@ViewBag.hds</td>
-        @Html.HiddenFor(model => model.build.hard_drive_id)
-    </tr>
-    <tr>
-        <th>Sound Card: </th>
-        <td>@ViewBag.scs</td>
-        @Html.HiddenFor(model => model.build.sound_card_id)
-    </tr>
-    <tr>
-        <th>Video Adapter: </th>
-        <td>@ViewBag.vas</td>
-        @Html.HiddenFor(model => model.build.video_adapter_id)
-    </tr>
-    <tr>
-        <th>Optical Drive: </th>
-        <td>@ViewBag.ods</td>
-        @Html.HiddenFor(model => model.build.optical_drive_id)
-    </tr>
-    <tr>
-        <th>Power Supply: </th>
-        <td>@ViewBag.pss</td>
-        @Html.HiddenFor(model => model.build.power_supply_id)
-    </tr>
-    <tr>
-        <th>Computer Case: </th>
-        <td>@ViewBag.ccs</td>
-        @Html.HiddenFor(model => model.build.computer_case_id)
-    </tr>
-</table>
-
-@using (Html.BeginForm())
-{
-    <div class="form-horizontal">
-        <h4>Your Build</h4>
-        <hr />
-        <div class="form-group">
-            @Html.LabelFor(model => model.buildType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.buildType, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.buildName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.buildName, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-
-
-
-
-        @*@using System.Collections.Generic
-            @using buildacomputer.Models
-
-
-            @{
-                ViewBag.Title = "Save Your Build";
-            }
-
-            @{
-                var motherboard = (string)ViewData["Motherboard"];
-                var processor = (string)ViewData["Processor"];
-                var memory = (string)ViewData["Memory"];
-                var hardDrive = (string)ViewData["Hard Drive"];
-                var soundCard = (string)ViewData["Sound Card"];
-                var videoAdapter = (string)ViewData["Video Adapter"];
-                var opticalDrive = (string)ViewData["Optical Drive"];
-                var powerSupply = (string)ViewData["Power Supply"];
-                var computerCase = (string)ViewData["Computer Case"];
-            }
-
-            <h2>Save Your Build</h2>
-
-            <table class="table">
-                <tr>
-                    <th>Motherboard: </th>
-                    <td>@motherboard</td>
-                </tr>
-                <tr>
-                    <th>Processor: </th>
-                    <td>@processor</td>
-                </tr>
-                <tr>
-                    <th>Memory: </th>
-                    <td>@memory</td>
-                </tr>
-                <tr>
-                    <th>Hard Drive: </th>
-                    <td>hardDrive</td>
-                </tr>
-                <tr>
-                    <th>Sound Card: </th>
-                    <td>@soundCard</td>
-                </tr>
-                <tr>
-                    <th>Video Adapter: </th>
-                    <td>@videoAdapter</td>
-                </tr>
-                <tr>
-                    <th>Optical Drive: </th>
-                    <td>@opticalDrive</td>
-                </tr>
-                <tr>
-                    <th>Power Supply: </th>
-                    <td>@powerSupply</td>
-                </tr>
-                <tr>
-                    <th>Computer Case: </th>
-                    <td>@computerCase</td>
-                </tr>
-            </table>*@
-
-        @*@model buildacomputer.Models.Build
-            @{
-                ViewBag.Title = "Save";
-            }
-            <h2>Save your build!</h2>
-
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-horizontal">
-                    <h4>Your Build</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.BuildType, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.BuildType, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.BuildType, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.BuildName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.BuildName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.BuildName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Credits, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Credits, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Credits, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="DepartmentID">Department</label>
-                        <div class="col-md-10">
-                            @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
-                        </div>
-                    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+            <h4>Your Build</h4>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.buildType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.buildType, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
-            }*@
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.buildName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.buildName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
 
 
-        @*@using (Html.BeginForm("Save", "Builds", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Save your Build</h4>
-                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    @*@using System.Collections.Generic
+        @using buildacomputer.Models
+
+
+        @{
+            ViewBag.Title = "Save Your Build";
+        }
+
+        @{
+            var motherboard = (string)ViewData["Motherboard"];
+            var processor = (string)ViewData["Processor"];
+            var memory = (string)ViewData["Memory"];
+            var hardDrive = (string)ViewData["Hard Drive"];
+            var soundCard = (string)ViewData["Sound Card"];
+            var videoAdapter = (string)ViewData["Video Adapter"];
+            var opticalDrive = (string)ViewData["Optical Drive"];
+            var powerSupply = (string)ViewData["Power Supply"];
+            var computerCase = (string)ViewData["Computer Case"];
+        }
+
+        <h2>Save Your Build</h2>
+
+        <table class="table">
+            <tr>
+                <th>Motherboard: </th>
+                <td>@motherboard</td>
+            </tr>
+            <tr>
+                <th>Processor: </th>
+                <td>@processor</td>
+            </tr>
+            <tr>
+                <th>Memory: </th>
+                <td>@memory</td>
+            </tr>
+            <tr>
+                <th>Hard Drive: </th>
+                <td>hardDrive</td>
+            </tr>
+            <tr>
+                <th>Sound Card: </th>
+                <td>@soundCard</td>
+            </tr>
+            <tr>
+                <th>Video Adapter: </th>
+                <td>@videoAdapter</td>
+            </tr>
+            <tr>
+                <th>Optical Drive: </th>
+                <td>@opticalDrive</td>
+            </tr>
+            <tr>
+                <th>Power Supply: </th>
+                <td>@powerSupply</td>
+            </tr>
+            <tr>
+                <th>Computer Case: </th>
+                <td>@computerCase</td>
+            </tr>
+        </table>*@
+
+    @*@model buildacomputer.Models.Build
+        @{
+            ViewBag.Title = "Save";
+        }
+        <h2>Save your build!</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Your Build</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(m => m.BuildName, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(model => model.BuildType, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.BuildName, new { @class = "form-control" })
+                        @Html.EditorFor(model => model.BuildType, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BuildType, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.BuildType, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(model => model.BuildName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.BuildType, new { @class = "form-control" })
+                        @Html.EditorFor(model => model.BuildName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BuildName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Credits, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Credits, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Credits, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="DepartmentID">Department</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-default" value="Save" />
+                        <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
-            }
+            </div>
+        }*@
 
 
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.computer_cases.computer_case_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.hard_drives.hard_drive_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.memory.memory_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.motherboard.motherboard_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.optical_drives.optical_drive_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.power_supplies.power_supply_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.processor.processor_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.sound_cards.sound_card_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.video_adapters.video_adapter_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.buildType)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.iterator)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BuildTime)
-                    </th>
-                    <th></th>
-                </tr>
 
-            @foreach (var item in build) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.memory.memory_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.processor.processor_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.buildType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.iterator)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BuildTime)
-                    </td>
-                </tr>
-            }
+    @*@using (Html.BeginForm("Save", "Builds", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Save your Build</h4>
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.BuildName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.BuildName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.BuildType, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.BuildType, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Save" />
+                </div>
+            </div>
+        }
 
-            </table>
-            <p>
-                @Html.ActionLink("Save", "Save")
-            </p>*@
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.computer_cases.computer_case_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.hard_drives.hard_drive_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.memory.memory_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.motherboard.motherboard_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.optical_drives.optical_drive_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.power_supplies.power_supply_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.processor.processor_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.sound_cards.sound_card_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.video_adapters.video_adapter_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.buildType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.iterator)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BuildTime)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in build) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.memory.memory_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.processor.processor_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iterator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildTime)
+                </td>
+            </tr>
+        }
+
+        </table>
+        <p>
+            @Html.ActionLink("Save", "Save")
+        </p>*@

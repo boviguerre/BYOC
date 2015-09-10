@@ -96,18 +96,18 @@
 
 html
 {
-    background-color: #808080;
+    /*background-color: #808080;
     color: #fff;
-    font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
+    font-family: 'Palatino Linotype', Cambria, 'Cambria Math';*/
     font-size: 14px;
 }
 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #808080;
+    /*background-color: #808080;
     color: #fff;
-    font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
+    font-family: 'Palatino Linotype', Cambria, 'Cambria Math';*/
     font-size: 14px;
 }
 

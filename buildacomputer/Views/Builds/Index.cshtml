@@ -1,15 +1,20 @@
 ﻿@using System.Collections.Generic
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 
 <html>
 
 <head>
-    <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" type="image/ico" href="favicon.ico">
 
-    <title>ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -292,16 +297,56 @@
 </head>
 
 <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p>
+                    <img class="img-3-layout" src="@Url.Content("~/Content/Images/3.png")" />
+                    @Html.ActionLink("BUILD A COMPUTER", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </p>
+            </div>
+            <div class="navbar-collapse collapse">
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Index", "PreviousBuilds", new { area = "" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
+                    </ul>
+                }
 
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
+                        @*<li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { area = "" }, null)</li>*@
+                        <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { ReturnURL = "~/PreviousBuilds/Index" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
+                    </ul>
+                }
 
-
-    <div id="Lists">
-        @{ Html.RenderPartial("Lists"); }
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
     </div>
 
+    <div class="container">
+        <div id="Lists">
+            @{ Html.RenderPartial("Lists"); }
+        </div>
 
-    @Html.ActionLink("Save", "Save")
 
+        @Html.ActionLink("Save", "Save")
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Agile Aperture</p>
+        </footer>
+    </div>
 
 </body>
 </html>

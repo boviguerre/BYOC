@@ -4,94 +4,96 @@
 @{
     ViewBag.Title = "All Builds";
 }
+<div class="container">
+    <h2>All Builds</h2>
 
-<h2>All Builds</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Motherboards", "Index", new { sortOrder = "motherboard" })
+            </th>
+            <th>
+                @Html.ActionLink("Processors", "Index", new { sortOrder = "PROC" })
+            </th>
+            <th>
+                @Html.ActionLink("RAM", "Index", new { sortOrder = "MEM" })
+            </th>
+            <th>
+                @Html.ActionLink("Hard Drives", "Index", new { sortOrder = "HD" })
+            </th>
+            <th>
+                @Html.ActionLink("Sound Cards", "Index", new { sortOrder = "SOUND" })
+            </th>
+            <th>
+                @Html.ActionLink("Video Cards", "Index", new { sortOrder = "VIDEO" })
+            </th>
+            <th>
+                @Html.ActionLink("Optical Drives", "Index", new { sortOrder = "OD" })
+            </th>
+            <th>
+                @Html.ActionLink("Power Supplies", "Index", new { sortOrder = "PS" })
+            </th>
+            <th>
+                @Html.ActionLink("Computer Cases", "Index", new { sortOrder = "CC" })
+            </th>
+            <th>
+                Build Type
+            </th>
+            <th>
+                Number of Times Built
+            </th>
+            <th>
+                @Html.ActionLink("Build Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Motherboards", "Index", new { sortOrder = "motherboard" })
-        </th>
-        <th>
-            @Html.ActionLink("Processors", "Index", new { sortOrder = "PROC" })
-        </th>
-        <th>
-            @Html.ActionLink("RAM", "Index", new { sortOrder = "MEM"})
-        </th>
-        <th>
-            @Html.ActionLink("Hard Drives", "Index", new { sortOrder = "HD"})
-        </th>
-        <th>
-            @Html.ActionLink("Sound Cards", "Index", new { sortOrder = "SOUND"})
-        </th>
-        <th>
-            @Html.ActionLink("Video Cards", "Index", new { sortOrder = "VIDEO"})
-        </th>
-        <th>
-            @Html.ActionLink("Optical Drives", "Index", new { sortOrder = "OD"})
-        </th>
-        <th>
-            @Html.ActionLink("Power Supplies", "Index", new { sortOrder = "PS" })
-        </th>
-        <th>
-            @Html.ActionLink("Computer Cases", "Index", new { sortOrder = "CC"})
-        </th>
-        <th>
-            Build Type
-        </th>
-        <th>
-            Number of Times Built
-        </th>
-        <th>
-            @Html.ActionLink("Build Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-        </th>
+        </tr>
 
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.processor.processor_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.memory.memory_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iterator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildTime)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
+                    </td>*@
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.processor.processor_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.memory.memory_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.buildType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.iterator)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuildTime)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
-        </td>*@
-    </tr>
-}
-
-</table>
+    </table>
+</div>
