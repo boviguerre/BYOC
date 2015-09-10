@@ -90,7 +90,7 @@
                 @Html.DisplayFor(modelItem => item.iterator)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BuildTime)
+                <p>@item.BuildTime.ToString("M/d/yyyy")</p>
             </td>
             <td></td>
             @*<td>
@@ -184,7 +184,7 @@
                 @Html.DisplayFor(modelItem => item.iterator)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BuildTime)
+                <p>@item.BuildTime.ToString("M/d/yyyy")</p>
             </td>
             <td></td>
             @*<td>

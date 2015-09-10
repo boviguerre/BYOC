@@ -287,7 +287,42 @@
                 $(".button-computercases").css('color', 'white') 
             });
         });
-    </script>
+
+
+    $(document).ready(function () {
+        $(".img-case").click(function () {
+            $(".img-harddrive").animate({ left: "+=300px" });
+            $(".img-memory").animate({ left: "+=300px" });
+            $(".img-motherboard").animate({ left: "+=300px" });
+            $(".img-optical").animate({ left: "+=300px" });
+            $(".img-power").animate({ left: "+=300px" });
+            $(".img-sound").animate({ left: "+=300px" });
+            $(".img-video").animate({ left: "+=300px" });
+            $(".img-processor").animate({ left: "+=300px" });
+            $(".img-case").animate({ right: "+=200px" }, function () {
+                $(".img-case").fadeOut("fast");
+                $(".img-harddrive").fadeOut("fast");
+                $(".img-memory").fadeOut("fast");
+                $(".img-motherboard").fadeOut("fast");
+                $(".img-optical").fadeOut("fast");
+                $(".img-power").fadeOut("fast");
+                $(".img-sound").fadeOut("fast");
+                $(".img-video").fadeOut("fast");
+                $(".img-processor").fadeOut("fast");
+                $(".img-3").fadeIn("fast", function () {
+                    $(".img-3").fadeOut("slow", function () {
+                        $(".img-computer").fadeIn("fast");
+                    });
+                });
+                
+            });
+
+        });
+
+    });
+
+        </script>
+
 
 </head>
 
@@ -300,7 +335,26 @@
     </div>
 
 
+    <div class="the-images" style="text-align:left">
+        <p><img class="img-case" src="@Url.Content("~/Content/Images/case.png")" /></p>
+        <p></p>
+        <p><img class="img-harddrive" src="@Url.Content("~/Content/Images/harddrive.png")" /></p>
+        <p></p>
+        <img class="img-memory" src="@Url.Content("~/Content/Images/memory.png")" />
+        <p></p>
+        <img class="img-motherboard" src="@Url.Content("~/Content/Images/motherboard.png")" />
+        <img class="img-optical" src="@Url.Content("~/Content/Images/optical.png")" />
+        <img class="img-power" src="@Url.Content("~/Content/Images/power.png")" />
+        <img class="img-processor" src="@Url.Content("~/Content/Images/processor.png")" />
+        <img class="img-sound" src="@Url.Content("~/Content/Images/soundcard.png")" />
+        <img class="img-video" src="@Url.Content("~/Content/Images/video.png")" />
+
+        <img class="img-3" src="@Url.Content("~/Content/Images/3.png")" style="text-align: center; display: none" />
+        <img class="img-computer" src="@Url.Content("~/Content/Images/computer.png")" style="text-align: center; display: none" />
+    </div>
+
     @Html.ActionLink("Save", "Save")
+
 
 
 </body>

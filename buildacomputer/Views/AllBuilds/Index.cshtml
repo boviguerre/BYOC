@@ -84,7 +84,7 @@
             @Html.DisplayFor(modelItem => item.iterator)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BuildTime)
+            <p>@item.BuildTime.ToString("M/d/yyyy")</p>
         </td>
         @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
