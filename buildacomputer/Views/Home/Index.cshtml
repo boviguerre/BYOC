@@ -1,208 +1,284 @@
 ﻿@using buildacomputer.Models
-
 @{
-    ViewBag.Title = "Build A Computer";
+    Layout = null;
 }
-<div class="jumbotron">
-    <div class="container">
-        <h1 style="color: white">Hello, world!</h1>
-        <p>Build your own computer with parts that you know will work together.</p>
-        <button class="btn btn-primary btn-lg" style="color: #fff">
-            @Html.ActionLink("Get Started!", "Index", "Builds")
-        </button>
-    </div>
-</div>
-<div class="container">
-    <h2>Recent Computer Builds</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+
+    <meta charset="utf-8" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <title>Build A Computer</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".button-Recent").click(function () {
+                $("#tbl-Recent").show()
+                $("#tbl-Popular").hide()
+                $(".button-Recent").css('color', 'white')
+                $(".button-Popular").css('color', 'black')
+                $(".button-Recent").css('background-color', 'inherit');
+                $(".button-Popular").css('background-color', 'white');
+            });
+            $(".button-Popular").click(function () {
+                $("#tbl-Recent").hide()
+                $("#tbl-Popular").show()
+                $(".button-Recent").css('color', 'black')
+                $(".button-Popular").css('color', 'white')
+                $(".button-Recent").css('background-color', 'white');
+                $(".button-Popular").css('background-color', 'inherit');
+            });
+        });
+    </script>
+</head>
+
+<body>
 
     @{
         var recBuilds = (List<Build>)ViewData["Recent Builds"];
         var popBuilds = (List<Build>)ViewData["Popular Builds"];
     }
-    <table class="table">
-        <tr>
-            <th>
-                Motherboards
-            </th>
-            <th>
-                Processors
-            </th>
-            <th>
-                RAM
-            </th>
-            <th>
-                Hard Drives
-            </th>
-            <th>
-                Sound Cards
-            </th>
-            <th>
-                Video Adapters
-            </th>
-            <th>
-                Optical Drives
-            </th>
-            <th>
-                Power Supplies
-            </th>
-            <th>
-                Computer Cases
-            </th>
-            <th>
-                Build Type
-            </th>
-            <th>
-                Number of Times Built
-            </th>
-            <th>
-                Build Date
-            </th>
-            <th></th>
-        </tr>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <p>
+                    <img class="img-3-layout" src="@Url.Content("~/Content/Images/3.png")" />
+                    @Html.ActionLink("BUILD A COMPUTER", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </p>
+            </div>
+            <div class="navbar-collapse collapse">
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Index", "PreviousBuilds", new { area = "" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
+                    </ul>
+                }
 
-        @foreach (var item in recBuilds)
-        {
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
+                        @*<li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { area = "" }, null)</li>*@
+                        <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { ReturnURL = "~/PreviousBuilds/Index" }, null)</li>
+                        <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
+                    </ul>
+                }
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 style="color: white">Hello, world!</h1>
+            <p>Build your own computer with parts that you know will work together.</p>
+            <button class="btn btn-primary btn-lg" style="color: #fff">
+                @Html.ActionLink("Get Started!", "Index", "Builds")
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div id="buttons" style="display:table; margin:0 auto">
+            <button class="button-Recent" style="background-color:inherit; color:white">Most Recent Builds</button><button class="button-Popular">Popular Builds</button>
+        </div>
+        <table class="table" id="tbl-Recent">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.processor.processor_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.memory.memory_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.buildType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.iterator)
-                </td>
-                <td>
-                    <p>@item.BuildTime.ToString("M/d/yyyy")</p>
-                </td>
-                <td></td>
-
-
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
-                    </td>*@
-
+                <th>
+                    Motherboards
+                </th>
+                <th>
+                    Processors
+                </th>
+                <th>
+                    RAM
+                </th>
+                <th>
+                    Hard Drives
+                </th>
+                <th>
+                    Sound Cards
+                </th>
+                <th>
+                    Video Adapters
+                </th>
+                <th>
+                    Optical Drives
+                </th>
+                <th>
+                    Power Supplies
+                </th>
+                <th>
+                    Computer Cases
+                </th>
+                <th>
+                    Build Type
+                </th>
+                <th>
+                    Number of Times Built
+                </th>
+                <th>
+                    Build Date
+                </th>
+                <th></th>
             </tr>
-        }
-    </table>
 
-    <h2>Popular Computer Builds</h2>
+            @foreach (var item in recBuilds)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.processor.processor_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.memory.memory_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.buildType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.iterator)
+                    </td>
+                    <td>
+                        <p>@item.BuildTime.ToString("M/d/yyyy")</p>
+                    </td>
+                    <td></td>
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
+                        </td>*@
+                </tr>
+            }
 
-    <table class="table">
-        <tr>
-            <th>
-                Motherboards
-            </th>
-            <th>
-                Processors
-            </th>
-            <th>
-                RAM
-            </th>
-            <th>
-                Hard Drives
-            </th>
-            <th>
-                Sound Cards
-            </th>
-            <th>
-                Video Adapters
-            </th>
-            <th>
-                Optical Drives
-            </th>
-            <th>
-                Power Supplies
-            </th>
-            <th>
-                Computer Cases
-            </th>
-            <th>
-                Build Type
-            </th>
-            <th>
-                Number of Times Built
-            </th>
-            <th>
-                Build Date
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in popBuilds)
-        {
+        </table>
+
+        <table class="table" id="tbl-Popular" style="display:none">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.processor.processor_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.memory.memory_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.buildType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.iterator)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BuildTime)
-                </td>
-                <td></td>
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
-                    </td>*@
+                <th>
+                    Motherboards
+                </th>
+                <th>
+                    Processors
+                </th>
+                <th>
+                    RAM
+                </th>
+                <th>
+                    Hard Drives
+                </th>
+                <th>
+                    Sound Cards
+                </th>
+                <th>
+                    Video Adapters
+                </th>
+                <th>
+                    Optical Drives
+                </th>
+                <th>
+                    Power Supplies
+                </th>
+                <th>
+                    Computer Cases
+                </th>
+                <th>
+                    Build Type
+                </th>
+                <th>
+                    Number of Times Built
+                </th>
+                <th>
+                    Build Date
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
-</div>
+            @foreach (var item in popBuilds)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.processor.processor_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.memory.memory_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.buildType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.iterator)
+                    </td>
+                    <td>
+                        <p>@item.BuildTime.ToString("M/d/yyyy")</p>
+                    </td>
+                    <td></td>
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
+                        </td>*@
+                </tr>
+            }
 
+        </table>
+    </div>
+</body>
+</html>
