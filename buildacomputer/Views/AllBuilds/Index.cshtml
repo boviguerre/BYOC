@@ -43,7 +43,7 @@
             @Html.ActionLink("Build Type", "Index", new { sortOrder = "BuildType" })
         </th>
         <th>
-            @Html.ActionLink("Number of Times Built", "Index", new { sortOrder = "CC" })
+            @Html.ActionLink("Number of Times Built", "Index", new { sortOrder = "iterator" })
         </th>
         <th>
             @Html.ActionLink("Build Date", "Index", new { sortOrder = ViewBag.DateSortParm })
@@ -83,7 +83,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.buildType)
         </td>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(modelItem => item.iterator)
         </td>
         <td>

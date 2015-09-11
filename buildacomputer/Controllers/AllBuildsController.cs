@@ -77,6 +77,9 @@ namespace buildacomputer.Controllers
                 case "BuildType":
                     builds = builds.OrderBy(s => s.buildType);
                     break;
+                case "iterator":
+                    builds = builds.OrderByDescending(s => s.iterator);
+                    break;
                 case "Date":
                     builds = builds.OrderBy(s => s.BuildTime);
                     break;
