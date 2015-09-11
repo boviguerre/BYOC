@@ -7,6 +7,9 @@
 
 <h2>All Builds</h2>
 
+@using (Html.BeginForm())
+{ <p>Find a build by part name or build type: @Html.TextBox("SearchString") <input type="submit" value="Search" /></p> }
+
 <table class="table">
     <tr>
         <th>
@@ -37,10 +40,10 @@
             @Html.ActionLink("Computer Cases", "Index", new { sortOrder = "CC"})
         </th>
         <th>
-            Build Type
+            @Html.ActionLink("Build Type", "Index", new { sortOrder = "BuildType" })
         </th>
         <th>
-            Number of Times Built
+            @Html.ActionLink("Number of Times Built", "Index", new { sortOrder = "CC" })
         </th>
         <th>
             @Html.ActionLink("Build Date", "Index", new { sortOrder = ViewBag.DateSortParm })

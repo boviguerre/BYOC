@@ -15,9 +15,11 @@ namespace buildacomputer.Controllers
         private PartsAndUsersContext db = new PartsAndUsersContext();
 
         // GET: AllBuilds
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             var builds = db.Builds.Include(b => b.motherboard).Include(b => b.processor).Include(b => b.memory).Include(b => b.hard_drives).Include(b => b.sound_cards).Include(b => b.video_adapters).Include(b => b.optical_drives).Include(b => b.power_supplies).Include(b => b.computer_cases);
+
+            if (!String.IsNullOrEmpty(searchString)) { builds = builds.Where(b => b.motherboard.motherboard_name.ToUpper().Contains(searchString.ToUpper()) || b.processor.processor_name.ToUpper().Contains(searchString.ToUpper()) || b.memory.memory_name.ToUpper().Contains(searchString.ToUpper()) || b.hard_drives.hard_drive_name.ToUpper().Contains(searchString.ToUpper()) || b.sound_cards.sound_card_name.ToUpper().Contains(searchString.ToUpper()) || b.video_adapters.video_adapter_name.ToUpper().Contains(searchString.ToUpper()) || b.optical_drives.optical_drive_name.ToUpper().Contains(searchString.ToUpper()) || b.power_supplies.power_supply_name.ToUpper().Contains(searchString.ToUpper()) || b.computer_cases.computer_case_name.ToUpper().Contains(searchString.ToUpper()) || b.buildType.ToUpper().Contains(searchString.ToUpper())); }
 
             switch (sortOrder)
             {
@@ -71,6 +73,9 @@ namespace buildacomputer.Controllers
                     break;
                 case "cc_desc":
                     builds = builds.OrderByDescending(s => s.computer_cases.computer_case_name);
+                    break;
+                case "BuildType":
+                    builds = builds.OrderBy(s => s.buildType);
                     break;
                 case "Date":
                     builds = builds.OrderBy(s => s.BuildTime);
