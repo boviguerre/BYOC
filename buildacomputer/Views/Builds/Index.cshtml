@@ -349,6 +349,7 @@
                 @if (Request.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("WHAT IT'S LIKE", "Index", "Animation", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Index", "PreviousBuilds", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("BUILD!", "Index", "Builds", new { area = "" }, null)</li>
@@ -358,6 +359,7 @@
                 else
                 {
                     <ul class="nav navbar-nav">
+                        <li style="color: #fff;">@Html.ActionLink("WHAT IT'S LIKE", "Index", "Animation", new { area = "" }, null)</li>
                         <li style="color: #fff;">@Html.ActionLink("ALL BUILDS", "Index", "AllBuilds", new { area = "" }, null)</li>
                         @*<li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { area = "" }, null)</li>*@
                         <li style="color: #fff;">@Html.ActionLink("YOUR SAVED BUILDS", "Login", "Account", new { ReturnURL = "~/PreviousBuilds/Index" }, null)</li>
@@ -368,6 +370,7 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
+
 
     </div>
 
