@@ -1,325 +1,348 @@
 ﻿@using buildacomputer.Models
 
-@{
-    ViewBag.Title = "Build A Computer";
-}
-
-<h2>Recent Computer Builds</h2>
-
-@{
-    var recBuilds = (List<Build>)ViewData["Recent Builds"];
-    var popBuilds = (List<Build>)ViewData["Popular Builds"];
-}
-
-
-<table class="table" id="table1-peekaboo">
-    <tr>
-        <th>
-            Motherboards
-        </th>
-        <th>
-            Processors
-        </th>
-        <th>
-            RAM
-        </th>
-        <th>
-            Hard Drives
-        </th>
-        <th>
-            Sound Cards
-        </th>
-        <th>
-            Video Adapters
-        </th>
-        <th>
-            Optical Drives
-        </th>
-        <th>
-            Power Supplies
-        </th>
-        <th>
-            Computer Cases
-        </th>
-        <th>
-            Build Type
-        </th>
-        <th>
-            Number of Times Built
-        </th>
-        <th>
-            Build Date 
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in recBuilds)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.processor.processor_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.memory.memory_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.buildType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.iterator)
-            </td>
-            <td>
-                <p>@item.BuildTime.ToString("M/d/yyyy")</p>
-            </td>
-            <td></td>
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
-                </td>*@
-        </tr>
-    }
-
-
-</table>
-
-<h2>Popular Computer Builds</h2>
-
-<table class="table" id="table2-peekaboo">
-    <tr>
-        <th>
-            Motherboards
-        </th>
-        <th>
-            Processors
-        </th>
-        <th>
-            RAM
-        </th>
-        <th>
-            Hard Drives
-        </th>
-        <th>
-            Sound Cards
-        </th>
-        <th>
-            Video Adapters
-        </th>
-        <th>
-            Optical Drives
-        </th>
-        <th>
-            Power Supplies
-        </th>
-        <th>
-            Computer Cases
-        </th>
-        <th>
-            Build Type
-        </th>
-        <th>
-            Number of Times Built
-        </th>
-        <th>
-            Build Date
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in popBuilds)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.processor.processor_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.memory.memory_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.buildType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.iterator)
-            </td>
-            <td>
-                <p>@item.BuildTime.ToString("M/d/yyyy")</p>
-            </td>
-            <td></td>
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
-                </td>*@
-        </tr>
-    }
-
-</table>
-
-@*<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Build A Computer</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <style>
-        .carousel-inner > .item > img,
-        .carousel-inner > .item > a > img {
-            width: 70%;
-            margin: auto;
-        }
-    </style>
+
+    <script>
+        $(document).ready(function () {
+            $(".button-Recent").click(function () {
+                $("#tbl-Recent").show()
+                $("#tbl-Popular").hide()
+                $(".button-Recent").css('color', 'white')
+                $(".button-Popular").css('color', 'black')
+                $(".button-Recent").css('background-color', 'inherit');
+                $(".button-Popular").css('background-color', 'white');
+            });
+            $(".button-Popular").click(function () {
+                $("#tbl-Recent").hide()
+                $("#tbl-Popular").show()
+                $(".button-Recent").css('color', 'black')
+                $(".button-Popular").css('color', 'white')
+                $(".button-Recent").css('background-color', 'white');
+                $(".button-Popular").css('background-color', 'inherit');
+            });
+        });
+    </script>
 </head>
+
 <body>
 
-    <div class="container">
-        <br>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-                <li data-target="#myCarousel" data-slide-to="4"></li>
-                <li data-target="#myCarousel" data-slide-to="5"></li>
-                <li data-target="#myCarousel" data-slide-to="6"></li>
-                <li data-target="#myCarousel" data-slide-to="7"></li>
-                <li data-target="#myCarousel" data-slide-to="8"></li>
-            </ol>
+    @{
+        var recBuilds = (List<Build>)ViewData["Recent Builds"];
+        var popBuilds = (List<Build>)ViewData["Popular Builds"];
+    }
+    <div id="buttons" style="display:table; margin:0 auto">
+        <button class="button-Recent" style="background-color:inherit; color:white">Most Recent Builds</button><button class="button-Popular">Popular Builds</button>
+    </div>
+    <table class="table" id="tbl-Recent">
+        <tr>
+            <th>
+                Motherboards
+            </th>
+            <th>
+                Processors
+            </th>
+            <th>
+                RAM
+            </th>
+            <th>
+                Hard Drives
+            </th>
+            <th>
+                Sound Cards
+            </th>
+            <th>
+                Video Adapters
+            </th>
+            <th>
+                Optical Drives
+            </th>
+            <th>
+                Power Supplies
+            </th>
+            <th>
+                Computer Cases
+            </th>
+            <th>
+                Build Type
+            </th>
+            <th>
+                Number of Times Built
+            </th>
+            <th>
+                Build Date
+            </th>
+            <th></th>
+        </tr>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
+        @foreach (var item in recBuilds)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.processor.processor_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.memory.memory_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iterator)
+                </td>
+                <td>
+                    <p>@item.BuildTime.ToString("M/d/yyyy")</p>
+                </td>
+                <td></td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
+                    </td>*@
+            </tr>
+        }
 
-                <div class="item active">
-                    <img src="@Url.Content("~/Content/Images/motherboard.png")" alt="Motherboard" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
+
+    </table>
+
+    <table class="table" id="tbl-Popular" style="display:none">
+        <tr>
+            <th>
+                Motherboards
+            </th>
+            <th>
+                Processors
+            </th>
+            <th>
+                RAM
+            </th>
+            <th>
+                Hard Drives
+            </th>
+            <th>
+                Sound Cards
+            </th>
+            <th>
+                Video Adapters
+            </th>
+            <th>
+                Optical Drives
+            </th>
+            <th>
+                Power Supplies
+            </th>
+            <th>
+                Computer Cases
+            </th>
+            <th>
+                Build Type
+            </th>
+            <th>
+                Number of Times Built
+            </th>
+            <th>
+                Build Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in popBuilds)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.processor.processor_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.memory.memory_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hard_drives.hard_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sound_cards.sound_card_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.video_adapters.video_adapter_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.optical_drives.optical_drive_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.power_supplies.power_supply_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.computer_cases.computer_case_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iterator)
+                </td>
+                <td>
+                    <p>@item.BuildTime.ToString("M/d/yyyy")</p>
+                </td>
+                <td></td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.buildID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.buildID })
+                    </td>*@
+            </tr>
+        }
+
+    </table>
+
+    @*<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>Bootstrap Example</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <style>
+                .carousel-inner > .item > img,
+                .carousel-inner > .item > a > img {
+                    width: 70%;
+                    margin: auto;
+                }
+            </style>
+        </head>
+        <body>
+
+            <div class="container">
+                <br>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                        <li data-target="#myCarousel" data-slide-to="5"></li>
+                        <li data-target="#myCarousel" data-slide-to="6"></li>
+                        <li data-target="#myCarousel" data-slide-to="7"></li>
+                        <li data-target="#myCarousel" data-slide-to="8"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+
+                        <div class="item active">
+                            <img src="@Url.Content("~/Content/Images/motherboard.png")" alt="Motherboard" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/processor.png")" alt="Processor" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/memory.png")" alt="Memory" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/harddrive.png")" alt="Hard Drive" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/soundcard.png")" alt="Sound Card" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/video.png")" alt="Video Adapter" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/optical.png")" alt="Optical Drive" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/power.png")" alt="Power Processor" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/Images/case.png")" alt="Computer Case" width="60" height="45">
+                            <div class="carousel-caption">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
+            </div>*@
 
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/processor.png")" alt="Processor" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/memory.png")" alt="Memory" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/harddrive.png")" alt="Hard Drive" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/soundcard.png")" alt="Sound Card" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/video.png")" alt="Video Adapter" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/optical.png")" alt="Optical Drive" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/power.png")" alt="Power Processor" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="@Url.Content("~/Content/Images/case.png")" alt="Computer Case" width="60" height="45">
-                    <div class="carousel-caption">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>*@
-
-
-
+</body>
+</html>
