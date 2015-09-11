@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            Build Name
+        </th>
+        <th>
             Motherboards
         </th>
         <th>
@@ -46,10 +49,13 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
+    @{int i = 0;
+    foreach (var item in Model)
     {
         <tr>
+            <td>
+                @ViewBag.name[i]
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.motherboard.motherboard_name)
             </td>
@@ -88,5 +94,7 @@
             </td>
             <td></td>
         </tr>
+        i++;
+    }
     }
 </table>
