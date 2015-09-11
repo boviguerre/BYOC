@@ -4,18 +4,40 @@
 <head>
     <title>Build A Computer</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".button-Recent").click(function () {
+                $("#tbl-Recent").show()
+                $("#tbl-Popular").hide()
+                $(".button-Recent").css('color', 'white')
+                $(".button-Popular").css('color', 'black')
+                $(".button-Recent").css('background-color', 'inherit');
+                $(".button-Popular").css('background-color', 'white');
+            });
+            $(".button-Popular").click(function () {
+                $("#tbl-Recent").hide()
+                $("#tbl-Popular").show()
+                $(".button-Recent").css('color', 'black')
+                $(".button-Popular").css('color', 'white')
+                $(".button-Recent").css('background-color', 'white');
+                $(".button-Popular").css('background-color', 'inherit');
+            });
+        });
+    </script>
 </head>
 
 <body>
-<h2>Recent Computer Builds</h2>
 
 @{
     var recBuilds = (List<Build>)ViewData["Recent Builds"];
     var popBuilds = (List<Build>)ViewData["Popular Builds"];
 }
-
-
-<table class="table">
+    <div id="buttons" style="display:table; margin:0 auto">
+        <button class="button-Recent" style="background-color:inherit; color:white">Most Recent Builds</button><button class="button-Popular">Popular Builds</button>
+    </div>
+<table class="table" id="tbl-Recent">
     <tr>
         <th>
             Motherboards
@@ -107,9 +129,7 @@
 
 </table>
 
-<h2>Popular Computer Builds</h2>
-
-<table class="table">
+<table class="table" id="tbl-Popular" style="display:none">
     <tr>
         <th>
             Motherboards
@@ -326,5 +346,3 @@
 
 </body>
 </html>
-
-
