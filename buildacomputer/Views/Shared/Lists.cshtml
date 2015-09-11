@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <button class="button-motherboards">MOTHERBOARDS</button><button class="button-processors">PROCESSORS</button><button class="button-memories">RAM</button><button class="button-harddrives">HARD DRIVES</button><button class="button-soundcards">SOUND CARDS</button><button class="button-videoadapters">VIDEO ADAPTERS</button><button class="button-opticaldrives">OPTICAL DRIVES</button><button class="button-powersupplies">POWER SUPPLIES</button><button class="button-computercases">COMPUTER CASES</button>
+    <button class="button-motherboards" style="background-color: inherit; color: white">MOTHERBOARDS</button><button class="button-processors" style="background-color: #2e3338; color: #7a8288">PROCESSORS</button><button class="button-memories" style="background-color: #2e3338; color: #7a8288">RAM</button><button class="button-harddrives" style="background-color: #2e3338; color: #7a8288">HARD DRIVES</button><button class="button-soundcards" style="background-color: #2e3338; color: #7a8288">SOUND CARDS</button><button class="button-videoadapters" style="background-color: #2e3338; color: #7a8288">VIDEO ADAPTERS</button><button class="button-opticaldrives" style="background-color: #2e3338; color: #7a8288">OPTICAL DRIVES</button><button class="button-powersupplies" style="background-color: #2e3338; color: #7a8288">POWER SUPPLIES</button><button class="button-computercases" style="background-color: #2e3338; color: #7a8288">COMPUTER CASES</button>
 
     <p>&nbsp;</p>
 
@@ -134,11 +134,11 @@
                 <td>
                     @if (build.processor_id == null)
                     {
-                        <button name="" type="button" value=@x.processor_id class="doajaxpr" style="background-color:lightgreen">Add to Build</button>
+                        <button name="" type="button" value=@x.processor_id class="doajaxpr" style="background-color:#558e66; color: black">Add to Build</button>
                     }
                     @if (build.processor_id != null)
                     {
-                        <button name="" type="button" value=@x.processor_id class="doajaxxpr" style="background-color:#FF3333">Remove from Build</button>
+                        <button name="" type="button" value=@x.processor_id class="doajaxxpr" style="background-color:#ce1d1d; color: black">Remove from Build</button>
                     }
                 </td>
 
@@ -178,11 +178,11 @@
                 <td>
                     @if (build.memory_id == null)
                     {
-                        <button name="" type="button" value=@x.memory_id class="doajaxme" style="background-color:lightgreen">Add to Build</button>
+                        <button name="" type="button" value=@x.memory_id class="doajaxme" style="background-color:#558e66; color: black">Add to Build</button>
                     }
                     @if (build.memory_id != null)
                     {
-                        <button name="" type="button" value=@x.memory_id class="doajaxxme" style="background-color:#FF3333">Remove from Build</button>
+                        <button name="" type="button" value=@x.memory_id class="doajaxxme" style="background-color:#ce1d1d; color: black">Remove from Build</button>
                     }
                 </td>
 
@@ -226,11 +226,11 @@
                     <td>
                         @if (build.hard_drive_id == null)
                         {
-                            <button name="" type="button" value=@x.hard_drive_id id="hd" class="doajaxhd" style="background-color:lightgreen">Add to Build</button>
+                            <button name="" type="button" value=@x.hard_drive_id id="hd" class="doajaxhd" style="background-color:#558e66; color: black">Add to Build</button>
                         }
                         @if (build.hard_drive_id != null)
                         {
-                            <button name="" type="button" value=@x.hard_drive_id class="doajaxxhd" style="background-color:#FF3333">Remove from Build</button>
+                            <button name="" type="button" value=@x.hard_drive_id class="doajaxxhd" style="background-color:#ce1d1d; color: black">Remove from Build</button>
                         }
                     </td>
 
@@ -274,11 +274,11 @@
                     <td>
                         @if (build.sound_card_id == null)
                         {
-                            <button name="" type="button" value=@x.sound_card_id class="doajaxsc" style="background-color:lightgreen">Add to Build</button>
+                            <button name="" type="button" value=@x.sound_card_id class="doajaxsc" style="background-color:#558e66; color: black">Add to Build</button>
                         }
                         @if (build.sound_card_id != null)
                         {
-                            <button name="" type="button" value=@x.sound_card_id class="doajaxxsc" style="background-color:#FF3333">Remove from Build</button>
+                            <button name="" type="button" value=@x.sound_card_id class="doajaxxsc" style="background-color:#ce1d1d; color: black">Remove from Build</button>
                         }
                     </td>
 
@@ -329,11 +329,11 @@
                     <td>
                         @if (build.video_adapter_id == null)
                         {
-                            <button name="" type="button" value=@x.video_adapter_id class="doajaxva" style="background-color:lightgreen">Add to Build</button>
+                            <button name="" type="button" value=@x.video_adapter_id class="doajaxva" style="background-color:#558e66; color: black">Add to Build</button>
                         }
                         @if (build.video_adapter_id != null)
                         {
-                            <button name="" type="button" value=@x.video_adapter_id class="doajaxxva" style="background-color:#FF3333">Remove from Build</button>
+                            <button name="" type="button" value=@x.video_adapter_id class="doajaxxva" style="background-color:#ce1d1d; color: black">Remove from Build</button>
                         }
                     </td>
                 </tr>
@@ -374,11 +374,11 @@
                     <td>
                         @if (build.optical_drive_id == null)
                         {
-                            <button name="" style="background-color:lightgreen" type="button" value=@x.optical_drive_id class="doajaxod">Add to Build</button>
+                            <button name="" style="background-color:#558e66; color: black" type="button" value=@x.optical_drive_id class="doajaxod">Add to Build</button>
                         }
                         @if (build.optical_drive_id != null)
                         {
-                            <button name="" type="button" value=@x.optical_drive_id class="doajaxxod" style="background-color:#FF3333">Remove from Build</button>
+                            <button name="" type="button" value=@x.optical_drive_id class="doajaxxod" style="background-color:#ce1d1d; color: black">Remove from Build</button>
                         }
                     </td>
 
@@ -426,12 +426,12 @@
                         <td>
                             @if (build.power_supply_id == null)
                             {
-                                <button name="" style="background-color:lightgreen" type="button" value=@x.power_supply_id class="doajaxps">Add to Build</button>
+                                <button name="" style="background-color:#558e66; color: black" type="button" value=@x.power_supply_id class="doajaxps">Add to Build</button>
                             }
                             @if (build.power_supply_id != null)
                             {
 
-                                <button name="" type="button" value=@x.power_supply_id class="doajaxxps" style="background-color:#FF3333">Remove from Build</button>}
+                                <button name="" type="button" value=@x.power_supply_id class="doajaxxps" style="background-color:#ce1d1d; color: black">Remove from Build</button>}
                         </td>
 
                     </tr>
@@ -497,11 +497,11 @@
                         <td>
                             @if (build.computer_case_id == null)
                             {
-                                <button name="" style="background-color:lightgreen" type="button" value=@x.computer_case_id class="doajaxcc">Add to Build</button>
+                                <button name="" style="background-color:#558e66; color: black" type="button" value=@x.computer_case_id class="doajaxcc">Add to Build</button>
                             }
                             @if (build.computer_case_id != null)
                             {
-                                <button name="" type="button" value=@x.computer_case_id class="doajaxxcc" style="background-color:#FF3333">Remove from Build</button>
+                                <button name="" type="button" value=@x.computer_case_id class="doajaxxcc" style="background-color:#ce1d1d; color: black">Remove from Build</button>
                             }
                         </td>
 
