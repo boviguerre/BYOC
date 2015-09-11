@@ -25,6 +25,7 @@ namespace buildacomputer.Controllers
         {
             string currentUserID = User.Identity.GetUserId();
             List<int> oldBuild = db.UserBuilds.Where(u => u.UserId == currentUserID).Select(b => b.buildID).ToList();
+            ViewBag.name = new List<string>();
             if(displayBuilds.Any())
             {
                 displayBuilds.Clear();
@@ -32,6 +33,7 @@ namespace buildacomputer.Controllers
 
             foreach(int inOldBuilds in oldBuild)
             {
+                ViewBag.name.Add(db.UserBuilds.Where(u => u.buildID == inOldBuilds && u.UserId == currentUserID).Select(u => u.buildName).Single());
                 displayBuilds.Add(db.Builds.Where(b => b.buildID == inOldBuilds).Select(b => b).Include(b => b.motherboard).Include(b => b.processor).Include(b => b.memory).Include(b => b.hard_drives).Include(b => b.sound_cards).Include(b => b.video_adapters).Include(b => b.optical_drives).Include(b => b.power_supplies).Include(b => b.computer_cases).SingleOrDefault());
             }
 
