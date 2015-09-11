@@ -267,6 +267,7 @@
     <Content Include="Content\Images\Background.png" />
     <Content Include="Content\Images\case.png" />
     <Content Include="Content\Images\CaseText.png" />
+    <Content Include="Content\Images\cloud-save.png" />
     <Content Include="Content\Images\computer.png" />
     <Content Include="Content\Images\harddrive.png" />
     <Content Include="Content\Images\memory.png" />
