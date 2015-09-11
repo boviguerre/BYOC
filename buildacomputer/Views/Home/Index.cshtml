@@ -5,9 +5,11 @@
 }
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
+        <h1 style="color: white">Hello, world!</h1>
         <p>Build your own computer with parts that you know will work together.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Start! &raquo;</a></p>
+        <button class="btn btn-primary btn-lg" style="color: #fff">
+            @Html.ActionLink("Get Started!", "Index", "Builds")
+        </button>
     </div>
 </div>
 <div class="container">
@@ -98,7 +100,7 @@
                     <p>@item.BuildTime.ToString("M/d/yyyy")</p>
                 </td>
                 <td></td>
-            
+
 
                 @*<td>
                         @Html.ActionLink("Edit", "Edit", new { id=item.buildID }) |
@@ -203,4 +205,4 @@
 
     </table>
 </div>
-   
+

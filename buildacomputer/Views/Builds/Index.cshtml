@@ -375,7 +375,10 @@
             @{ Html.RenderPartial("Lists"); }
         </div>
 
-        @Html.ActionLink("Save", "Save")
+
+        <button class="btn btn-primary btn-lg" style="color: #fff">
+            @Html.ActionLink("SAVE", "Save", "Builds")
+        </button>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Agile Aperture</p>

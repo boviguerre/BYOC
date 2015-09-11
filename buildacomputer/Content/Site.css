@@ -105,8 +105,8 @@ html
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    /*background-color: #808080;
-    color: #fff;
+    background-color: #5c5c5c;
+    /*color: #fff;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';*/
     font-size: 14px;
 }
@@ -115,10 +115,18 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #808080;
+    background-color: #5c5c5c;
     color: #fff;
     font-family: 'Palatino Linotype', Cambria, 'Cambria Math';
     
+}
+
+h1 {
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+.navbar-inverse {
+    background-color: #5c5c5c;
 }
 
 /* Tabs overrides */
